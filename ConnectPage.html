@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Page de connexion">
+    <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
+    <link href="style.css" rel="stylesheet" type="text/css" id="mycss">
+    <script src="script.js"></script>
+    <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
+    <title>Nexa</title>
+</head>
+
+<body>
+    <section class="main">
+        <section class="head">
+            <img class="logo-nexa" src="Images/Logos/Logo Nexa.png" />
+        </section>
+        <h2>Page de connexion</h2>
+        <br>
+        <button class="inscriptionButton" id="inscriptionButton">Inscription</button>
+        <button class="connexionButton" id="connexionButton">Connexion</button>
+        <br><br>
+
+        <form class="register" id="register" action="" method="post"> <!-- Formulaire inscription -->
+            <h3>Inscription</h3>
+            <div class="field">
+                <label for="Email">Email :</label>
+                <input id="Email" name="Incription_Email" type="text">
+            </div>
+
+            <div class="field field-pswd">
+                <label for="Mot de passe">Mot de passe:</label>
+                <input id="mdp" type="password" name="Incription_mpd" type="text">
+                <input class="checkpswd" id="checkpswd" type="checkbox"></input>
+            </div>
+
+            <div class="field">
+                <label for="username">Username :</label>
+                <input id="username" name="Incription_username" type="text">
+            </div>
+        </form>
+
+        <br>
+
+        <form class="connexion" action="" method="post"> <!-- Formulaire connexion -->
+            <h3>Connexion</h3>
+            <div class="field">
+                <label for="Email">Email :</label>
+                <input id="Email" name="Connexion_Email" type="text">
+            </div>
+
+            <div class="field">
+                <label for="Mot de passe">Mot de passe:</label>
+                <input id="prenom" type="password" name="Incription_mpd" type="text">
+            </div>
+        </form>
+    </section>
+
+    <section class="NexaInformation">
+        <h2>A Propos de Nexa</h2>
+    </section>
+
+
+</body>
