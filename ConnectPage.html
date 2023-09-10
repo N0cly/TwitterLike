@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Page de connexion">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="style.css" rel="stylesheet" type="text/css" id="mycss">
+    <link href="style.css" rel="stylesheet" type="text/css">
     <script src="script.js"></script>
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Nexa</title>
@@ -23,38 +23,44 @@
     <button class="connexionButton" id="connexionButton">Connexion</button>
     <br><br>
 
-    <form class="register" id="register" action="" method="post"> <!-- Formulaire inscription -->
+
+
+    <form class="register" id="register" action="traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
         <h3>Inscription</h3>
         <div class="field">
             <label for="email1">Email :</label>
-            <input id="email1" name="Inscription_Email" type="text">
+            <input id="email1" name="Inscription_Email" type="text" required>
         </div>
 
         <div class="field field-pswd">
             <label for="mdp1">Mot de passe:</label>
-            <input type="password" id="mdp1">
-            <input type="checkbox" class="checkpswd" onclick="showPwd()">
+            <input type="password" id="mdp1" class="mdp" required>
+            <input type="checkbox" class="checkpswd" onclick="showPwd1()">
         </div>
 
         <div class="field">
             <label for="username">Username :</label>
             <input id="username" name="Inscription_username" type="text">
         </div>
+        <input type="submit" value="S'inscrire">
     </form>
 
     <br>
 
-    <form class="connexion" action="" method="post"> <!-- Formulaire connexion -->
+    <form class="connexion" action="traitement_connexion.php" method="post"> <!-- Formulaire connexion -->
         <h3>Connexion</h3>
         <div class="field">
-            <label for="Email">Email :</label>
-            <input id="Email" name="Connexion_Email" type="text">
+            <label for="email2">Email :</label>
+            <input id="email2" type="email" name="email" required><br>
         </div>
 
-        <div class="field">
-            <label for="mdp2">Mot de passe:</label>
-            <input id="mdp2" type="password" name="Connexion_mpd">
+        <div class="field field-pswd">
+            <label for="mdp2">Mot de passe :</label>
+            <input type="password" name="mot_de_passe" id="mdp2" required><br>
+            <input type="checkbox" class="checkpswd" onclick="showPwd2()">
         </div>
+
+        <input type="submit" value="Se connecter">
     </form>
 </section>
 

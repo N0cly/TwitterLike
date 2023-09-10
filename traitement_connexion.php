@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         $erreurMessage = "Adresse email ou mot de passe incorrect.";
-        header("Location: connexion.php?erreur=$erreurMessage");
+        header("Location: ConnectPage.php?erreur=$erreurMessage");
         exit;
     }
 }

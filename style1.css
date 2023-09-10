@@ -1,0 +1,128 @@
+/* Styles pour la page principale */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.head {
+    text-align: center;
+}
+
+.logo-nexa {
+    max-width: 100px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styles pour les boutons d'inscription et de connexion */
+.inscriptionButton,
+.connexionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.inscriptionButton:hover,
+.connexionButton:hover {
+    background-color: #0056b3;
+}
+
+.choice-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+.register {
+    display: block;
+}
+
+.connexion {
+    display: none;
+}
+
+
+/* Styles pour les formulaires */
+form {
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.field {
+    margin-bottom: 15px;
+    width: 95%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.field-pswd{
+    position: relative;
+}
+
+.field-pswd__mdp{
+    /*width: 60vw;*/
+}
+
+.checkpswd {
+    position: absolute;
+    top:.75vh;
+    right: 0;
+    height: 20px;
+    width: 20px;
+}
+
+/* Styles pour les messages d'erreur */
+.error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Styles pour la section "A Propos de Nexa" */
+.NexaInformation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.NexaInformation h2 {
+    font-size: 24px;
+    color: #007bff;
+}
