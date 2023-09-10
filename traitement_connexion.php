@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($email ==="enzo.bedos@nocly.fr" && $mot_de_passe === "test") {
         session_start();
         $_SESSION["utilisateur_connecte"] = true; // Vous pouvez stocker des informations sur l'utilisateur connecté ici
+        $_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
         header("Location: dashboard.php");
         exit;
     } else {
