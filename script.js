@@ -21,13 +21,12 @@ connexionButton.addEventListener("click", function () {
 });
 
 
-const toggle_pswd = document.getElementById("checkpswd");
-const field_mdp = document.getElementById("mdp");
 
-
-// toggle password visibility
-toggle_pswd.addEventListener('click', function (e) {
-    // toggle the type attribute
-    const type = field_mdp.getAttribute('type') === 'password' ? 'text' : 'password';
-    field_mdp.setAttribute('type', type);
-})
+function showPwd() {
+    var x = document.getElementById("mdp1");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}

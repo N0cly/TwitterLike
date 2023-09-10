@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Page de connexion">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
     <link href="style.css" rel="stylesheet" type="text/css" id="mycss">
@@ -13,54 +13,53 @@
 </head>
 
 <body>
-    <section class="main">
-        <section class="head">
-            <img class="logo-nexa" src="Images/Logos/Logo Nexa.png" />
-        </section>
-        <h2>Page de connexion</h2>
-        <br>
-        <button class="inscriptionButton" id="inscriptionButton">Inscription</button>
-        <button class="connexionButton" id="connexionButton">Connexion</button>
-        <br><br>
-
-        <form class="register" id="register" action="" method="post"> <!-- Formulaire inscription -->
-            <h3>Inscription</h3>
-            <div class="field">
-                <label for="Email">Email :</label>
-                <input id="Email" name="Incription_Email" type="text">
-            </div>
-
-            <div class="field field-pswd">
-                <label for="Mot de passe">Mot de passe:</label>
-                <input id="mdp" type="password" name="Incription_mpd" type="text">
-                <input class="checkpswd" id="checkpswd" type="checkbox"></input>
-            </div>
-
-            <div class="field">
-                <label for="username">Username :</label>
-                <input id="username" name="Incription_username" type="text">
-            </div>
-        </form>
-
-        <br>
-
-        <form class="connexion" action="" method="post"> <!-- Formulaire connexion -->
-            <h3>Connexion</h3>
-            <div class="field">
-                <label for="Email">Email :</label>
-                <input id="Email" name="Connexion_Email" type="text">
-            </div>
-
-            <div class="field">
-                <label for="Mot de passe">Mot de passe:</label>
-                <input id="prenom" type="password" name="Incription_mpd" type="text">
-            </div>
-        </form>
+<section class="main">
+    <section class="head">
+        <img class="logo-nexa" src="Images/Logos/Logo Nexa.png" alt="Logo Nexa">
     </section>
+    <h2>Page de connexion</h2>
+    <br>
+    <button class="inscriptionButton" id="inscriptionButton">Inscription</button>
+    <button class="connexionButton" id="connexionButton">Connexion</button>
+    <br><br>
 
-    <section class="NexaInformation">
-        <h2>A Propos de Nexa</h2>
-    </section>
+    <form class="register" id="register" action="" method="post"> <!-- Formulaire inscription -->
+        <h3>Inscription</h3>
+        <div class="field">
+            <label for="email1">Email :</label>
+            <input id="email1" name="Inscription_Email" type="text">
+        </div>
 
+        <div class="field field-pswd">
+            <label for="mdp1">Mot de passe:</label>
+            <input type="password" id="mdp1">
+            <input type="checkbox" class="checkpswd" onclick="showPwd()">
+        </div>
 
+        <div class="field">
+            <label for="username">Username :</label>
+            <input id="username" name="Inscription_username" type="text">
+        </div>
+    </form>
+
+    <br>
+
+    <form class="connexion" action="" method="post"> <!-- Formulaire connexion -->
+        <h3>Connexion</h3>
+        <div class="field">
+            <label for="Email">Email :</label>
+            <input id="Email" name="Connexion_Email" type="text">
+        </div>
+
+        <div class="field">
+            <label for="mdp2">Mot de passe:</label>
+            <input id="mdp2" type="password" name="Connexion_mpd">
+        </div>
+    </form>
+</section>
+
+<section class="NexaInformation">
+    <h2>A Propos de Nexa</h2>
+</section>
 </body>
+</html>
