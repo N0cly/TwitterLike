@@ -3,7 +3,7 @@ session_start();
 
 // Vérifiez d'abord si l'utilisateur est connecté
 if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte"] !== true) {
-    header("Location: ConnectPage.php");
+    header("Location: ../index.php");
     exit;
 }
 

@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
 
     try {
-        $db = new PDO('sqlite:/amuhome/b22002844/PhpstormProjects/TwitterLike/db_nexa.sqlite');
+        $db = new PDO('sqlite:./db/db_nexa.sqlite');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die('Erreur de connexion à la base de données : ' . $e->getMessage());

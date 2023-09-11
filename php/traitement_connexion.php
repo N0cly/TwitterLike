@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mot_de_passe = $_POST["mot_de_passe"];
 
     try {
-        $db = new PDO('sqlite:/amuhome/b22002844/PhpstormProjects/TwitterLike/db_nexa.sqlite');
+        $db = new PDO('sqlite:../db/db_nexa.sqlite');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die('Erreur de connexion à la base de données : ' . $e->getMessage());
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     } else {
         // Les informations de connexion sont incorrectes, affichez un message d'erreur ou redirigez vers la page de connexion
-        header('Location: ConnectPage.php?erreur=1');
+        header('Location: ../index.php?erreur=1');
         exit;
     }
 

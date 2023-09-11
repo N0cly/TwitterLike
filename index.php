@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Page de connexion">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="style1.css" rel="stylesheet" type="text/css">
-    <script src="script.js"></script>
+    <link href="css/style1.css" rel="stylesheet" type="text/css">
+    <script src="js/script.js"></script>
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Nexa</title>
 </head>
@@ -27,7 +27,7 @@
 
 
 
-    <form class="register" id="register" action="traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
+    <form class="register" id="register" action="php/traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
         <h3>Inscription</h3>
         <div class="field">
             <label for="username">Username :</label>
@@ -51,7 +51,7 @@
         <input class="inscriptionButton" type="submit" value="S'inscrire">
     </form>
 
-    <form id="connexion" class="connexion" action="traitement_connexion.php" method="post"> <!-- Formulaire connexion -->
+    <form id="connexion" class="connexion" action="php/traitement_connexion.php" method="post"> <!-- Formulaire connexion -->
         <h3>Connexion</h3>
         <div class="field">
             <label for="email">Email or Username :</label>
