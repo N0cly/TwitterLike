@@ -30,22 +30,24 @@
     <form class="register" id="register" action="traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
         <h3>Inscription</h3>
         <div class="field">
-            <label for="email1">Email :</label>
-            <input class="field field-email" id="email1" name="Inscription_Email" type="email" required>
+            <label for="username">Username :</label>
+            <input type="text" id="username" name="username" class="field" required>
+        </div>
+
+        <div class="field">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" class="field field-email" required>
         </div>
 
         <div class="field ">
-            <label for="mdp1">Mot de passe :</label>
+            <label for="mot_de_passe">Mot de passe :</label>
             <section class="field-pswd">
-                <input type="password" id="mdp1" class="mdp field field-pswd__mdp" required>
+                <input type="password" id="mot_de_passe" name="mot_de_passe" class="mdp field field-pswd__mdp" required>
                 <input type="checkbox" class="checkpswd" onclick="showPwd1()">
             </section>
         </div>
 
-        <div class="field">
-            <label for="username">Username :</label>
-            <input class="field" id="username" name="Inscription_username" type="text">
-        </div>
+
         <input class="inscriptionButton" type="submit" value="S'inscrire">
     </form>
 
