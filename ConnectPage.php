@@ -53,7 +53,7 @@
         <h3>Connexion</h3>
         <div class="field">
             <label for="email">Email or Username :</label>
-            <input class="field field-email" type="email" name="email" required><br>
+            <input class="field field-email" type="text" name="email" required><br>
         </div>
 
         <div class="field ">
