@@ -13,9 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-    $query = "SELECT * FROM users WHERE email = :email AND mdp = :mot_de_passe";
+    $query = "SELECT * FROM users WHERE email = :email OR username = :username AND mdp = :mot_de_passe";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':username', $email, PDO::PARAM_STR);
     $stmt->bindParam(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
     $stmt->execute();
 
@@ -39,26 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Validez les informations de connexion dans la base de données (vous devez configurer votre connexion à la base de données)
-    // $db = new PDO("mysql:host=hostname;dbname=database", "username", "password");
-    // $query = "SELECT * FROM utilisateurs WHERE email = ? AND mot_de_passe = ?";
-    // $stmt = $db->prepare($query);
-    // $stmt->execute([$email, $mot_de_passe]);
-
-    // Si l'utilisateur est trouvé, vous pouvez gérer la session et le rediriger vers une page de tableau de bord
-    // Sinon, affichez un message d'erreur
-
-    // Exemple basique de redirection
-    //if ($email ==="enzo.bedos@nocly.fr" || $email === "nocly_" && $mot_de_passe === "test") {
-    //    session_start();
-    //    $_SESSION["utilisateur_connecte"] = true; // Vous pouvez stocker des informations sur l'utilisateur connecté ici
-    //    $_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
-    //    header("Location: dashboard.php");
-   //     exit;
-   // } else {
-    //    $erreurMessage = "Adresse email ou mot de passe incorrect.";
-   //     header("Location: ConnectPage.php?erreur=$erreurMessage");
-    //    exit;
-   // }
 }
 ?>

@@ -1,21 +1,4 @@
 <?php
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérez les données du formulaire
-    //$nom = $_POST["nom"];
-    //$email = $_POST["email"];
-    //$mot_de_passe = $_POST["mot_de_passe"];
-
-    // Validez et insérez les données dans la base de données (vous devez configurer votre connexion à la base de données)
-    // $db = new PDO("mysql:host=hostname;dbname=database", "username", "password");
-    // $query = "INSERT INTO utilisateurs (nom, email, mot_de_passe) VALUES (?, ?, ?)";
-    // $stmt = $db->prepare($query);
-    // $stmt->execute([$nom, $email, $mot_de_passe]);
-
-    // Redirigez l'utilisateur vers une page de confirmation ou de connexion
-    //header("Location: confirmation.php");
-    //exit;
-//}
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérez les données du formulaire
@@ -24,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
 
     try {
-        $db = new PDO('sqlite:./db/db_nexa.sqlite');
+        $db = new PDO('sqlite:../db/db_nexa.sqlite');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         die('Erreur de connexion à la base de données : ' . $e->getMessage());
     }
 
     // Vérifiez si l'email n'existe pas déjà dans la base de données
-    $query = "SELECT * FROM utilisateurs WHERE email = :email";
+    $query = "SELECT * FROM users WHERE email = :email";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
@@ -43,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Si l'email n'existe pas, insérez les données dans la base de données
-    $query = "INSERT INTO utilisateurs (email, mot_de_passe, username) VALUES (:email, :mot_de_passe, :username)";
+    $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
