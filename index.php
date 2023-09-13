@@ -20,10 +20,13 @@
     <h2>Page de connexion</h2>
 
     <section class="choice-form">
-
-        <button class="inscriptionButton" id="inscriptionButton" onclick="afficherFormulaire('inscription')">Inscription</button>
-        <button class="connexionButton" id="connexionButton" onclick="afficherFormulaire('connexion')">Connexion</button>
+        <section class="choice-form__button">
+            <button class="inscriptionButton" id="inscriptionButton" onclick="afficherFormulaire('inscription')">Inscription</button>
+            <button class="connexionButton" id="connexionButton" onclick="afficherFormulaire('connexion')">Connexion</button>
+        </section>
+        <div id="message-erreur"></div>
     </section>
+
 
 
 
@@ -42,14 +45,16 @@
         <div class="field ">
             <label for="mot_de_passe">Mot de passe :</label>
             <section class="field-pswd">
-                <input type="password" id="mot_de_passe" name="mot_de_passe" class="mdp field field-pswd__mdp" required>
-                <input type="checkbox" class="checkpswd" onclick="showPwd1()">
+                <input type="password" id="mdp1" name="mot_de_passe" class="mdp field field-pswd__mdp" required>
+                <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp1')">
             </section>
         </div>
 
 
         <input class="inscriptionButton" type="submit" value="S'inscrire">
     </form>
+
+
 
     <form id="connexion" class="connexion" action="php/traitement_connexion.php" method="post"> <!-- Formulaire connexion -->
         <h3>Connexion</h3>
@@ -62,7 +67,7 @@
             <label for="mot_de_passe">Mot de passe :</label>
             <section class="field-pswd">
                 <input type="password" name="mot_de_passe" id="mdp2" class="mdp field field-pswd__mdp" required>
-                <input type="checkbox" class="checkpswd" onclick="showPwd2()">
+                <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp2')">
             </section>
         </div>
 

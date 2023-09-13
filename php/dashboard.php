@@ -8,7 +8,7 @@ if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte
 }
 
 // Récupérez l'e-mail de la session
-$email_utilisateur = $_SESSION["email_utilisateur"];
+$username = $_SESSION["user"];
 
 // Vous pouvez maintenant utiliser $email_utilisateur dans cette page
 ?>
@@ -20,7 +20,7 @@ $email_utilisateur = $_SESSION["email_utilisateur"];
 </head>
 <body>
 <h1>Bienvenue sur le tableau de bord</h1>
-<p>Email de l'utilisateur connecté : <?php echo htmlspecialchars($email_utilisateur); ?></p>
+<p>Email de l'utilisateur connecté : <?php echo htmlspecialchars($username); ?></p>
 <!-- Autres contenus du tableau de bord -->
 </body>
 </html>

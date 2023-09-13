@@ -22,8 +22,26 @@ connexionButton.addEventListener("click", function () {
 
 
 
-function showPwd1() {
-    var x = document.getElementById("mdp1");
+// function showPwd1() {
+//     var x = document.getElementById("mdp1");
+//     if (x.type === "password") {
+//         x.type = "text";
+//     } else {
+//         x.type = "password";
+//     }
+// }
+//
+// function showPwd2() {
+//     var x = document.getElementById("mdp2");
+//     if (x.type === "password") {
+//         x.type = "text";
+//     } else {
+//         x.type = "password";
+//     }
+// }
+
+function togglePasswordVisibility(id) {
+    var x = document.getElementById(id);
     if (x.type === "password") {
         x.type = "text";
     } else {
@@ -31,14 +49,6 @@ function showPwd1() {
     }
 }
 
-function showPwd2() {
-    var x = document.getElementById("mdp2");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
 
 function afficherFormulaire(formulaire) {
     var formulaireInscription = document.getElementById("register");

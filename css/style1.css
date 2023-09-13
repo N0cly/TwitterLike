@@ -48,6 +48,13 @@ h2 {
 
 .choice-form{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-form__button{
+    display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
@@ -104,9 +111,10 @@ input[type="email"] {
 .checkpswd {
     position: absolute;
     top:.75vh;
-    right: 0;
+    right: -2vh;
     height: 20px;
     width: 20px;
+    font-weight: bold;
 }
 
 /* Styles pour les messages d'erreur */
@@ -114,6 +122,9 @@ input[type="email"] {
     color: red;
     margin-top: 10px;
     text-align: center;
+    background-color: rgba(255,167,170,0.2);
+    border-radius: 8px;
+    padding: 5px;
 }
 
 /* Styles pour la section "A Propos de Nexa" */
