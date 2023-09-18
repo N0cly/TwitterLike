@@ -1,5 +1,6 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_SERVER['REQUEST_METHOD']) &&
+    $_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérez les données du formulaire
     $email = $_POST["email"];
     $mot_de_passe = $_POST["mot_de_passe"];

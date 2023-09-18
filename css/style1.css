@@ -1,18 +1,25 @@
 /* Styles pour la page principale */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #c2d4dc;
     margin: 0;
     padding: 0;
 }
 
 .main {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+    margin-top: 5vh;
     background-color: #fff;
     padding: 20px;
-    border-radius: 0 0 8px 8px;
+    border-radius: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.container-form {
+
+    margin-top: 10px;
+
 }
 
 .head {
@@ -20,12 +27,21 @@ body {
 }
 
 .logo-nexa {
-    max-width: 100px;
+    max-width: 300px;
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+.inscription-connexion-button-container
+ {
+    text-align: center;
+    width: auto;
+    height: 50px;
+    transform: scale(1.25);
+    margin: 25px;
 }
 
 /* Styles pour les boutons d'inscription et de connexion */
@@ -36,14 +52,19 @@ h2 {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: auto;
+    height: auto;
+    
 }
+
+
 
 .inscriptionButton:hover,
 .connexionButton:hover {
     background-color: #0056b3;
+    transform: scale(1.25);
 }
 
 .choice-form{
@@ -82,6 +103,11 @@ h3 {
 .field {
     margin-bottom: 15px;
     width: 95%;
+    margin: 5px;
+}
+
+button{
+    border-radius: 50px;
 }
 
 label {

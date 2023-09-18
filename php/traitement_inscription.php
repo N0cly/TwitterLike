@@ -1,6 +1,7 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_SERVER['REQUEST_METHOD']) &&
+    $_SERVER['REQUEST_METHOD'] == "POST") {
     // Récupérez les données du formulaire
     $email = $_POST["email"];
     $mot_de_passe = $_POST["mot_de_passe"];
@@ -36,10 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Redirigez l'utilisateur vers la page de confirmation ou de connexion
     header('Location: confirmation_inscription.php');
     exit;
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
 }
 
 
