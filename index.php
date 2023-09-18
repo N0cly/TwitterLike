@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Page de connexion">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="css/style1.css" rel="stylesheet" type="text/css">
+    <link href="../css/style1.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Nexa</title>
 </head>
@@ -73,6 +73,8 @@
                     <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp2')">
                 </section>
             </div>
+
+            <a href="php/mdpOublie.php">Mot de passe oublié</a>
 
             <div class="inscription-connexion-button-container">
                 <input class="connexionButton" type="submit" value="Se connecter">
