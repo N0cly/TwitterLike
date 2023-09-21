@@ -60,13 +60,6 @@ body {
     background: rgba(255, 255, 255, 0.5);
 }
 
-.search-input:hover,
-.search-input.active {
-    width: 18em; /* Augmentation de la largeur */
-    background: rgba(255, 255, 255, 0.5);
-}
-
-
 .user-icon {
     font-size: 1.5em;
     display: flex;
@@ -98,50 +91,36 @@ body {
     overflow-y: auto;
 }
 
-.new-post {
-    padding: 0.9em;
-    background-color: #f1f1f1;
-    margin-bottom: 1.2em;
-    border-radius: 0.5em;
-    text-align: center;
-}
-
-/* Formulaire de nouvelle publication */
-#ouvrirPublication {
-    background-color: #00aaff;
-    color: white;
-    padding: 0.6em 1.2em;
-    border: none;
-    border-radius: 0.3em;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 1.2em;
-}
-
-#formulairePublication {
-    max-width: 50%;
-    margin: 1.2em auto;
-    background-color: #f9f9f9;
-    border-radius: 0.5em;
-    padding: 1.2em;
-    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
-}
-
+/* New styles for the input container */
 .input-container {
     display: flex;
     align-items: center;
     margin-bottom: 0.9em;
 }
 
-.input-container div[contenteditable="true"] {
-    flex: 1;
-    border: 0.06em solid #ccc;
-    padding: 0.6em;
-    border-radius: 0.3em;
-    min-height: 5em;
+.input-container label {
+    margin-right: 10px;
 }
 
-.input-container button {
+.input-container textarea {
+    flex: 1;
+    height: 50px;
+}
+
+.input-container input[type="file"] {
+    flex: 1;
+}
+.input-container button,
+.modal-submit {
+    background-color: #00aaff;
+    color: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.input-container .modal-button {
     background: none;
     border: none;
     color: red;
@@ -150,13 +129,25 @@ body {
     margin-left: 0.6em;
 }
 
+.input-container textarea,
 .input-container input[type="file"] {
-    border: 0.06em solid #ccc;
-    padding: 0.3em;
+    width: 100%; /* prend toute la largeur du conteneur */
+    margin-bottom: 0.6em;
+    border: 1px solid #ccc;
     border-radius: 0.3em;
 }
 
-input[type="submit"] {
+
+.modal-button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-left: 0.6em;
+}
+
+.modal-submit {
     background-color: #00aaff;
     color: white;
     padding: 0.6em 1.2em;
@@ -178,11 +169,84 @@ input[type="submit"] {
 
 .modal-content {
     position: relative;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 1em;
-    max-width: 300px;
+    max-width: 500px; /* élargir la largeur max */
+    min-width: 300px; /* largeur minimale */
     background-color: #fff;
     border-radius: 0.5em;
     box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
 }
 
+#ouvrirPublication {
+    background-color: #00aaff;
+    color: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 1.2em;
+    display: inline-block; /* pour le rendre en ligne avec d'autres éléments si nécessaire */
+}
+
+.post {
+    background-color: #f9f9f9;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.post-pp {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.post-username {
+    font-weight: bold;
+}
+
+.post-divider {
+    margin-bottom: 1em;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.post-content {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around; /* modifié pour rapprocher les boutons */
+}
+
+.post-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* ajout d'animation */
+}
+
+.post-action:hover {
+    transform: scale(1.1);
+}
+
+.like {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.like:hover {
+    color: red;  /* Choisissez la couleur que vous voulez pour l'effet de survol */
+}
