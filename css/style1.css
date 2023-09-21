@@ -35,8 +35,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.inscription-connexion-button-container
- {
+.inscription-connexion-button-container {
     text-align: center;
     width: auto;
     height: 50px;
@@ -56,7 +55,7 @@ h2 {
     transition: background-color 0.3s;
     width: auto;
     height: auto;
-    
+
 }
 
 
@@ -67,14 +66,18 @@ h2 {
     transform: scale(1.25);
 }
 
-.choice-form{
+.titresmdp {
+    text-align: center;
+}
+
+.choice-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.choice-form__button{
+.choice-form__button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -98,7 +101,9 @@ form {
 h3 {
     font-size: 20px;
     margin-bottom: 10px;
+    text-align: center;
 }
+
 
 .field {
     margin-bottom: 15px;
@@ -106,7 +111,7 @@ h3 {
     margin: 5px;
 }
 
-button{
+button {
     border-radius: 50px;
 }
 
@@ -126,17 +131,17 @@ input[type="email"] {
     font-size: 16px;
 }
 
-.field-pswd{
+.field-pswd {
     position: relative;
 }
 
-.field-pswd__mdp{
+.field-pswd__mdp {
     /*width: 60vw;*/
 }
 
 .checkpswd {
     position: absolute;
-    top:.75vh;
+    top: .75vh;
     right: -2vh;
     height: 20px;
     width: 20px;
@@ -148,7 +153,7 @@ input[type="email"] {
     color: red;
     margin-top: 10px;
     text-align: center;
-    background-color: rgba(255,167,170,0.2);
+    background-color: rgba(255, 167, 170, 0.2);
     border-radius: 8px;
     padding: 5px;
 }

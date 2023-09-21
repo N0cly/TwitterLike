@@ -1,12 +1,15 @@
-
-
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //Avant de pouvoir l'utiliser, nous devons vérifier les points suivants :
 //La fonction mail() est bien activée par l'hébergeur.
 //Pour le vérifier, il suffit de regarder son phpinfo() : Le serveur SMTP est correctement configuré.
 
-if (isset($_SERVER['REQUEST_METHOD']) &&
-    $_SERVER["REQUEST_METHOD"] == "POST") {
+if (
+    isset($_SERVER['REQUEST_METHOD']) &&
+    $_SERVER["REQUEST_METHOD"] == "POST"
+) {
     // Récupérer l'adresse e-mail soumise par l'utilisateur
     $email = $_POST["email"];
 
@@ -24,15 +27,14 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
 
-    if ($stmt->rowCount() < 0) {
+
+    if ($stmt->rowCount() <= 0) {
         // L'email n'éxiste pas dans la bd, affichez un message d'erreur ou redirigez l'utilisateur
-        header('Location: inscription.php?erreur=non_inscrit');
-//        echo "email existe pas";
         exit;
     } else {
 
         // Générer un code de réinitialisation aléatoire
-        $uniqid = uniqid( true);
+        $uniqid = uniqid(true);
         $code = strtoupper(substr($uniqid, -5));
 
         $query = "UPDATE users SET codeMDPOublie = :code WHERE email = :email";
@@ -62,7 +64,7 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page de connexion">
+    <meta name="description" content="Réinitialisation mot de passe">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
     <link href="../css/style1.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
@@ -70,13 +72,13 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
 </head>
 
 <body>
-<h2>Mot de passe oublié</h2>
-<p>Entrez votre adresse e-mail pour recevoir un code de réinitialisation.</p>
-<form method="post">
-    <label for="email">Adresse e-mail :</label>
-    <input type="email" name="email" required>
-    <input type="submit" value="Envoyer le code de réinitialisation">
-</form>
+    <h2>Mot de passe oublié</h2>
+    <p>Entrez votre adresse e-mail pour recevoir un code de réinitialisation.</p>
+    <form method="post">
+        <label for="email">Adresse e-mail :</label>
+        <input type="email" name="email" required>
+        <input type="submit" value="Envoyer le code de réinitialisation">
+    </form>
 </body>
 
 </html>

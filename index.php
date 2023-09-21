@@ -51,7 +51,7 @@
                 </section>
             </div>
 
-        <div  class="inscription-connexion-button-container">
+        <div class="inscription-connexion-button-container">
             <input class="inscriptionButton" type="submit" value="S'inscrire">
         </div>
             
