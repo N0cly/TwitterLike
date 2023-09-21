@@ -8,7 +8,7 @@ if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte
 }
 
 // Récupérez l'e-mail de la session
-$username = $_SESSION["user"];
+$username = $_SESSION["userModel"];
 
 // Vous pouvez maintenant utiliser $email_utilisateur dans cette page
 ?>

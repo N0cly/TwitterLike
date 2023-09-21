@@ -27,7 +27,7 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
         session_start();
         $_SESSION['utilisateur_connecte'] = true;
         $_SESSION['email'] = $utilisateur['email'];
-        $_SESSION['user'] = $utilisateur['username'];
+        $_SESSION['userModel'] = $utilisateur['username'];
         //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
 
         // Redirigez l'utilisateur vers la page de tableau de bord ou autre
