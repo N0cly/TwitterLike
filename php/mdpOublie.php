@@ -30,6 +30,7 @@ if (
 
     if ($stmt->rowCount() <= 0) {
         // L'email n'éxiste pas dans la bd, affichez un message d'erreur ou redirigez l'utilisateur
+        header("Location: reinitialisationMDP.php");
         exit;
     } else {
 
@@ -54,7 +55,6 @@ if (
         header("Location: reinitialisationMDP.php");
         exit;
     }
-
 }
 ?>
 
@@ -72,13 +72,18 @@ if (
 </head>
 
 <body>
-    <h2>Mot de passe oublié</h2>
-    <p>Entrez votre adresse e-mail pour recevoir un code de réinitialisation.</p>
-    <form method="post">
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" name="email" required>
-        <input type="submit" value="Envoyer le code de réinitialisation">
-    </form>
+    <section class="main">
+        <section class="form-container">
+            <h2>Mot de passe oublié</h2>
+            <p>Entrez votre adresse e-mail pour recevoir un code de réinitialisation.</p>
+            <form method="post">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" name="email" required>
+                <input type="submit" value="Envoyer le code de réinitialisation">
+            </form>
+        </section>
+    </section>
+
 </body>
 
 </html>
