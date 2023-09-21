@@ -12,14 +12,26 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
         die('Erreur de connexion à la base de données : ' . $e->getMessage());
     }
 
-    $query = "SELECT * FROM users WHERE (email = :email OR username = :username) AND mdp = :mot_de_passe";
+    $query = "SELECT * FROM users WHERE email = :email OR username = :username";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':username', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
-    $stmt->execute();
+    $stmt->bindParam(':username', $email, PDO::PARAM_STR); // Vous avez utilisé le même paramètre ici
 
-    $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($stmt->execute()) {
+        $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mdp'])) {
+            // Le mot de passe correspond, vous pouvez continuer avec l'authentification
+            // ...
+        } else {
+            // Le mot de passe ne correspond pas, affichez un message d'erreur ou redirigez
+            header('Location: login.php?erreur=mauvais_mot_de_passe');
+            exit;
+        }
+    } else {
+        // Une erreur s'est produite lors de l'exécution de la requête SQL
+        echo 'Erreur SQL : ' . $stmt->errorInfo()[2];
+    }
 
     if ($utilisateur) {
         // Les informations de connexion sont correctes, vous pouvez gérer la session de l'utilisateur ici

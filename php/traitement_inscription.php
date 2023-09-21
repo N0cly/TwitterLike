@@ -27,10 +27,11 @@ if (isset($_SERVER['REQUEST_METHOD']) &&
     }
 
     // Si l'email n'existe pas, insérez les données dans la base de données
-    $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
+    $hashed_password = password_verify($mot_de_passe, PASSWORD_DEFAULT);
+    $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :hashed_password, :username)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
+    $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
 
