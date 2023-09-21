@@ -27,11 +27,12 @@ if (
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
 
-
-    if ($stmt->rowCount() <= 0) {
+    if (empty($stmt)) {
         // L'email n'éxiste pas dans la bd, affichez un message d'erreur ou redirigez l'utilisateur
-        header("Location: reinitialisationMDP.php");
-        exit;
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($data);
+
+        //header("Location: mdpOublie.php");
     } else {
 
         // Générer un code de réinitialisation aléatoire
@@ -45,7 +46,7 @@ if (
         $stmt->execute();
 
 
-        // Envoyer l'e-mail avec le code de réinitialisation==
+        // Envoyer l'e-mail avec le code de réinitialisation
         $subject = "Réinitialisation de mot de passe";
         $message = "Votre code de réinitialisation de mot de passe est : " . $code;
         $headers = "From: no-replay@nexa.nocly.fr";
