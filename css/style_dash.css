@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #00aaff;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 3em;
+    background-color: white;
+    padding: 0.3em;
+}
+
+.search-btn,
+.search-input {
+    margin-left: 0.6em;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.search-input {
+    width: 6em;
+    height: 2em;
+    border: none;
+    border-radius: 1em;
+    padding-left: 0.9em;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: width 0.4s ease, background 0.4s ease;
+    outline: none;
+}
+
+.search-input:hover {
+    width: 12em;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.search-input:hover,
+.search-input.active {
+    width: 18em; /* Augmentation de la largeur */
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+.user-icon {
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+}
+
+.username-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 0.6em;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    height: calc(100vh - 3.7em);
+}
+
+.left-panel {
+    flex: 1;
+    padding: 1em;
+    border-right: 0.12em solid #ddd;
+    overflow-y: auto;
+}
+
+.right-panel {
+    flex: 3;
+    padding: 1em;
+    overflow-y: auto;
+}
+
+.new-post {
+    padding: 0.9em;
+    background-color: #f1f1f1;
+    margin-bottom: 1.2em;
+    border-radius: 0.5em;
+    text-align: center;
+}
+
+/* Formulaire de nouvelle publication */
+#ouvrirPublication {
+    background-color: #00aaff;
+    color: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 1.2em;
+}
+
+#formulairePublication {
+    max-width: 50%;
+    margin: 1.2em auto;
+    background-color: #f9f9f9;
+    border-radius: 0.5em;
+    padding: 1.2em;
+    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.9em;
+}
+
+.input-container div[contenteditable="true"] {
+    flex: 1;
+    border: 0.06em solid #ccc;
+    padding: 0.6em;
+    border-radius: 0.3em;
+    min-height: 5em;
+}
+
+.input-container button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-left: 0.6em;
+}
+
+.input-container input[type="file"] {
+    border: 0.06em solid #ccc;
+    padding: 0.3em;
+    border-radius: 0.3em;
+}
+
+input[type="submit"] {
+    background-color: #00aaff;
+    color: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-content {
+    position: relative;
+    margin: 15% auto;
+    padding: 1em;
+    max-width: 300px;
+    background-color: #fff;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
+}
+
