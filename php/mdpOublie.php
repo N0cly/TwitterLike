@@ -30,7 +30,6 @@ if (
 
     if ($stmt->rowCount() <= 0) {
         // L'email n'éxiste pas dans la bd, affichez un message d'erreur ou redirigez l'utilisateur
-        $erreur = true;
         exit;
     } else {
 
