@@ -42,6 +42,10 @@ h1 {
     max-width: 400px;
     width: 90%;
     text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Styles pour les étiquettes de formulaire */
@@ -51,20 +55,23 @@ label {
 }
 
 /* Styles pour le champ de texte "Contenu" */
+/* Styles pour le champ de texte "Contenu" */
 textarea {
-    width: 100%;
+    width: calc(100% - 20px); /* Réduit la largeur de 20px par rapport à 100% */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    resize: vertical;
+    resize: none;
+    margin: 0 auto;
+    height: 100px; /* Ajustez la hauteur selon vos préférences */
 }
-
 /* Styles pour le champ de fichier "Image" */
 input[type="file"] {
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 0 auto;
 }
 
 /* Styles pour le bouton de soumission */
@@ -76,6 +83,29 @@ input[type="submit"] {
     margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+#effacerContenu {
+    margin-left: 10px; /* Ajout de marge à gauche pour décoller du texte area */
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+    vertical-align: middle;
+}
+
+#effacerImage{
+    margin-left: 10px; /* Ajout de marge à gauche pour décoller du texte area */
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+    vertical-align: middle;
+
 }
 
 input[type="submit"]:hover {
