@@ -31,7 +31,7 @@
 
 
 
-        <form  id="register" class="register" action="php/traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
+        <form  id="register" class="register" action="index2.php?action=traitement_inscription.php" method="post"> <!-- Formulaire inscription -->
             <h3>Inscription</h3>
             <div class="field">
                 <label for="username">Username :</label>
@@ -59,7 +59,7 @@
 
 
 
-        <form id="connexion" class="connexion" action="php/traitement_connexion.php" method="post"> <!-- Formulaire connexion -->
+        <form id="connexion" class="connexion" action="index2.php?action=traitement_connexion" method="post"> <!-- Formulaire connexion -->
             <h3>Connexion</h3>
             <div class="field">
                 <label for="email">Email or Username :</label>

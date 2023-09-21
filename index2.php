@@ -11,15 +11,15 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'accueil';
 
 $controller = new UserController();
 switch ($action) {
-    case 'inscription':
-        $controller->showRegistrationForm();
-        break;
+//    case 'inscription':
+//        $controller->showRegistrationForm();
+//        break;
     case 'traitement_inscription':
         $controller->registerUser();
         break;
-    case 'login':
-        $controller->showLoginForm();
-        break;
+//    case 'login':
+//        $controller->showLoginForm();
+//        break;
     case 'traitement_connexion':
         $controller->loginUser();
         break;
