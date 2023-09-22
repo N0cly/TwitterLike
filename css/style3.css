@@ -1,0 +1,98 @@
+*{
+    font-family: Arial, sans-serif;
+}
+
+
+/* Styles pour centrer le contenu */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Styles pour l'image de profil */
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour le nom d'utilisateur */
+h1 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Styles pour les informations de l'utilisateur */
+.user-info {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    top: -10px; /* Déplace les informations de l'utilisateur vers le haut */
+}
+
+/* Styles pour la bannière */
+.user-banner {
+    width: 100%;
+    height: 200px;
+
+    background-image: url('../Images/banniere-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin: 0px;
+}
+
+.follower-info {
+    display: flex; /* Utilisation de flexbox pour aligner les éléments côte à côte */
+    align-items: center; /* Aligner verticalement les éléments au centre */
+}
+
+/* Styles pour les boutons "S'abonner" et "Partager" */
+.user-actions {
+    margin-top: 10px;
+}
+
+.follower-count,
+.Abonnement {
+    margin-right: 10px; /* Espacement entre les éléments */
+    font-size: 16px;
+}
+
+.Abonnement {
+    margin: 0; /* Supprimer la marge droite pour éviter un espace excessif */
+    font-size: 16px;
+}
+
+.subscribe-button,
+.share-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    background-color: transparent;
+
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.subscribe-button:hover,
+.share-button:hover {
+    background-color: #eee;
+    color: #000;
+    border-color: #000;
+}
+
+body{
+    margin: 0px;
+}
