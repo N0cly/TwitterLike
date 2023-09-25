@@ -19,38 +19,53 @@ class userModel
         }
     }
 
-    public function checkEmailExists($email){
-
-        // Vérifiez si l'email n'existe pas déjà dans la base de données
+    public function checkEmailExists($email) {
+        // Vérifiez si l'email existe déjà dans la base de données
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt->rowCount() > 0;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-//        if ($stmt->rowCount() > 0) {
-//            // L'email existe déjà, affichez un message d'erreur ou redirigez l'utilisateur
-//            header('Location: index2.php?erreur=email_existe');
-//            exit;
-//        }
-
-
+        return $result !== false;
     }
-    public function createUser($email, $username, $password) {
 
-        // Si l'email n'existe pas, insérez les données dans la base de données
-        $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
+    public function checkUsernameExists($username) {
+        // Vérifiez si le nom d'utilisateur existe déjà dans la base de données
+        $query = "SELECT * FROM users WHERE username = :username";
         $stmt = $this->connectDB()->prepare($query);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':mot_de_passe', $mot_de_passe, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
-        // Redirigez l'utilisateur vers la page de confirmation ou de connexion
-        header('Location: php/confirmation_inscription.php');
-        exit;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result !== false;
     }
+
+
+    public function createUser($email, $username, $password) {
+        if ($this->checkEmailExists($email)) {
+            header('Location: index2.php?erreur=email_existe');
+            exit;
+        } elseif ($this->checkUsernameExists($username)) {
+            header('Location: index2.php?erreur=username_existe');
+            exit;
+        } else {
+            // Si l'email n'existe pas, insérez les données dans la base de données
+            $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':mot_de_passe', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            // Redirigez l'utilisateur vers la page de confirmation ou de connexion
+            header('Location: Views/confirmation_inscription.php');
+            exit;
+        }
+    }
+
     public function updateUser($id, $data) { /* ... */ }
     public function deleteUser($id) { /* ... */ }
 
@@ -75,7 +90,7 @@ class userModel
             //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
 
             // Redirigez l'utilisateur vers la page de tableau de bord ou autre
-            header('Location: php/dashboard.php');
+            header('Location: Views/dashboard.php');
             exit;
         } else {
             header('Location: index2.php?erreur=1');

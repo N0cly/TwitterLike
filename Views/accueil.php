@@ -74,7 +74,7 @@
                 </section>
             </div>
 
-            <a href="php/mdpOublie.php">Mot de passe oublié</a>
+            <a href="index2.php?user=resetPwd">Mot de passe oublié</a>
 
             <div class="inscription-connexion-button-container">
                 <input class="connexionButton" type="submit" value="Se connecter">
