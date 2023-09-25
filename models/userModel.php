@@ -5,9 +5,12 @@ namespace Model;
 
 use PDO;
 use PDOException;
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class userModel
 {
+
 
     public function connectDB(){
         try {
@@ -69,6 +72,32 @@ class userModel
     public function updateUser($id, $data) { /* ... */ }
     public function deleteUser($id) { /* ... */ }
 
+    public function resetPwd($email){
+        if (!$this->checkEmailExists($email)) {
+            header('Location: index2.php?erreur=email_inexistant');
+            exit;
+        } else {
+            $uniqid = uniqid(true);
+            $code = strtoupper(substr($uniqid, -5));
+
+            $query = "UPDATE users SET codeMDPOublie = :code WHERE email = :email";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+
+
+            // Envoyer l'e-mail avec le code de réinitialisation==
+            $subject = "Réinitialisation de mot de passe";
+            $message = "Votre code de réinitialisation de mot de passe est : " . $code;
+            $headers = "From: no-replay@nexa.nocly.fr";
+            mail($email, $subject, $message, $headers);
+
+            // Rediriger l'utilisateur vers la page de réinitialisation de mot de passe
+            header("Location: Views/reinitialisationMDP.php");
+            exit;
+        }
+    }
     public function checkLogin($username, $password) {
         //$db = $this->connectDB();
         $query = "SELECT * FROM users WHERE (email = :email OR username = :username) AND mdp = :mot_de_passe";
