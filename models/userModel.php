@@ -49,10 +49,10 @@ class userModel
 
     public function createUser($email, $username, $password) {
         if ($this->checkEmailExists($email)) {
-            header('Location: index2.php?erreur=email_existe');
+            header('Location: index.php?erreur=email_existe');
             exit;
         } elseif ($this->checkUsernameExists($username)) {
-            header('Location: index2.php?erreur=username_existe');
+            header('Location: index.php?erreur=username_existe');
             exit;
         } else {
             // Si l'email n'existe pas, insérez les données dans la base de données
@@ -64,7 +64,7 @@ class userModel
             $stmt->execute();
 
             // Redirigez l'utilisateur vers la page de confirmation ou de connexion
-            header('Location: Views/confirmation_inscription.php');
+            header('Location: views/confirmation_inscription.php');
             exit;
         }
     }
@@ -74,7 +74,7 @@ class userModel
 
     public function resetPwd($email){
         if (!$this->checkEmailExists($email)) {
-            header('Location: index2.php?erreur=email_inexistant');
+            header('Location: index.php?erreur=email_inexistant');
             exit;
         } else {
             $uniqid = uniqid(true);
@@ -95,7 +95,7 @@ class userModel
 
             $_SESSION['email'] = $email;
             // Rediriger l'utilisateur vers la page de réinitialisation de mot de passe
-            header("Location: Views/codeVerif.php");
+            header("Location: views/codeVerif.php");
             exit;
         }
     }
@@ -120,10 +120,10 @@ class userModel
             //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
 
             // Redirigez l'utilisateur vers la page de tableau de bord ou autre
-            header('Location: Views/dashboard.php');
+            header('Location: views/dashboard.php');
             exit;
         } else {
-            header('Location: index2.php?erreur=1');
+            header('Location: index.php?erreur=1');
             $messageErreur = "Nom d'utilisateur ou mot de passe incorrect.";
             echo '<script>';
             echo 'document.getElementById("message-erreur").innerHTML = "' . $messageErreur . '";';

@@ -17,7 +17,7 @@
 <body>
     <h2>Mot de passe oublié</h2>
     <p>Entrez votre adresse e-mail pour recevoir un code de réinitialisation.</p>
-    <form method="post" action="../index2.php?user=forgotPwd">
+    <form method="post" action="../index.php?user=forgotPwd">
         <label for="email">Adresse e-mail :</label>
         <input type="email" name="email" required>
         <input type="submit" value="Envoyer le code de réinitialisation">

@@ -9,7 +9,7 @@
 <?php if (isset($errorMessage)) : ?>
     <p><?php echo $errorMessage; ?></p>
 <?php endif; ?>
-<form method="post" action="index2.php?action=traitement_connexion">
+<form method="post" action="index.php?action=traitement_connexion">
     <label for="username">Nom d'utilisateur :</label>
     <input type="text" id="username" name="username" required><br>
     <label for="password">Mot de passe :</label>
