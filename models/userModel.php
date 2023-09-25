@@ -93,8 +93,9 @@ class userModel
             $headers = "From: no-replay@nexa.nocly.fr";
             mail($email, $subject, $message, $headers);
 
+            $_SESSION['email'] = $email;
             // Rediriger l'utilisateur vers la page de réinitialisation de mot de passe
-            header("Location: Views/reinitialisationMDP.php");
+            header("Location: Views/codeVerif.php");
             exit;
         }
     }
@@ -115,7 +116,7 @@ class userModel
             session_start();
             $_SESSION['utilisateur_connecte'] = true;
             $_SESSION['email'] = $utilisateur['email'];
-            $_SESSION['userModel'] = $utilisateur['username'];
+            $_SESSION['username'] = $utilisateur['username'];
             //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
 
             // Redirigez l'utilisateur vers la page de tableau de bord ou autre

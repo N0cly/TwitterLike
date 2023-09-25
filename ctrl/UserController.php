@@ -46,5 +46,9 @@ class UserController {
         }
     }
 
+    public function checkCodeVerif(){
+
+    }
+
     // Autres méthodes pour gérer les utilisateurs
 }
