@@ -8,7 +8,7 @@ if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte
 }
 
 // Récupérez l'e-mail de la session
-$username = $_SESSION["user"];
+$username = $_SESSION["username"];
 
 // Exemple de données de publications et de suggestions d'amis (vous devez les remplacer par des données réelles depuis votre base de données)
 $publications = array(
