@@ -55,11 +55,12 @@ class userModel
             header('Location: index.php?erreur=username_existe');
             exit;
         } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Si l'email n'existe pas, insérez les données dans la base de données
             $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':mot_de_passe', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':mot_de_passe', $hashed_password, PDO::PARAM_STR);
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -100,37 +101,53 @@ class userModel
         }
     }
     public function checkLogin($username, $password) {
-        //$db = $this->connectDB();
-        $query = "SELECT * FROM users WHERE (email = :email OR username = :username) AND mdp = :mot_de_passe";
+        $query = "SELECT * FROM users WHERE (email = :email OR username = :username)";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':email', $username, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':mot_de_passe', $password, PDO::PARAM_STR);
         $stmt->execute();
 
         $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($utilisateur) {
-            // Les informations de connexion sont correctes, vous pouvez gérer la session de l'utilisateur ici
-            // Par exemple, en utilisant $_SESSION
+
+        if ($utilisateur && password_verify($password, $utilisateur['mdp'])) {
+            // Le mot de passe correspond, vous pouvez continuer avec l'authentification
             session_start();
             $_SESSION['utilisateur_connecte'] = true;
             $_SESSION['email'] = $utilisateur['email'];
             $_SESSION['username'] = $utilisateur['username'];
-            //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
 
             // Redirigez l'utilisateur vers la page de tableau de bord ou autre
             header('Location: views/dashboard.php');
             exit;
         } else {
-            header('Location: index.php?erreur=1');
-            $messageErreur = "Nom d'utilisateur ou mot de passe incorrect.";
-            echo '<script>';
-            echo 'document.getElementById("message-erreur").innerHTML = "' . $messageErreur . '";';
-            echo 'document.getElementById("message-erreur").classList.add("erreur-message");';
-            echo '</script>';
-            // Les informations de connexion sont incorrectes, affichez un message d'erreur ou redirigez vers la page de connexion
+            // Le mot de passe ne correspond pas, affichez un message d'erreur ou redirigez
+            header('Location: index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
+        //$utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //if ($utilisateur) {
+        // Les informations de connexion sont correctes, vous pouvez gérer la session de l'utilisateur ici
+        // Par exemple, en utilisant $_SESSION
+        //    session_start();
+        //    $_SESSION['utilisateur_connecte'] = true;
+        //    $_SESSION['email'] = $utilisateur['email'];
+        //    $_SESSION['username'] = $utilisateur['username'];
+        //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
+
+        // Redirigez l'utilisateur vers la page de tableau de bord ou autre
+        //    header('Location: views/dashboard.php');
+        //    exit;
+        //} else {
+        //    header('Location: index.php?erreur=1');
+        //    $messageErreur = "Nom d'utilisateur ou mot de passe incorrect.";
+        //    echo '<script>';
+        //    echo 'document.getElementById("message-erreur").innerHTML = "' . $messageErreur . '";';
+        //    echo 'document.getElementById("message-erreur").classList.add("erreur-message");';
+        //    echo '</script>';
+        // Les informations de connexion sont incorrectes, affichez un message d'erreur ou redirigez vers la page de connexion
+        //    exit;
+        //}
     }
 }
