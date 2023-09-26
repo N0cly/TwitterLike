@@ -42,19 +42,24 @@
 
                 <div class="field">
                     <label for="email">Email :</label>
-                    <input type="email" id="email" name="email" class="field field-email" required>
+                    <input type="email" id="email" name="email" class="field field-email" required >
                 </div>
 
                 <div class="field ">
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
                         <input type="password" id="mdp1" name="mot_de_passe" class="mdp field field-pswd__mdp" required>
-                        <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp1')">
+
+                        <div class="">
+
+                            <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp1')">
+
+                        </div>
                     </section>
                 </div>
 
                 <div class="inscription-connexion-button-container">
-                    <input class="inscriptionButton" type="submit" value="S'inscrire">
+                    <input class="inscriptionButton button" type="submit" value="S'inscrire">
                 </div>
 
             </form>
@@ -65,13 +70,13 @@
                 <h3>Connexion</h3>
                 <div class="field">
                     <label for="email">Email or Username :</label>
-                    <input class="field field-email" type="text" name="email" required><br>
+                    <input class="field field-email" type="text" name="email" placeholder="nocly_" required><br>
                 </div>
 
                 <div class="field ">
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
-                        <input type="password" name="mot_de_passe" id="mdp2" class="mdp field field-pswd__mdp" required>
+                        <input type="password" name="mot_de_passe" id="mdp2" class="mdp field field-pswd__mdp" required placeholder="********">
                         <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp2')">
                     </section>
                 </div>
@@ -79,7 +84,7 @@
                 <a href="views/forgotPwd.php">Mot de passe oublié</a>
 
                 <div class="inscription-connexion-button-container">
-                    <input class="connexionButton" type="submit" value="Se connecter">
+                    <input class="connexionButton button" type="submit" value="Se connecter">
                 </div>
             </form>
         </section>
