@@ -6,21 +6,31 @@ if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte
     header("Location: ../index.php");
     exit;
 }
-
-// Récupérez l'e-mail de la session
-$email_utilisateur = $_SESSION["email_utilisateur"];
-
-// Vous pouvez maintenant utiliser $email_utilisateur dans cette page
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Page de connexion">
+    <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
+    <link href="../css/style1.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
     <title>Confirmation</title>
 </head>
+
 <body>
-<h1>Confirme email -></h1>
-<p>Email de l'utilisateur connecté : <?php echo htmlspecialchars($email_utilisateur); ?></p>
-<!-- Autres contenus du tableau de bord -->
+    <section class=main>
+        <h2>Inscription bien enregistrée</h2>
+        <section>
+            <button class="connexionAutoButton" action="index.php?user=acceuil">Connexion</button>
+        </section>
+    </section>
+
+
+    <!-- Autres contenus du tableau de bord -->
 </body>
+
 </html>

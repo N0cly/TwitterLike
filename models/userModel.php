@@ -65,7 +65,8 @@ class userModel
             $stmt->execute();
 
             // Redirigez l'utilisateur vers la page de confirmation ou de connexion
-            header('Location: views/confirmation_inscription.php');
+            $userModel = new UserModel();
+            $userModel->checkLogin($email, $password);  
             exit;
         }
     }

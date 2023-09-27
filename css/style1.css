@@ -43,9 +43,16 @@ h2 {
     margin: 25px;
 }
 
+.connexionAutoButton{
+    text-align: center;
+    width: auto;
+    height: 50px;
+    transform: scale(1.25);
+    margin: 25px;
+}
+
 /* Styles pour les boutons d'inscription et de connexion */
-.inscriptionButton,
-.connexionButton {
+Button, .button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
@@ -55,13 +62,12 @@ h2 {
     transition: background-color 0.3s;
     width: auto;
     height: auto;
-
 }
 
 
 
-.inscriptionButton:hover,
-.connexionButton:hover {
+.button:hover,
+Button:hover {
     background-color: #0056b3;
     transform: scale(1.25);
 }
