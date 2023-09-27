@@ -1,7 +1,8 @@
 *{
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    -ms-scrollbar-shadow-color: #003c57;
 }
 
 .button {
@@ -21,6 +22,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    /*overflow: hidden;*/
+    overflow-x: hidden;
 }
 
 h2 {
@@ -31,21 +34,28 @@ h2 {
     display: none;
 }
 
-
+::-webkit-scrollbar{
+    display: none;
+}
 
 .accueil{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 12px;
-    gap: 7rem;
-    padding: 0 25%;
-    width: 100%;
+    gap: 9rem;
+    width: 1200px;
+    padding:  2rem 0;
+
+}
 
 
-
-
+form h3{
+    text-align: center;
+    padding: 2%;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 225%;
 }
 
 body {
@@ -53,6 +63,24 @@ body {
     margin: 0;
     padding: 0;
     background-color: #545454;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
+    background-size: 300% 300%;
+    animation: color 8s ease-in-out infinite;
+}
+
+@keyframes color {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 50% 0%;
+    }
+    100%{
+        background-position: 100% 50%;
+    }
+
 }
 
 .container-form {
@@ -108,36 +136,61 @@ h2 {
     background-color: #2980b9;
 }
 
-.field {
-    margin-bottom: 10px;
+.accueil form {
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    box-shadow: 1px 25px 23px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    /*-webkit-box-shadow: 0px 25px 23px rgba(0, 0, 0, 0.15);*/
+    border: 1.5px solid rgba(255, 255, 255, 0.06);
+    padding: 2% 6% ;
+
 }
 
-.label {
-    color: #333;
+
+.field {
+    margin-bottom: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+label {
+    color: #dcdcdc;
 }
 
 .field input {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
+    border-radius: 8px;
     font-size: 16px;
+    width: 17vw;
 }
 
-.field-pswd {
+.field-pswd, .field-email {
     display: flex;
     align-items: center;
     position: relative;
-
 }
+
+
 
 .checkpswd {
     position: absolute;
     top: 14px;
-    right: -45%;
+    right: -60%;
     width: 15px;
     height: 15px;
     background-color: #00aaff;
+}
+
+.forgotPwd{
+
+    color: #dcdcdc;
+    text-decoration: none;
 }
 
 .inscription-connexion-button-container {
@@ -146,7 +199,7 @@ h2 {
 
 .NexaInformation {
     position: absolute;
-    bottom: 0;
+    bottom: -30%;
     width: 100%;
     text-align: center;
     padding: 20px;
