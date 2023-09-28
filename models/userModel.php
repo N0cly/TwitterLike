@@ -99,7 +99,7 @@ class userModel
 
             try {
                 $mail->setLanguage('fr', '/optional/path/to/language/directory/');
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -108,10 +108,12 @@ class userModel
                 $mail->SMTPSecure = "tls";
                 $mail->Port = 587;
 
-                $mail->setFrom('socialnetwork.nexa@gmail.com', 'Mailer');
+                $mail->setFrom('no-reply@nexa.com', 'Support Nexa');
                 $mail->addAddress($email);
-                $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
+                //$mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
+
+                $mail->CharSet = 'UTF-8';
                 $mail->isHTML(true);
                 $mail->Subject = 'Réinitialisation de mot de passe';
                 $mail->Body = "Votre code de réinitialisation de mot de passe est : $code";
@@ -159,29 +161,5 @@ class userModel
             header('Location: index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
-        //$utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        //if ($utilisateur) {
-        // Les informations de connexion sont correctes, vous pouvez gérer la session de l'utilisateur ici
-        // Par exemple, en utilisant $_SESSION
-        //    session_start();
-        //    $_SESSION['utilisateur_connecte'] = true;
-        //    $_SESSION['email'] = $utilisateur['email'];
-        //    $_SESSION['username'] = $utilisateur['username'];
-        //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
-
-        // Redirigez l'utilisateur vers la page de tableau de bord ou autre
-        //    header('Location: views/dashboard.php');
-        //    exit;
-        //} else {
-        //    header('Location: index.php?erreur=1');
-        //    $messageErreur = "Nom d'utilisateur ou mot de passe incorrect.";
-        //    echo '<script>';
-        //    echo 'document.getElementById("message-erreur").innerHTML = "' . $messageErreur . '";';
-        //    echo 'document.getElementById("message-erreur").classList.add("erreur-message");';
-        //    echo '</script>';
-        // Les informations de connexion sont incorrectes, affichez un message d'erreur ou redirigez vers la page de connexion
-        //    exit;
-        //}
     }
 }

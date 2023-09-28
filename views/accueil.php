@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Page de connexion">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
     <!--<link href="../css/style1.css" rel="stylesheet" type="text/css">-->
@@ -66,7 +66,7 @@
 
 
 
-            <form id="connexion" class="connexion" action="index.php?user=loginUser" method="post"> <!-- Formulaire connexion -->
+            <form id="connexion" class="connexion" action="index.php?Controller=User&action=loginUser" method="post"> <!-- Formulaire connexion -->
                 <h3>Connexion</h3>
                 <div class="field">
                     <label for="email">Email or Username :</label>
