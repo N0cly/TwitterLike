@@ -1,6 +1,7 @@
 <?php
 
 namespace Model;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -8,6 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 
 use PDO;
 use PDOException;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -15,7 +17,8 @@ class userModel
 {
 
 
-    public function connectDB(){
+    public function connectDB()
+    {
         try {
             $db = new PDO('sqlite:./db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -25,7 +28,8 @@ class userModel
         }
     }
 
-    public function checkEmailExists($email) {
+    public function checkEmailExists($email)
+    {
         // Vérifiez si l'email existe déjà dans la base de données
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->connectDB()->prepare($query);
@@ -37,7 +41,8 @@ class userModel
         return $result !== false;
     }
 
-    public function checkUsernameExists($username) {
+    public function checkUsernameExists($username)
+    {
         // Vérifiez si le nom d'utilisateur existe déjà dans la base de données
         $query = "SELECT * FROM users WHERE username = :username";
         $stmt = $this->connectDB()->prepare($query);
@@ -50,7 +55,8 @@ class userModel
     }
 
 
-    public function createUser($email, $username, $password) {
+    public function createUser($email, $username, $password)
+    {
         if ($this->checkEmailExists($email)) {
             header('Location: index.php?erreur=email_existe');
             exit;
@@ -69,15 +75,20 @@ class userModel
 
             // Redirigez l'utilisateur vers la page de confirmation ou de connexion
             $userModel = new UserModel();
-            $userModel->checkLogin($email, $password);  
+            $userModel->checkLogin($email, $password);
             exit;
         }
     }
 
-    public function updateUser($id, $data) { /* ... */ }
-    public function deleteUser($id) { /* ... */ }
+    public function updateUser($id, $data)
+    { /* ... */
+    }
+    public function deleteUser($id)
+    { /* ... */
+    }
 
-    public function resetPwd($email) {
+    public function resetPwd($email)
+    {
         if (!$this->checkEmailExists($email)) {
             header('Location: index.php?erreur=email_inexistant');
             exit;
@@ -99,7 +110,7 @@ class userModel
 
             try {
                 $mail->setLanguage('fr', '/optional/path/to/language/directory/');
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -112,6 +123,7 @@ class userModel
                 $mail->addAddress($email);
                 $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
+                $mail->CharSet = 'UTF-8';
                 $mail->isHTML(true);
                 $mail->Subject = 'Réinitialisation de mot de passe';
                 $mail->Body = "Votre code de réinitialisation de mot de passe est : $code";
@@ -134,7 +146,8 @@ class userModel
         }
     }
 
-    public function checkLogin($username, $password) {
+    public function checkLogin($username, $password)
+    {
         $query = "SELECT * FROM users WHERE (email = :email OR username = :username)";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':email', $username, PDO::PARAM_STR);
@@ -159,29 +172,49 @@ class userModel
             header('Location: index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
-        //$utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-        //if ($utilisateur) {
-        // Les informations de connexion sont correctes, vous pouvez gérer la session de l'utilisateur ici
-        // Par exemple, en utilisant $_SESSION
-        //    session_start();
-        //    $_SESSION['utilisateur_connecte'] = true;
-        //    $_SESSION['email'] = $utilisateur['email'];
-        //    $_SESSION['username'] = $utilisateur['username'];
-        //$_SESSION["email_utilisateur"] = $email; // Stockez l'e-mail dans la session
+    public function checkCodeVerif($email, $code)
+    {
 
-        // Redirigez l'utilisateur vers la page de tableau de bord ou autre
-        //    header('Location: views/dashboard.php');
-        //    exit;
-        //} else {
-        //    header('Location: index.php?erreur=1');
-        //    $messageErreur = "Nom d'utilisateur ou mot de passe incorrect.";
-        //    echo '<script>';
-        //    echo 'document.getElementById("message-erreur").innerHTML = "' . $messageErreur . '";';
-        //    echo 'document.getElementById("message-erreur").classList.add("erreur-message");';
-        //    echo '</script>';
-        // Les informations de connexion sont incorrectes, affichez un message d'erreur ou redirigez vers la page de connexion
-        //    exit;
-        //}
+        $query = "SELECT codeMDPOublie FROM users WHERE (email = :email )";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $codeBD = $row['codeMDPOublie'];
+            if ($codeBD == $code) {
+                header('Location: ../views/ChangementMDP.php');
+                exit(); // Assurez-vous de quitter le script après la redirection.
+            } else {
+
+                //header('Location: index.php?erreur=code_errone');
+                echo $code;
+                echo $codeBD;
+            }
+
+        }
+    }
+
+    public function changeMDP($newMDP, $confirmNewMDP, $email)
+    {
+
+        if ($newMDP == $confirmNewMDP) {
+
+            $hashed_password = password_hash($newMDP, PASSWORD_DEFAULT);
+            $query = "UPDATE users SET mdp = :newMDP WHERE email = :email";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':newMDP', $hashed_password, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $this->checkLogin($email, $newMDP);
+        } else {
+            header("location:../index.php?mdp_corespondent_pas");
+        }
+
     }
 }

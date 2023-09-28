@@ -43,7 +43,7 @@ h2 {
     margin: 25px;
 }
 
-.connexionAutoButton{
+.connexionAutoButton {
     text-align: center;
     width: auto;
     height: 50px;
@@ -52,7 +52,8 @@ h2 {
 }
 
 /* Styles pour les boutons d'inscription et de connexion */
-Button, .button {
+Button,
+.button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
@@ -173,4 +174,8 @@ input[type="email"] {
 .NexaInformation h2 {
     font-size: 24px;
     color: #007bff;
+}
+
+.confirmPassword {
+    margin-bottom: 10px;
 }

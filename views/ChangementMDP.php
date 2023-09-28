@@ -1,6 +1,5 @@
 <?php
-session_start();
-$email = $_SESSION["email"];
+
 
 
 ?>
@@ -21,15 +20,23 @@ $email = $_SESSION["email"];
 <body>
     <section class="main">
         <section class="container-form">
-            <h2>Mot de passe oublié</h2>
-            <h3>Entrez votre code de réinitialisation recu par email afin de pouvoir changer votre mot de passe.</h3>
+            <h2>Changez votre mot de passe</h2>
         </section>
         <!-- Formulaire -->
         <section class="choice-form">
-            <form method="post" action="../index.php?user=checkCodeVerif">
-                <label for="code">Code :</label>
-                <input type="code" name="code" required>
-                <input type="submit" value="Envoyer le code de réinitialisation">
+            <form method="post" action="../index.php?user=changeMDP">
+
+                <section class=confirmPassword>
+                    <label for="newMDP">Entrez votre nouveau mot de passe :</label>
+                    <input type="password" name="newMDP" required>
+                </section>
+
+                <section class=confirmPassword>
+                    <label for="confirmNewMDP">Confirmez votre nouveau mot de passe :</label>
+                    <input type="password" name="confirmNewMDP" required>
+                </section>
+
+                <input class="connexionButton button" type="submit" value="Changer de mot de passe">
             </form>
 
         </section>
