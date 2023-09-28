@@ -1,16 +1,17 @@
 e = false;
 function togglePasswordVisibility(id) {
-    if(e){
-        document.getElementById("mdp2").setAttribute("type", "text");
-        document.getElementById("eye").src="Images/Form/oeil.png"
-        e=false;
-    }
-    else{
-        document.getElementById("mdp2").setAttribute("type", "password");
-        document.getElementById("eye").src="Images/Form/oeil_ferme.png"
-        e=true;
+    var passwordField = document.getElementById(id);
+    var eyeIcon = document.querySelector("#" + id + "-eye");
+
+    if (passwordField.getAttribute("type") === "password") {
+        passwordField.setAttribute("type", "text");
+        eyeIcon.src = "Images/Form/oeil.png";
+    } else {
+        passwordField.setAttribute("type", "password");
+        eyeIcon.src = "Images/Form/oeil_ferme.png";
     }
 }
+
 
 
 function afficherFormulaire(formulaire) {
