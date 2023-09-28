@@ -1,6 +1,9 @@
 <?php
 
 namespace Model;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 
 use PDO;
@@ -73,33 +76,63 @@ class userModel
     public function updateUser($id, $data) { /* ... */ }
     public function deleteUser($id) { /* ... */ }
 
-    public function resetPwd($email){
+    public function resetPwd($email) {
         if (!$this->checkEmailExists($email)) {
             header('Location: index.php?erreur=email_inexistant');
             exit;
+        }
+
+        $uniqid = uniqid(true);
+        $code = strtoupper(substr($uniqid, -5));
+
+        $query = "UPDATE users SET codeMDPOublie = :code WHERE email = :email";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+        if ($stmt->execute()) {
+            // Envoi de l'e-mail avec le code de réinitialisation
+            require 'vendor/autoload.php';
+
+            $mail = new PHPMailer(true);
+
+            try {
+                $mail->setLanguage('fr', '/optional/path/to/language/directory/');
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'socialnetwork.nexa@gmail.com';
+                $mail->Password = 'uhxxocpnwxrxzwqv';
+                $mail->SMTPSecure = "tls";
+                $mail->Port = 587;
+
+                $mail->setFrom('socialnetwork.nexa@gmail.com', 'Mailer');
+                $mail->addAddress($email);
+                $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Réinitialisation de mot de passe';
+                $mail->Body = "Votre code de réinitialisation de mot de passe est : $code";
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                if ($mail->send()) {
+                    $_SESSION['email'] = $email;
+                    header("Location: views/codeVerif.php");
+                    exit;
+                } else {
+                    header('Location: index.php?erreur=email_non_envoye');
+                    exit;
+                }
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
         } else {
-            $uniqid = uniqid(true);
-            $code = strtoupper(substr($uniqid, -5));
-
-            $query = "UPDATE users SET codeMDPOublie = :code WHERE email = :email";
-            $stmt = $this->connectDB()->prepare($query);
-            $stmt->bindParam(':code', $code, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->execute();
-
-
-            // Envoyer l'e-mail avec le code de réinitialisation==
-            $subject = "Réinitialisation de mot de passe";
-            $message = "Votre code de réinitialisation de mot de passe est : " . $code;
-            $headers = "From: no-replay@nexa.nocly.fr";
-            mail($email, $subject, $message, $headers);
-
-            $_SESSION['email'] = $email;
-            // Rediriger l'utilisateur vers la page de réinitialisation de mot de passe
-            header("Location: views/codeVerif.php");
+            header('Location: index.php?erreur=db_error');
             exit;
         }
     }
+
     public function checkLogin($username, $password) {
         $query = "SELECT * FROM users WHERE (email = :email OR username = :username)";
         $stmt = $this->connectDB()->prepare($query);
