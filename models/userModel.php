@@ -58,10 +58,10 @@ class userModel
     public function createUser($email, $username, $password)
     {
         if ($this->checkEmailExists($email)) {
-            header('Location: index.php?erreur=email_existe');
+            header('Location: ../index.php?erreur=email_existe');
             exit;
         } elseif ($this->checkUsernameExists($username)) {
-            header('Location: index.php?erreur=username_existe');
+            header('Location: ../index.php?erreur=username_existe');
             exit;
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -90,7 +90,7 @@ class userModel
     public function resetPwd($email)
     {
         if (!$this->checkEmailExists($email)) {
-            header('Location: index.php?erreur=email_inexistant');
+            header('Location: ../index.php?erreur=email_inexistant');
             exit;
         }
 
@@ -131,17 +131,17 @@ class userModel
 
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;
-                    header("Location: views/codeVerif.php");
+                    header("Location: ../views/codeVerif.php");
                     exit;
                 } else {
-                    header('Location: index.php?erreur=email_non_envoye');
+                    header('Location: ../index.php?erreur=email_non_envoye');
                     exit;
                 }
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         } else {
-            header('Location: index.php?erreur=db_error');
+            header('Location: ../index.php?erreur=db_error');
             exit;
         }
     }
@@ -165,11 +165,11 @@ class userModel
             $_SESSION['username'] = $utilisateur['username'];
 
             // Redirigez l'utilisateur vers la page de tableau de bord ou autre
-            header('Location: views/dashboard.php');
+            header('Location: ../views/dashboard.php');
             exit;
         } else {
             // Le mot de passe ne correspond pas, affichez un message d'erreur ou redirigez
-            header('Location: index.php?erreur=mauvais_mot_de_passe');
+            header('Location: ../index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
     }

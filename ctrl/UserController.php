@@ -1,23 +1,19 @@
 <?php
 
-namespace Ctrl;
+//namespace ctrl;
 
 use Model\userModel;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-class UserController
-{
+class UserController {
 
 
 
-    public function registerUser()
-    {
-        if (
-            isset($_SERVER['REQUEST_METHOD']) &&
-            $_SERVER['REQUEST_METHOD'] == "POST"
-        ) {
+    public function registerUser() {
+        if (isset($_SERVER['REQUEST_METHOD']) &&
+            $_SERVER['REQUEST_METHOD'] == "POST") {
             // Récupérez les données du formulaire
             $email = $_POST["email"];
             $password = $_POST["mot_de_passe"];
@@ -28,8 +24,7 @@ class UserController
         }
     }
 
-    public function loginUser()
-    {
+    public function loginUser() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['mot_de_passe'];
@@ -41,13 +36,9 @@ class UserController
         }
     }
 
-    public function forgotPwd()
-    {
-        if (
-            isset($_SERVER['REQUEST_METHOD']) &&
-            $_SERVER["REQUEST_METHOD"] == "POST"
-        ) {
-            session_start();
+    public function forgotPwd(){
+        if (isset($_SERVER['REQUEST_METHOD']) &&
+            $_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer l'adresse e-mail soumise par l'utilisateur
             $email = $_POST["email"];
 

@@ -24,12 +24,22 @@
 
             <section class="accueil">
 
+<<<<<<< HEAD
                 <section class="choice-form">
                     <section class="choice-form__button">
                         <button class="inscriptionButton button" id="inscriptionButton"
                             onclick="afficherFormulaire('inscription')">Inscription</button>
                         <button class="connexionButton button" id="connexionButton"
                             onclick="afficherFormulaire('connexion')">Connexion</button>
+=======
+            <form  id="register" class="register" action="User/registerUser" method="post"> <!-- Formulaire inscription -->
+                <h3>Inscription</h3>
+                <div class="field">
+                    <label for="username">Username :</label>
+                    <section class="field-email">
+
+                        <input type="text" id="username" name="username" class="" required>
+>>>>>>> 6876f4e5d07a99620792a74fd1b577d3a3669c42
                     </section>
                     <div id="message-erreur"></div>
                 </section>
@@ -69,12 +79,20 @@
 
 
 
+<<<<<<< HEAD
                 <form id="connexion" class="connexion" action="index.php?user=loginUser" method="post">
                     <!-- Formulaire connexion -->
                     <h3>Connexion</h3>
                     <div class="field">
                         <label for="email">Email ou nom d'utilisateur :</label>
                         <section class="field-email">
+=======
+            <form id="connexion" class="connexion" action="User/loginUser" method="post"> <!-- Formulaire connexion -->
+                <h3>Connexion</h3>
+                <div class="field">
+                    <label for="email">Email or Username :</label>
+                    <section class="field-email">
+>>>>>>> 6876f4e5d07a99620792a74fd1b577d3a3669c42
 
                             <input class="" type="text" name="email" placeholder="nocly_" required><br>
                         </section>
