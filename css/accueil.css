@@ -148,7 +148,7 @@ h2 {
 
 }
 
-.eye{
+.checkpswd {
     width: 30px;
     height: 30px;
     cursor:pointer;
@@ -180,17 +180,6 @@ label {
     display: flex;
     align-items: center;
     position: relative;
-}
-
-
-
-.checkpswd {
-    position: absolute;
-    top: 14px;
-    right: -60%;
-    width: 15px;
-    height: 15px;
-    background-color: #00aaff;
 }
 
 .forgotPwd{

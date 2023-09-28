@@ -79,8 +79,8 @@
                 <div class="field ">
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
-                        <input type="password" name="mot_de_passe" id="mdp2" class="mdp field-pswd__mdp" required placeholder="********">
-                        <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp2')">
+                        <input type="password" name="mdp2" id="mdp2" class="mdp field-pswd__mdp" required placeholder="********">
+                        <img src="Images\Form\oeil_ferme.png" id="eye" class="checkpswd" onclick="togglePasswordVisibility()">
                     </section>
                 </div>
 
