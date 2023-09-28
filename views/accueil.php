@@ -33,7 +33,7 @@
             </section>
 
 
-            <form  id="register" class="register" action="index.php?user=registerUser" method="post"> <!-- Formulaire inscription -->
+            <form  id="register" class="register" action="index.php?Controller=User&action=registerUser" method="post"> <!-- Formulaire inscription -->
                 <h3>Inscription</h3>
                 <div class="field">
                     <label for="username">Username :</label>
@@ -66,7 +66,7 @@
 
 
 
-            <form id="connexion" class="connexion" action="index.php?user=loginUser" method="post"> <!-- Formulaire connexion -->
+            <form id="connexion" class="connexion" action="index.php?Controller=User&action=loginUser" method="post"> <!-- Formulaire connexion -->
                 <h3>Connexion</h3>
                 <div class="field">
                     <label for="email">Email or Username :</label>
