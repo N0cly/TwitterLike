@@ -1,10 +1,14 @@
-
+e = false;
 function togglePasswordVisibility(id) {
-    var x = document.getElementById(id);
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
+    if(e){
+        document.getElementById("mdp2").setAttribute("type", "text");
+        document.getElementById("eye").src="Images/Form/oeil.png"
+        e=false;
+    }
+    else{
+        document.getElementById("mdp2").setAttribute("type", "password");
+        document.getElementById("eye").src="Images/Form/oeil_ferme.png"
+        e=true;
     }
 }
 
