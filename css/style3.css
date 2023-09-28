@@ -2,7 +2,6 @@
     font-family: Arial, sans-serif;
 }
 
-
 /* Styles pour centrer le contenu */
 .center-content {
     display: flex;
@@ -12,6 +11,8 @@
     justify-content: center;
     height: 100vh;
 }
+
+
 
 /* Styles pour l'image de profil */
 img {
@@ -33,13 +34,13 @@ h1 {
     text-align: center;
     padding: 10px;
     position: relative;
-    top: -10px; /* Déplace les informations de l'utilisateur vers le haut */
+    top: 5px; /* Déplace les informations de l'utilisateur vers le haut */
 }
 
 /* Styles pour la bannière */
 .user-banner {
     width: 100%;
-    height: 200px;
+    height: 250px;
 
     background-image: url('../Images/banniere-image.jpg');
     background-size: cover;
@@ -50,8 +51,11 @@ h1 {
 }
 
 .follower-info {
-    display: flex; /* Utilisation de flexbox pour aligner les éléments côte à côte */
-    align-items: center; /* Aligner verticalement les éléments au centre */
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    text-align: center; /* Centrer le texte à l'intérieur */
+    margin-top: -20px;
+    margin-right:-55px; /* Marge à droite pour décaler les éléments */
 }
 
 /* Styles pour les boutons "S'abonner" et "Partager" */
@@ -61,29 +65,38 @@ h1 {
 
 .follower-count,
 .Abonnement {
-    margin-right: 10px; /* Espacement entre les éléments */
+    margin-right: 30px;
     font-size: 16px;
+    position: relative;
 }
 
-.Abonnement {
-    margin: 0; /* Supprimer la marge droite pour éviter un espace excessif */
-    font-size: 16px;
+.follower-count:hover {
+    color: #fffbfb;
+    border-color: #000;
+}
+
+.Abonnement:hover {
+    color: #ffffff;
+    border-color: #000;
 }
 
 .subscribe-button,
 .share-button {
-    display: inline-block;
+    display: inline-block; /* Utilisez "inline-block" pour mettre les boutons côte à côte */
+    width: auto; /* Ajustez la largeur automatiquement en fonction du contenu */
+    margin-right: 10px; /* Espacement entre les boutons */
     padding: 10px 20px;
     font-size: 16px;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
     background-color: transparent;
-
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin: 10px;
+    position: relative;
 }
 
 .subscribe-button:hover,
@@ -95,4 +108,12 @@ h1 {
 
 body{
     margin: 0px;
+}
+
+.separator {
+    width: 2px; /* Largeur de la ligne */
+    height: 300px; /* Hauteur de la ligne (ajustez selon vos besoins) */
+    background-color: #ccc; /* Couleur de la ligne */
+    margin-left: 10px; /* Espacement entre la ligne et le bouton "Partager" */
+    display: inline-block; /* Pour que la ligne n'affecte que l'espace horizontal */
 }
