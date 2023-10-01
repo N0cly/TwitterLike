@@ -19,7 +19,7 @@
     <section class="container-form">
         <section class="head">
             <img class="logo-nexa" src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa">
-<!--            <h2>Accueil Nexa</h2>-->
+            <!--            <h2>Accueil Nexa</h2>-->
         </section>
 
         <section class="accueil">
@@ -54,7 +54,11 @@
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
                         <input type="password" name="mot_de_passe" id="mdp1" class="mdp field-pswd__mdp" required placeholder="********">
-                        <img src="Images/Form/oeil_ferme.png" id="mdp1-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp1')">
+                        <!--                        <img src="Images/Form/oeil_ferme.png" id="mdp1-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp1')">-->
+                        <label class="switch ">
+                            <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp1')">
+                            <span class="slider"></span>
+                        </label>
                     </section>
                 </div>
 
@@ -77,7 +81,11 @@
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
                         <input type="password" name="mdp2" id="mdp2" class="mdp field-pswd__mdp" required placeholder="********">
-                        <img src="Images/Form/oeil_ferme.png" id="mdp2-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp2')">
+                        <!--                        <img src="Images/Form/oeil_ferme.png" id="mdp2-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp2')">-->
+                        <label class="switch ">
+                            <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp2')">
+                            <span class="slider"></span>
+                        </label>
                     </section>
                 </div>
 
