@@ -289,4 +289,180 @@ input:hover:checked + .slider:before {
     color: #dddddd;
 }
 
+@media screen and (min-width: 767px) and (max-width: 1023px){
+    .accueil{
+        width: 100%;
+        padding:  2rem 0;
+    }
+
+    .field input {
+        width: 100%;
+    }
+
+    .choice-form__button button {
+        width: 100%;
+    }
+
+    .field {
+        margin-bottom: 8%;
+    }
+
+    .field-pswd, .field-email {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .checkpswd {
+        position: absolute;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        cursor:pointer;
+        vertical-align: middle;
+    }
+
+    .forgotPwd{
+        color: #dcdcdc;
+        text-decoration: none;
+    }
+
+    .inscription-connexion-button-container {
+        text-align: center;
+    }
+
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .head {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-nexa {
+        max-width: 100px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .choice-form__button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.06);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+    }
+
+    .choice-form__button button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        font-weight: 700;
+        backdrop-filter: blur(50px);
+    }
+}
+@media screen and (max-width: 767px){
+    .accueil{
+        width: 100%;
+        padding:  2rem 0;
+    }
+
+    .field input {
+        width: 100%;
+    }
+
+    .choice-form__button button {
+        width: 100%;
+    }
+
+    .field {
+        margin-bottom: 8%;
+    }
+
+    .field-pswd, .field-email {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .checkpswd {
+        position: absolute;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        cursor:pointer;
+        vertical-align: middle;
+    }
+
+    .forgotPwd{
+        color: #dcdcdc;
+        text-decoration: none;
+    }
+
+    .inscription-connexion-button-container {
+        text-align: center;
+    }
+
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .head {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-nexa {
+        max-width: 100px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .choice-form__button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.06);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+    }
+
+    .choice-form__button button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        font-weight: 700;
+        backdrop-filter: blur(50px);
+    }
+}
 
