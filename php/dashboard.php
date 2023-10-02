@@ -29,6 +29,7 @@ try {
     <meta charset="UTF-8">
     <title>Nexa - Réseau Social</title>
     <link rel="stylesheet" href="../css/style_dash.css">
+    <link rel="stylesheet1" href="../css/user-preview.css"
 </head>
 <body>
 
@@ -72,7 +73,7 @@ try {
         <?php foreach($posts as $post): ?>
         <div class="post">
             <div class="post-header">
-                <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp">
+                <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp post-pp-hover">
                 <h3 class="post-username"><?= $post['user']; ?></h3>
             </div>
             <hr class="post-divider">
