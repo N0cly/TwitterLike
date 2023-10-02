@@ -148,13 +148,6 @@ h2 {
 
 }
 
-.eye{
-    width: 30px;
-    height: 30px;
-    cursor:pointer;
-    vertical-align: middle;
-}
-
 .field {
     margin-bottom: 4%;
     display: flex;
@@ -176,21 +169,19 @@ label {
     width: 17vw;
 }
 
+.checkpswd {
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor:pointer;
+    vertical-align: middle;
+}
+
 .field-pswd, .field-email {
     display: flex;
     align-items: center;
     position: relative;
-}
-
-
-
-.checkpswd {
-    position: absolute;
-    top: 14px;
-    right: -60%;
-    width: 15px;
-    height: 15px;
-    background-color: #00aaff;
 }
 
 .forgotPwd{
@@ -201,6 +192,87 @@ label {
 
 .inscription-connexion-button-container {
     text-align: center;
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    /* Variables */
+    --switch_width: 2em;
+    --switch_height: 1em;
+    --thumb_color: #e8e8e8;
+    --track_color: #e8e8e8;
+    --track_active_color: #888;
+    --outline_color: #000;
+    font-size: 17px;
+    position: absolute;
+    right: 7px;
+    display: inline-block;
+    width: var(--switch_width);
+    height: var(--switch_height);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    box-sizing: border-box;
+    border: 2px solid var(--outline_color);
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--track_color);
+    transition: .15s;
+    border-radius: var(--switch_height);
+}
+
+.slider:before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    height: var(--switch_height);
+    width: var(--switch_height);
+    border: 2px solid var(--outline_color);
+    border-radius: 100%;
+    left: -2px;
+    bottom: -2px;
+    background-color: var(--thumb_color);
+    transform: translateY(-0.2em);
+    box-shadow: 0 0.2em 0 var(--outline_color);
+    transition: .15s;
+}
+
+input:checked + .slider {
+    background-color: var(--track_active_color);
+}
+
+input:focus-visible + .slider {
+    box-shadow: 0 0 0 2px var(--track_active_color);
+}
+
+/* Raise thumb when hovered */
+input:hover + .slider:before {
+    transform: translateY(-0.3em);
+    box-shadow: 0 0.3em 0 var(--outline_color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
+}
+
+/* Raise thumb when hovered & checked */
+input:hover:checked + .slider:before {
+    transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.3em);
+    box-shadow: 0 0.3em 0 var(--outline_color);
 }
 
 .NexaInformation {
@@ -217,4 +289,180 @@ label {
     color: #dddddd;
 }
 
+@media screen and (min-width: 767px) and (max-width: 1023px){
+    .accueil{
+        width: 100%;
+        padding:  2rem 0;
+    }
+
+    .field input {
+        width: 100%;
+    }
+
+    .choice-form__button button {
+        width: 100%;
+    }
+
+    .field {
+        margin-bottom: 8%;
+    }
+
+    .field-pswd, .field-email {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .checkpswd {
+        position: absolute;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        cursor:pointer;
+        vertical-align: middle;
+    }
+
+    .forgotPwd{
+        color: #dcdcdc;
+        text-decoration: none;
+    }
+
+    .inscription-connexion-button-container {
+        text-align: center;
+    }
+
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .head {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-nexa {
+        max-width: 100px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .choice-form__button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.06);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+    }
+
+    .choice-form__button button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        font-weight: 700;
+        backdrop-filter: blur(50px);
+    }
+}
+@media screen and (max-width: 767px){
+    .accueil{
+        width: 100%;
+        padding:  2rem 0;
+    }
+
+    .field input {
+        width: 100%;
+    }
+
+    .choice-form__button button {
+        width: 100%;
+    }
+
+    .field {
+        margin-bottom: 8%;
+    }
+
+    .field-pswd, .field-email {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .checkpswd {
+        position: absolute;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        cursor:pointer;
+        vertical-align: middle;
+    }
+
+    .forgotPwd{
+        color: #dcdcdc;
+        text-decoration: none;
+    }
+
+    .inscription-connexion-button-container {
+        text-align: center;
+    }
+
+    .container-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .head {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-nexa {
+        max-width: 100px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .choice-form__button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.06);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+    }
+
+    .choice-form__button button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        font-weight: 700;
+        backdrop-filter: blur(50px);
+    }
+}
 

@@ -41,6 +41,9 @@ class UserController {
             $_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer l'adresse e-mail soumise par l'utilisateur
             $email = $_POST["email"];
+            session_start();
+
+            $_SESSION["email"] = $email;
 
             $userModel = new UserModel();
             $userModel->resetPwd($email);
@@ -81,6 +84,11 @@ class UserController {
             $userModel = new UserModel();
             $userModel->changeMDP($newMDP, $confirmNewMDP, $email);
         }
+    }
+
+    public function isModerator($email){
+        $userModel = new UserModel();
+        $userModel->isModerator($email);
     }
 
     // Autres méthodes pour gérer les utilisateurs

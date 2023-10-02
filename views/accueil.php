@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page de connexion">
+    <meta name="description" content="Bienvenue sur Nexa !">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
     <!--<link href="../css/style1.css" rel="stylesheet" type="text/css">-->
     <link href="../css/accueil.css" rel="stylesheet" type="text/css">
@@ -19,7 +19,7 @@
     <section class="container-form">
         <section class="head">
             <img class="logo-nexa" src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa">
-<!--            <h2>Accueil Nexa</h2>-->
+            <!--            <h2>Accueil Nexa</h2>-->
         </section>
 
         <section class="accueil">
@@ -39,32 +39,33 @@
                     <label for="username">Username :</label>
                     <section class="field-email">
 
-                        <input type="text" id="username" name="username" class="" required>
+                        <input type="text" id="username" name="username" class="" placeholder="Dylan_du_92" required>
                     </section>
                 </div>
 
                 <div class="field">
                     <label for="email">Email :</label>
                     <section class="field-email">
-                        <input type="email" id="email" name="email" class="" required >
+                        <input type="email" id="email" name="email" class="" placeholder="email@exemple.com" required>
                     </section>
                 </div>
 
                 <div class="field ">
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
-                        <input type="password" id="mdp1" name="mot_de_passe" class="mdp field-pswd__mdp" required>
-                        <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp1')">
+                        <input type="password" name="mot_de_passe" id="mdp1" class="mdp field-pswd__mdp" required placeholder="********">
+                        <!--                        <img src="Images/Form/oeil_ferme.png" id="mdp1-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp1')">-->
+                        <label class="switch ">
+                            <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp1')">
+                            <span class="slider"></span>
+                        </label>
                     </section>
                 </div>
 
                 <div class="inscription-connexion-button-container">
                     <input class="inscriptionButton button" type="submit" value="S'inscrire">
                 </div>
-
             </form>
-
-
 
             <form id="connexion" class="connexion" action="User/loginUser" method="post"> <!-- Formulaire connexion -->
                 <h3>Connexion</h3>
@@ -80,7 +81,11 @@
                     <label for="mot_de_passe">Mot de passe :</label>
                     <section class="field-pswd">
                         <input type="password" name="mot_de_passe" id="mdp2" class="mdp field-pswd__mdp" required placeholder="********">
-                        <input type="checkbox" class="checkpswd" onclick="togglePasswordVisibility('mdp2')">
+                        <!--                        <img src="Images/Form/oeil_ferme.png" id="mdp2-eye" class="checkpswd eye" onclick="togglePasswordVisibility('mdp2')">-->
+                        <label class="switch ">
+                            <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp2')">
+                            <span class="slider"></span>
+                        </label>
                     </section>
                 </div>
 
@@ -93,9 +98,7 @@
         </section>
     </section>
 </section>
-<footer class="NexaInformation">
-    <h2>A Propos de Nexa</h2>
-</footer>
+<?php include('footer.php'); ?>
 <script src="../js/script.js"></script>
 </body>
 </html>

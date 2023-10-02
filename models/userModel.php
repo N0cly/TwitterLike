@@ -64,7 +64,7 @@ class userModel
             header('Location: ../index.php?erreur=username_existe');
             exit;
         } else {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
             // Si l'email n'existe pas, insérez les données dans la base de données
             $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
             $stmt = $this->connectDB()->prepare($query);
@@ -145,7 +145,6 @@ class userModel
             exit;
         }
     }
-
     public function checkLogin($username, $password)
     {
         $query = "SELECT * FROM users WHERE (email = :email OR username = :username)";
@@ -154,21 +153,27 @@ class userModel
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
-        $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$stmt->execute()) {
+            $errorInfo = $stmt->errorInfo();
+            print_r($errorInfo);
+        }
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-        if ($utilisateur && password_verify($password, $utilisateur['mdp'])) {
-            // Le mot de passe correspond, vous pouvez continuer avec l'authentification
+//        echo $user['mdp'];
+//        echo "<br>";
+//        echo $password;
+//        echo "<br>";
+//        echo password_verify($password, $user['mdp']);
+//        die();
+        if ($user && password_verify($password, $user['mdp'])) {
             session_start();
             $_SESSION['utilisateur_connecte'] = true;
-            $_SESSION['email'] = $utilisateur['email'];
-            $_SESSION['username'] = $utilisateur['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
 
-            // Redirigez l'utilisateur vers la page de tableau de bord ou autre
             header('Location: ../views/dashboard.php');
             exit;
         } else {
-            // Le mot de passe ne correspond pas, affichez un message d'erreur ou redirigez
             header('Location: ../index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
@@ -188,7 +193,7 @@ class userModel
             $codeBD = $row['codeMDPOublie'];
             if ($codeBD == $code) {
                 header('Location: ../views/ChangementMDP.php');
-                exit(); // Assurez-vous de quitter le script après la redirection.
+                exit();
             } else {
 
                 //header('Location: index.php?erreur=code_errone');
@@ -217,4 +222,22 @@ class userModel
         }
 
     }
+
+    public function isModerator($username)
+    {
+        $query = "SELECT * FROM users WHERE username = :username";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user_data && $user_data['is_moderator']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }
