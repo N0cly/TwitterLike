@@ -1,119 +1,101 @@
-*{
-    font-family: Arial, sans-serif;
+.center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20vh;
+    margin-left: -300px; /* Décalage vers la gauche */
 }
 
-/* Styles pour centrer le contenu */
-.center-content {
+
+.card {
+    --main-color: #000;
+    --submain-color: #78858F;
+    --bg-color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    width: 300px;
+    height: 384px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    justify-content: center;
-    height: 100vh;
+    border-radius: 20px;
+    background: var(--bg-color);
 }
 
-
-
-/* Styles pour l'image de profil */
-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Styles pour le nom d'utilisateur */
-h1 {
-    font-size: 24px;
-    margin-top: 10px;
-}
-
-/* Styles pour les informations de l'utilisateur */
-.user-info {
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    top: 5px; /* Déplace les informations de l'utilisateur vers le haut */
-}
-
-/* Styles pour la bannière */
-.user-banner {
+.card__img {
+    height: 192px;
     width: 100%;
-    height: 250px;
+}
 
-    background-image: url('../Images/banniere-image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.card__img img {
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.card__avatar {
     position: absolute;
-    margin: 0px;
-}
-
-.follower-info {
+    width: 114px;
+    height: 114px;
+    background: var(--bg-color);
+    border-radius: 100%;
     display: flex;
-    justify-content: center; /* Centrer horizontalement */
-    text-align: center; /* Centrer le texte à l'intérieur */
-    margin-top: -20px;
-    margin-right:-55px; /* Marge à droite pour décaler les éléments */
+    justify-content: center;
+    align-items: center;
+    top: calc(50% - 57px);
+    right: -45px;
 }
 
-/* Styles pour les boutons "S'abonner" et "Partager" */
-.user-actions {
-    margin-top: 10px;
+.card__avatar img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%; /* Utilisez 50% pour un bord arrondi créant un cercle */
+    object-fit: cover;
 }
 
-.follower-count,
-.Abonnement {
-    margin-right: 30px;
-    font-size: 16px;
-    position: relative;
+.card__title {
+    margin-top: 60px;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--main-color);
+    margin-left: 280px;
+    white-space: nowrap;
 }
 
-.follower-count:hover {
-    color: #fffbfb;
-    border-color: #000;
+.card__subtitle {
+    margin-top: -30px;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--submain-color);
+    margin-left: 420px;
+    white-space: nowrap;
+
 }
 
-.Abonnement:hover {
-    color: #ffffff;
-    border-color: #000;
+.user-info {
+    margin-top: 0px;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--main-color);
+    margin-left: 280px;
+    white-space: nowrap;
 }
 
-.subscribe-button,
-.share-button {
-    display: inline-block; /* Utilisez "inline-block" pour mettre les boutons côte à côte */
-    width: auto; /* Ajustez la largeur automatiquement en fonction du contenu */
-    margin-right: 10px; /* Espacement entre les boutons */
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: right;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: #333;
-    background-color: transparent;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin: 10px;
-    position: relative;
+button {
+    font-family: monospace;
+    background-color: rgba(66, 105, 168, 0.28);
+    color: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    height: 45px;
+    transition: .3s;
+    margin-left: 280px;
 }
 
-.subscribe-button:hover,
-.share-button:hover {
-    background-color: #eee;
-    color: #000;
-    border-color: #000;
+button:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: #fff;
 }
 
-body{
-    margin: 0px;
-}
 
-.separator {
-    width: 2px; /* Largeur de la ligne */
-    height: 300px; /* Hauteur de la ligne (ajustez selon vos besoins) */
-    background-color: #ccc; /* Couleur de la ligne */
-    margin-left: 10px; /* Espacement entre la ligne et le bouton "Partager" */
-    display: inline-block; /* Pour que la ligne n'affecte que l'espace horizontal */
-}
