@@ -13,7 +13,7 @@ use PDOException;
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-class userModel
+class UserModel
 {
 
 
@@ -237,6 +237,18 @@ class userModel
         } else {
             return false;
         }
+    }
+
+    public function getUserData($username)
+    {
+        $query = "SELECT * FROM users WHERE username = :username";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $user_data;
     }
 
 

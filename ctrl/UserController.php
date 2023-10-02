@@ -2,7 +2,8 @@
 
 //namespace ctrl;
 
-use Model\userModel;
+
+use Model\UserModel;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -86,9 +87,13 @@ class UserController {
         }
     }
 
-    public function isModerator($email){
+    public function isModerator($user)
+    {
+
         $userModel = new UserModel();
-        $userModel->isModerator($email);
+        $user = $userModel->isModerator($user);
+
+        return $user;
     }
 
     // Autres méthodes pour gérer les utilisateurs

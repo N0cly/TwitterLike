@@ -24,7 +24,7 @@
         </section>
         <!-- Formulaire -->
         <section class="choice-form">
-            <form method="post" action="../User/changeMDP">
+            <form method="post" action="../index.php?user=changeMDP">
 
                 <section class=confirmPassword>
                     <label for="newMDP">Entrez votre nouveau mot de passe :</label>

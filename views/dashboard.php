@@ -1,12 +1,7 @@
 <?php
 session_start();
-$user = $_SESSION['user'] ?? 'Inconnu';
-
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : 'Inconnu';
 $is_moderator = false;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 try {
     $conn = new PDO("sqlite:../db/db_nexa.sqlite");
@@ -27,6 +22,9 @@ try {
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
+
+require_once '../ctrl/UserController.php';
+$userCtrl = new UserController();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,6 +32,7 @@ try {
     <meta charset="UTF-8">
     <title>Nexa - Réseau Social</title>
     <link rel="stylesheet" href="../css/style_dash.css">
+    <link rel="stylesheet1" href="../css/user-preview.css"
 </head>
 <body>
 
@@ -46,7 +45,7 @@ try {
     <div class="user-icon">
         <i class="fas fa-user-circle"></i>
         <a href="profil.php" class="username-link">
-            <?php if($model->isModerator($user)): ?>
+            <?php if($userCtrl->isModerator($_SESSION['user'])): ?>
                 <img src="../Images/shield.png" alt="Modérateur" class="moderator-icon"/>
             <?php endif; ?>
             <?php echo $user; ?>
@@ -64,12 +63,10 @@ try {
                     <div class="input-container">
                         <label for="contenu">Contenu :</label>
                         <textarea id="contenu" name="contenu"></textarea>
-                        <button id="effacerContenu" type="button" class="modal-button">✖</button>
                     </div>
                     <div class="input-container">
                         <label for="image">Image :</label>
                         <input type="file" id="image" name="image">
-                        <button id="effacerImage" type="button" class="modal-button">✖</button>
                     </div>
                     <input type="submit" value="Publier">
                 </form>
@@ -79,7 +76,7 @@ try {
         <?php foreach($posts as $post): ?>
             <div class="post">
                 <div class="post-header">
-                    <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp">
+                    <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp post-pp-hover">
                     <h3 class="post-username"><?= $post['user']; ?></h3>
                 </div>
                 <hr class="post-divider">
@@ -98,6 +95,7 @@ try {
                 <div id="commentModal<?= $post['id_post']; ?>" class="modal">
                     <div class="modal-content">
                         <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
+
                             <input type="hidden" name="id_pere" id="id_pere<?= $post['id_post']; ?>" value="<?= $post['id_post']; ?>">
                             <div class="input-container">
                                 <label for="contenu">Commentaire :</label>
@@ -121,11 +119,7 @@ try {
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <?php if($post['Comment'] > 0): ?>
-                    <div class="comment-banner" data-id_post="<?= $post['id_post']; ?>">
-                        <span>Voir les commentaires</span>
-                    </div>
-                <?php endif; ?>
+                <!-- La bannière "Afficher les commentaires" est générée par JavaScript, donc pas besoin ici -->
             </div>
         <?php endforeach; ?>
     </section>
@@ -135,4 +129,3 @@ try {
 
 </body>
 </html>
-
