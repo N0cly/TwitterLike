@@ -91,7 +91,6 @@ body {
     overflow-y: auto;
 }
 
-/* New styles for the input container */
 .input-container {
     display: flex;
     align-items: center;
@@ -102,51 +101,16 @@ body {
     margin-right: 10px;
 }
 
-.input-container textarea {
-    flex: 1;
-    height: 50px;
-}
-
-.input-container input[type="file"] {
-    flex: 1;
-}
-.input-container button,
-.modal-submit {
-    background-color: #00aaff;
-    color: white;
-    padding: 0.6em 1.2em;
-    border: none;
-    border-radius: 0.3em;
-    cursor: pointer;
-}
-
-.input-container .modal-button {
-    background: none;
-    border: none;
-    color: red;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin-left: 0.6em;
-}
-
 .input-container textarea,
 .input-container input[type="file"] {
-    width: 100%; /* prend toute la largeur du conteneur */
+    flex: 1;
+    width: 100%;
     margin-bottom: 0.6em;
     border: 1px solid #ccc;
     border-radius: 0.3em;
 }
 
-
-.modal-button {
-    background: none;
-    border: none;
-    color: red;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin-left: 0.6em;
-}
-
+.input-container button,
 .modal-submit {
     background-color: #00aaff;
     color: white;
@@ -171,23 +135,21 @@ body {
     position: relative;
     margin: 10% auto;
     padding: 1em;
-    max-width: 500px; /* élargir la largeur max */
-    min-width: 300px; /* largeur minimale */
+    max-width: 500px;
+    min-width: 300px;
     background-color: #fff;
     border-radius: 0.5em;
     box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
 }
 
-#ouvrirPublication {
+#ouvrirPublication,
+#openModeratorPanel {
     background-color: #00aaff;
     color: white;
     padding: 0.6em 1.2em;
     border: none;
     border-radius: 0.3em;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 1.2em;
-    display: inline-block; /* pour le rendre en ligne avec d'autres éléments si nécessaire */
 }
 
 .post {
@@ -228,25 +190,74 @@ body {
 
 .post-actions {
     display: flex;
-    justify-content: space-around; /* modifié pour rapprocher les boutons */
+    justify-content: space-around;
 }
 
 .post-action {
     background: none;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s ease; /* ajout d'animation */
+    transition: transform 0.3s ease;
 }
 
 .post-action:hover {
     transform: scale(1.1);
 }
 
-.like {
-    cursor: pointer;
-    transition: color 0.2s ease;
+.moderator-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
 }
 
-.like:hover {
-    color: red;  /* Choisissez la couleur que vous voulez pour l'effet de survol */
+.moderator-panel {
+    margin-top: 20px;
 }
+
+
+
+.post-action.like {
+    color: #ccc; /* Couleur par défaut du cœur (gris) */
+}
+
+.post-action.like.liked {
+    color: red; /* Couleur du cœur lorsqu'il est 'liké' */
+}
+
+.comment {
+    font-size: 0.9rem;
+    padding: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.comment-username {
+    font-weight: bold;
+}
+
+.comment-time {
+    font-size: 0.8rem;
+    color: #888;
+}
+.comments-container {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 0.9em; /* Vous pouvez ajuster la taille de la police des commentaires ici */
+}
+
+.comment-banner {
+    cursor: pointer;
+    background-color: #f0f0f0; /* Couleur de fond de la bannière des commentaires */
+    color: #333; /* Couleur du texte de la bannière des commentaires */
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8em; /* Taille de la police de la bannière des commentaires */
+    border-top: 1px solid #ddd; /* Bordure supérieure de la bannière des commentaires */
+}
+
+
+
+.comment-content {
+    margin: 0;
+}
+
+
