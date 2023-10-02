@@ -59,12 +59,10 @@ try {
                     <div class="input-container">
                         <label for="contenu">Contenu :</label>
                         <textarea id="contenu" name="contenu"></textarea>
-                        <button id="effacerContenu" type="button" class="modal-button">✖</button>
                     </div>
                     <div class="input-container">
                         <label for="image">Image :</label>
                         <input type="file" id="image" name="image">
-                        <button id="effacerImage" type="button" class="modal-button">✖</button>
                     </div>
                     <input type="submit" value="Publier">
                 </form>
@@ -72,56 +70,53 @@ try {
         </div>
 
         <?php foreach($posts as $post): ?>
-            <div class="post">
-                <div class="post-header">
-                    <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp">
-                    <h3 class="post-username"><?= $post['user']; ?></h3>
-                </div>
-                <hr class="post-divider">
-                <p class="post-content"><?= $post['contenu']; ?></p>
-                <?php if(!empty($post['image'])): ?>
-                    <img src="<?= $post['image']; ?>" alt="Image du post" class="post-image"/>
-                <?php endif; ?>
-                <div class="post-actions">
-                    <button class="post-action like" data-id_post="<?= $post['id_post']; ?>" <?= $post['user_liked'] > 0 ? 'disabled' : '' ?>>❤️ <?= $post['LikeCount'] ?></button>
-                    <button class="post-action comment" data-id_post="<?= $post['id_post']; ?>">💬 <?= $post['Comment']; ?></button>
-                    <button class="post-action share">🔗 <?= $post['partage']; ?></button>
-                    <?php if($is_moderator): ?>
-                        <button class="post-action delete" data-id_post="<?= $post['id_post']; ?>">🗑</button>
-                    <?php endif; ?>
-                </div>
-                <div id="commentModal<?= $post['id_post']; ?>" class="modal">
-                    <div class="modal-content">
-                        <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="id_pere" id="id_pere<?= $post['id_post']; ?>" value="<?= $post['id_post']; ?>">
-                            <div class="input-container">
-                                <label for="contenu">Commentaire :</label>
-                                <textarea id="contenu" name="contenu"></textarea>
-                            </div>
-                            <input type="submit" value="Commenter">
-                        </form>
-                    </div>
-                </div>
-                <div class="comments-container" id="comments<?= $post['id_post']; ?>" style="display:none;">
-                    <?php
-                    $stmt = $conn->prepare("SELECT * FROM Post WHERE id_pere = :id_post ORDER BY Time");
-                    $stmt->bindParam(':id_post', $post['id_post']);
-                    $stmt->execute();
-                    $comments = $stmt->fetchAll();
-                    foreach($comments as $comment):
-                        ?>
-                        <div class="comment">
-                            <p class="comment-content"><?= $comment['contenu']; ?></p>
-                            <p class="comment-user"><?= $comment['user']; ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <?php if($post['Comment'] > 0): ?>
-                    <div class="comment-banner" data-id_post="<?= $post['id_post']; ?>">
-                        <span>Voir les commentaires</span>
-                    </div>
+        <div class="post">
+            <div class="post-header">
+                <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp">
+                <h3 class="post-username"><?= $post['user']; ?></h3>
+            </div>
+            <hr class="post-divider">
+            <p class="post-content"><?= $post['contenu']; ?></p>
+            <?php if(!empty($post['image'])): ?>
+                <img src="<?= $post['image']; ?>" alt="Image du post" class="post-image"/>
+            <?php endif; ?>
+            <div class="post-actions">
+                <button class="post-action like" data-id_post="<?= $post['id_post']; ?>" <?= $post['user_liked'] > 0 ? 'disabled' : '' ?>>❤️ <?= $post['LikeCount'] ?></button>
+                <button class="post-action comment" data-id_post="<?= $post['id_post']; ?>">💬 <?= $post['Comment']; ?></button>
+                <button class="post-action share">🔗 <?= $post['partage']; ?></button>
+                <?php if($is_moderator): ?>
+                    <button class="post-action delete" data-id_post="<?= $post['id_post']; ?>">🗑</button>
                 <?php endif; ?>
             </div>
+            <div id="commentModal<?= $post['id_post']; ?>" class="modal">
+                <div class="modal-content">
+                    <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" name="id_pere" id="id_pere<?= $post['id_post']; ?>" value="<?= $post['id_post']; ?>">
+                        <div class="input-container">
+                            <label for="contenu">Commentaire :</label>
+                            <textarea id="contenu" name="contenu"></textarea>
+                        </div>
+                        <input type="submit" value="Commenter">
+                    </form>
+                </div>
+            </div>
+            <div class="comments-container" id="comments<?= $post['id_post']; ?>" style="display:none;">
+                <?php
+                $stmt = $conn->prepare("SELECT * FROM Post WHERE id_pere = :id_post ORDER BY Time");
+                $stmt->bindParam(':id_post', $post['id_post']);
+                $stmt->execute();
+                $comments = $stmt->fetchAll();
+                foreach($comments as $comment):
+                    ?>
+                    <div class="comment">
+                        <p class="comment-content"><?= $comment['contenu']; ?></p>
+                        <p class="comment-user"><?= $comment['user']; ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <!-- La bannière "Afficher les commentaires" est générée par JavaScript, donc pas besoin ici -->
+        </div>
         <?php endforeach; ?>
     </section>
 </main>
@@ -130,4 +125,3 @@ try {
 
 </body>
 </html>
-
