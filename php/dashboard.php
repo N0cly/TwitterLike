@@ -23,6 +23,7 @@ try {
     echo "Erreur : " . $e->getMessage();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +43,7 @@ try {
         <i class="fas fa-user-circle"></i>
         <a href="profil.php" class="username-link">
             <?php if($is_moderator): ?>
-                <img src="../Images/shield.png" alt="Modérateur" class="moderator-icon"/>
+                <img src="../Images/img_mod.png" alt="Modérateur" class="moderator-icon"/>
             <?php endif; ?>
             <?php echo $user; ?>
         </a>
@@ -74,6 +75,9 @@ try {
         <?php foreach($posts as $post): ?>
             <div class="post">
                 <div class="post-header">
+                    <?php if($is_moderator && $post['user'] === $user): ?>
+                        <img src="../Images/img_mod.png" alt="Modérateur" class="moderator-icon"/>
+                    <?php endif; ?>
                     <img src="<?= empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>" alt="Photo de profil" class="post-pp">
                     <h3 class="post-username"><?= $post['user']; ?></h3>
                 </div>
