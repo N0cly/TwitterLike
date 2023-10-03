@@ -1,6 +1,7 @@
 <?php
 
 use Model\PostModel;
+require_once('../models/PostModel.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -40,6 +41,14 @@ class PostController
             $postModel = new PostModel();
             $postModel->createPost($user, $content, $image);
         }
+    }
+
+    public function getPostsAll($user)
+    {
+        $postModel = new PostModel();
+        $posts = $postModel->getPostsAll($user); // Remplacez par la méthode appropriée pour obtenir les publications
+
+        return $posts;
     }
 
 

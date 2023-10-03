@@ -1,7 +1,6 @@
 <?php
 session_start();
 $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'Inconnu';
-//$is_moderator = false;
 
 try {
     $conn = new PDO("sqlite:../db/db_nexa.sqlite");
@@ -9,20 +8,20 @@ try {
 
 
     require_once('../ctrl/UserController.php');
-
     $userCtrl = new UserController();
     $user_data = $userCtrl->getUser($user);
 
-    // if ($user_data && $user_data['is_moderator']) $is_moderator = true;
-
 //     Partie commentée pour récupérer les messages
-    $stmt = $conn->prepare("SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked FROM Post WHERE id_pere IS NULL ORDER BY Time DESC");
-    $stmt->bindParam(':user', $user);
-    $stmt->execute();
-    $posts = $stmt->fetchAll();
+
+    require_once ('../ctrl/PostController.php');
+    $postCtrl = new PostController();
+    $post_fetch = $postCtrl->getPostsAll($user);
+
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
+
+$posts = $post_fetch;
 $is_moderator = $user_data['is_moderator'];
 ?>
 <!DOCTYPE html>

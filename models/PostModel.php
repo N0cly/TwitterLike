@@ -2,18 +2,31 @@
 
 namespace Model;
 
+use PDO;
+use PDOException;
 class PostModel
 {
 
     public function connectDB()
     {
         try {
-            $db = new PDO('sqlite:/db/db_nexa.sqlite');
+            $db = new PDO('sqlite:../db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
             die('Erreur de connexion à la base de données : ' . $e->getMessage());
         }
+    }
+
+    public function getPostsAll($user)
+    {
+        $query = "SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked FROM Post WHERE id_pere IS NULL ORDER BY Time DESC";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':user', $user);
+        $stmt->execute();
+        $posts = $stmt->fetchAll();
+
+        return $posts;
     }
 
     public function getPosts()
