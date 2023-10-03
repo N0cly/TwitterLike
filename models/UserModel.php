@@ -20,7 +20,7 @@ class UserModel
     public function connectDB()
     {
         try {
-            $db = new PDO('sqlite:./db/db_nexa.sqlite');
+            $db = new PDO('sqlite:../db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -170,6 +170,7 @@ class UserModel
         }
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
 //        echo $user['mdp'];
 //        echo "<br>";
 //        echo $password;
@@ -182,7 +183,6 @@ class UserModel
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
 
-            $this->connectDB()->close();
 
             header('Location: ../views/dashboard.php');
             exit;
@@ -244,24 +244,19 @@ class UserModel
 
     }
 
-    public function isModerator($username)
+    public function isModerator($email)
     {
-        $query = "SELECT * FROM users WHERE username = :username";
+        $query = "SELECT * FROM users WHERE (email = :email OR username = :email)";
         $stmt = $this->connectDB()->prepare($query);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
+        $user_data = $stmt->fetch();
 
-        $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+        session_start();
+        $_SESSION['is_moderator'] = $user_data['is_moderator'];
+        $this->connectDB()->close();
 
-        if ($user_data && $user_data['is_moderator']) {
-            $this->connectDB()->close();
 
-            return true;
-        } else {
-            $this->connectDB()->close();
-
-            return false;
-        }
     }
 
     public function getUserData($username)
@@ -272,7 +267,7 @@ class UserModel
         $stmt->execute();
 
         $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->connectDB()->close();
+        //$this->connectDB()->close();
 
 
         return $user_data;

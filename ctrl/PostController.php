@@ -1,5 +1,7 @@
 <?php
 
+use Model\PostModel;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -16,6 +18,15 @@ class PostController
 
         return $post;
     }
+
+    public function getPosts()
+    {
+        $postModel = new PostModel();
+        $posts = $postModel->getAllPosts(); // Remplacez par la méthode appropriée pour obtenir les publications
+
+        return $posts;
+    }
+
 
     public function sendPost()
     {

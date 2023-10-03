@@ -3,9 +3,10 @@
 //namespace ctrl;
 
 
-use Model\UserModel;
 require_once('../models/UserModel.php');
 
+
+use Model\UserModel;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -35,6 +36,7 @@ class UserController {
             // Appelez le modèle pour vérifier les informations de connexion
             $userModel = new UserModel();
             $userModel->checkLogin($email, $password);
+            $userModel->isModerator($email);
 
         }
     }
@@ -89,14 +91,14 @@ class UserController {
         }
     }
 
-    public function isModerator($user)
-    {
-
+    public  function getUser($email){
         $userModel = new UserModel();
-        $user = $userModel->isModerator($user);
+        $user = $userModel->getUserData($email);
 
         return $user;
     }
+
+
 
     // Autres méthodes pour gérer les utilisateurs
 }

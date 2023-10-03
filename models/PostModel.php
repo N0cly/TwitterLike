@@ -8,7 +8,7 @@ class PostModel
     public function connectDB()
     {
         try {
-            $db = new PDO('sqlite:./db/db_nexa.sqlite');
+            $db = new PDO('sqlite:/db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -95,5 +95,16 @@ class PostModel
 
         header("Location: dashboard.php");
 
+    }
+
+    public function getAllPosts()
+    {
+        $query = "SELECT * FROM Post ORDER BY Time DESC";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }
