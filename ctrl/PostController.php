@@ -51,6 +51,14 @@ class PostController
         return $posts;
     }
 
+    public function getComments($id_post)
+    {
+        $postModel = new PostModel();
+        $comments = $postModel->getComments($id_post); // Remplacez par la méthode appropriée pour obtenir les publications
+
+        return $comments;
+    }
+
 
 
 

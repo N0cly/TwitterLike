@@ -120,4 +120,17 @@ class PostModel
 
         return $result;
     }
+
+    public function getComments($id_pere)
+    {
+        $query = "SELECT * FROM Post WHERE id_pere = :id_pere ORDER BY Time";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':id_pere', $id_pere);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+
+    }
 }

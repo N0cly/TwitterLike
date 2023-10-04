@@ -2,24 +2,17 @@
 session_start();
 $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'Inconnu';
 
-try {
-    $conn = new PDO("sqlite:../db/db_nexa.sqlite");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-    require_once('../ctrl/UserController.php');
-    $userCtrl = new UserController();
-    $user_data = $userCtrl->getUser($user);
+require_once('../ctrl/UserController.php');
+$userCtrl = new UserController();
+$user_data = $userCtrl->getUser($user);
 
 //     Partie commentée pour récupérer les messages
 
-    require_once ('../ctrl/PostController.php');
-    $postCtrl = new PostController();
-    $post_fetch = $postCtrl->getPostsAll($user);
+require_once ('../ctrl/PostController.php');
+$postCtrl = new PostController();
+$post_fetch = $postCtrl->getPostsAll($user);
 
-} catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
-}
+
 
 $posts = $post_fetch;
 $is_moderator = $user_data['is_moderator'];
@@ -107,10 +100,7 @@ $is_moderator = $user_data['is_moderator'];
                 </div>
                 <div class="comments-container" id="comments<?php echo $post['id_post']; ?>" style="display:none;">
                     <?php
-                    $stmt = $conn->prepare("SELECT * FROM Post WHERE id_pere = :id_post ORDER BY Time");
-                    $stmt->bindParam(':id_post', $post['id_post']);
-                    $stmt->execute();
-                    $comments = $stmt->fetchAll();
+                    $comments = $postCtrl->getComments($post['id_post']);
                     foreach($comments as $comment):
                         ?>
                         <div class="comment">
