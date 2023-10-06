@@ -34,7 +34,7 @@ class PostController
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $image = null; // Si vous n'utilisez pas l'image pour le moment
             $content = $_POST["contenu"];
-
+            session_start();
             // Obtenez l'username à partir de la session
             $user = $_SESSION['username'];
 

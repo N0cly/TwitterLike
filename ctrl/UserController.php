@@ -3,7 +3,7 @@
 //namespace ctrl;
 
 
-require_once('../models/UserModel.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/models/UserModel.php';
 
 
 use Model\UserModel;
