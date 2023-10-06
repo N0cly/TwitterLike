@@ -22,7 +22,7 @@ class UserModel
 
         $path = __DIR__ . "/../db/db_nexa.sqlite";
         try {
-            $db = new PDO('sqlite:'. $path);
+            $db = new PDO('sqlite:' . $path);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -71,7 +71,7 @@ class UserModel
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Si l'email n'existe pas, insérez les données dans la base de données
-            $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
+            $query = "INSERT INTO users (email, mdp, username, first_connexion) VALUES (:email, :mot_de_passe, :username, datetime('now'))";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':mot_de_passe', $hashed_password, PDO::PARAM_STR);
@@ -143,7 +143,7 @@ class UserModel
                     header("Location: ../views/codeVerif.php");
                     exit;
                 } else {
-                   // $this->connectDB()->close();
+                    // $this->connectDB()->close();
 
                     header('Location: ../index.php?erreur=email_non_envoye');
 
@@ -181,6 +181,11 @@ class UserModel
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
 
+            //actualisation de last_connexion
+            $query = "UPDATE users SET last_connexion = datetime('now') WHERE email = :email";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':email', $user['email'], PDO::PARAM_STR);
+            $stmt->execute();
 
             header('Location: ../views/dashboard.php');
             exit;
