@@ -31,17 +31,18 @@ class PostController
 
     public function sendPost()
     {
-        if (isset($_SERVER['REQUEST_METHOD']) &&
-            $_SERVER['REQUEST_METHOD'] == "POST") {
-            // Récupérez les données du formulaire
-            $image = null;
-            $content = $_POST["content"];
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $image = null; // Si vous n'utilisez pas l'image pour le moment
+            $content = $_POST["contenu"];
+
+            // Obtenez l'username à partir de la session
             $user = $_SESSION['username'];
 
             $postModel = new PostModel();
             $postModel->createPost($user, $content, $image);
         }
     }
+
 
     public function getPostsAll($user)
     {

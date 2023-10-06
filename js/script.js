@@ -1,17 +1,3 @@
-e = false;
-function togglePasswordVisibility(id) {
-    if(e){
-        document.getElementById("mdp2").setAttribute("type", "text");
-        document.getElementById("eye").src="Images/Form/oeil.png"
-        e=false;
-    }
-    else{
-        document.getElementById("mdp2").setAttribute("type", "password");
-        document.getElementById("eye").src="Images/Form/oeil_ferme.png"
-        e=true;
-    }
-}
-
 
 function afficherFormulaire(formulaire) {
     var formulaireInscription = document.getElementById("register");
@@ -23,6 +9,15 @@ function afficherFormulaire(formulaire) {
     } else if (formulaire === "connexion") {
         formulaireInscription.style.display = "none";
         formulaireConnexion.style.display = "block";
+    }
+}
+
+function togglePasswordVisibility(id) {
+    var input = document.getElementById(id);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
     }
 }
 

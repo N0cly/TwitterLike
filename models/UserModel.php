@@ -182,6 +182,7 @@ class UserModel
             $_SESSION['utilisateur_connecte'] = true;
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['username'] = $username;
 
 
             header('Location: ../views/dashboard.php');

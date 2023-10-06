@@ -1,6 +1,7 @@
 <?php
 session_start();
 $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'Inconnu';
+// Après que l'utilisateur se soit connecté avec succès
 
 require_once('../ctrl/UserController.php');
 $userCtrl = new UserController();
