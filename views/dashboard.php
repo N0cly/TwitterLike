@@ -50,7 +50,7 @@ $is_moderator = $user_data['is_moderator'];
         <button id="ouvrirPublication">Nouvelle publication</button>
         <div id="modal" class="modal">
             <div class="modal-content">
-                <form action="traitement_publication.php" method="post" enctype="multipart/form-data">
+                <form action="../Post/sendPost" method="post" enctype="multipart/form-data">
                     <div class="input-container">
                         <label for="contenu">Contenu :</label>
                         <textarea id="contenu" name="contenu"></textarea>

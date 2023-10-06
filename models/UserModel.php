@@ -20,7 +20,7 @@ class UserModel
     public function connectDB()
     {
         try {
-            $db = new PDO('sqlite:../db/db_nexa.sqlite');
+            $db = new PDO('sqlite:/amuhome/b22002844/PhpstormProjects/TwitterLike/db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {

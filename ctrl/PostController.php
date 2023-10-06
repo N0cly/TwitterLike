@@ -1,7 +1,7 @@
 <?php
 
 use Model\PostModel;
-require_once('../models/PostModel.php');
+require_once $_SERVER['DOCUMENT_ROOT'] .('/models/PostModel.php');
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -34,9 +34,9 @@ class PostController
         if (isset($_SERVER['REQUEST_METHOD']) &&
             $_SERVER['REQUEST_METHOD'] == "POST") {
             // Récupérez les données du formulaire
-            $image = $_POST["image"];
+            $image = null;
             $content = $_POST["content"];
-            $user = $_SESSION['user'];
+            $user = $_SESSION['username'];
 
             $postModel = new PostModel();
             $postModel->createPost($user, $content, $image);

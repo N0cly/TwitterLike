@@ -10,7 +10,7 @@ class PostModel
     public function connectDB()
     {
         try {
-            $db = new PDO('sqlite:../db/db_nexa.sqlite');
+            $db = new PDO('sqlite:/amuhome/b22002844/PhpstormProjects/TwitterLike/db/db_nexa.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -95,18 +95,16 @@ class PostModel
                 // Si le déplacement du fichier échoue, réinitialise $imagePath à null
                 $image = null;
             }
-        } else {
-            $image = null;
         }
 
-        $query = "INSERT INTO Post (user, contenu, image, Time) VALUES (:user, :contenu, :image, datetime('now'))";
+        $query = "INSERT INTO Post (user, contenu, image, Time) VALUES (:username, :contenu, :image, datetime('now'))";
         $stmt = $this->connectDB()->prepare($query);
-        $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $user, PDO::PARAM_STR);
         $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
         $stmt->bindParam(':image', $image, PDO::PARAM_STR);
         $stmt->execute();
 
-        header("Location: dashboard.php");
+        header("Location: ../views/dashboard.php");
 
     }
 
