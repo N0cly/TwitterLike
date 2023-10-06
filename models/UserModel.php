@@ -38,7 +38,7 @@ class UserModel
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->connectDB()->close();
+        //$this->connectDB()->close();
         return $result !== false;
     }
 
@@ -51,7 +51,7 @@ class UserModel
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->connectDB()->close();
+        //$this->connectDB()->close();
 
         return $result !== false;
     }
@@ -67,6 +67,7 @@ class UserModel
             exit;
         } else {
 
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Si l'email n'existe pas, insérez les données dans la base de données
             $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
             $stmt = $this->connectDB()->prepare($query);
@@ -78,7 +79,7 @@ class UserModel
             // Redirigez l'utilisateur vers la page de confirmation ou de connexion
             $userModel = new UserModel();
             $userModel->checkLogin($email, $password);
-            $this->connectDB()->close();
+            //$this->connectDB()->close();
 
             exit;
         }
@@ -135,12 +136,12 @@ class UserModel
 
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;
-                    $this->connectDB()->close();
+                    //$this->connectDB()->close();
 
                     header("Location: ../views/codeVerif.php");
                     exit;
                 } else {
-                    $this->connectDB()->close();
+                   // $this->connectDB()->close();
 
                     header('Location: ../index.php?erreur=email_non_envoye');
 
@@ -150,7 +151,7 @@ class UserModel
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         } else {
-            $this->connectDB()->close();
+            //$this->connectDB()->close();
 
             header('Location: ../index.php?erreur=db_error');
             exit;
@@ -171,24 +172,18 @@ class UserModel
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-//        echo $user['mdp'];
-//        echo "<br>";
-//        echo $password;
-//        echo "<br>";
-//        echo password_verify($password, $user['mdp']);
-//        die();
+
         if ($user && password_verify($password, $user['mdp'])) {
             session_start();
             $_SESSION['utilisateur_connecte'] = true;
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['username'] = $username;
 
 
             header('Location: ../views/dashboard.php');
             exit;
         } else {
-            $this->connectDB()->close();
+            //$this->connectDB()->close();
 
             header('Location: ../index.php?erreur=mauvais_mot_de_passe');
             exit;
@@ -212,7 +207,7 @@ class UserModel
                 exit();
             } else {
 
-                $this->connectDB()->close();
+                //$this->connectDB()->close();
 
                 //header('Location: index.php?erreur=code_errone');
                 echo $code;
@@ -234,11 +229,11 @@ class UserModel
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
-            $this->connectDB()->close();
+            //$this->connectDB()->close();
 
             $this->checkLogin($email, $newMDP);
         } else {
-            $this->connectDB()->close();
+            //this->connectDB()->close();
 
             header("location:../index.php?mdp_corespondent_pas");
         }
@@ -255,7 +250,7 @@ class UserModel
 
         session_start();
         $_SESSION['is_moderator'] = $user_data['is_moderator'];
-        $this->connectDB()->close();
+        //$this->connectDB()->close();
 
 
     }
