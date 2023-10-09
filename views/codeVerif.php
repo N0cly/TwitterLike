@@ -11,29 +11,41 @@ $email = $_SESSION["email"];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page de connexion">
+    <meta name="description" content="Réinitialisation mot de passe">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="../css/style1.css" rel="stylesheet" type="text/css">
+    <link href="../css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Mot de passe oublié</title>
 </head>
 
 <body>
     <section class="main">
-        <section class="container-form">
-            <h2>Mot de passe oublié</h2>
-            <h3>Entrez votre code de réinitialisation recu par email afin de pouvoir changer votre mot de passe.</h3>
-        </section>
-        <!-- Formulaire -->
-        <section class="choice-form">
+        <section class="accueil form">
+            <section class="head">
+                <img class="logo-nexa" src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa">
+            </section>
             <form method="post" action="../User/checkCodeVerif">
-                <label for="code">Code :</label>
-                <input type="code" name="code" required>
-                <input type="submit" value="Envoyer le code de réinitialisation">
-            </form>
+                <h3>Mot de passe oublié</h3>
+                <div class="contentExplainForm">
+                    <p>Entrez votre code de réinitialisation recu par email afin de pouvoir changer votre mot de passe.
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="code">Code :</label>
+                    <section class="field-email">
+                        <input type="code" name="code" required>
+                    </section>
+                </div>
 
+                <div class="inscription-connexion-button-container">
+                    <input class="connexionButton button" type="submit" value="Envoyer le code de réinitialisation">
+                </div>
+
+            </form>
         </section>
     </section>
+    <?php include('footer.php'); ?>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
