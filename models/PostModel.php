@@ -4,6 +4,7 @@ namespace Model;
 
 use PDO;
 use PDOException;
+
 class PostModel
 {
 
@@ -12,7 +13,7 @@ class PostModel
 
         $path = __DIR__ . "/../db/db_nexa.sqlite";
         try {
-            $db = new PDO('sqlite:'. $path);
+            $db = new PDO('sqlite:' . $path);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -83,32 +84,38 @@ class PostModel
 
     public function createPost($user, $contenu, $image)
     {
-        if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $uploadDir = '../uploads/';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $uploadDir = 'uploads/';
 
             // Assurez-vous que le répertoire de téléchargement existe
-            if(!is_dir($uploadDir)) {
+            if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
 
+            // Générez un nom de fichier unique pour éviter les collisions
+            $imageFileName = uniqid() . '_' . basename($_FILES['image']['name']);
+            $imagePath = $uploadDir . $imageFileName;
+
             // Déplace le fichier téléchargé vers le répertoire de téléchargement
-            $image = $uploadDir . basename($_FILES['image']['name']);
-            if(!move_uploaded_file($_FILES['image']['tmp_name'], $image)) {
+            if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
                 // Si le déplacement du fichier échoue, réinitialise $imagePath à null
-                $image = null;
+                $imagePath = null;
             }
+        } else {
+            $imagePath = null;
         }
 
         $query = "INSERT INTO Post (user, contenu, image, Time) VALUES (:username, :contenu, :image, datetime('now'))";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':username', $user, PDO::PARAM_STR);
         $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
-        $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+        $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
         $stmt->execute();
 
         header("Location: ../views/dashboard.php");
-
     }
+
+
 
     public function getAllPosts()
     {
