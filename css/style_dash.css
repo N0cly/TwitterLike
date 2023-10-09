@@ -192,6 +192,11 @@ body {
     margin-bottom: 1em;
 }
 
+.post-image{
+    max-width: 65vw;
+    max-height: 65vh;
+}
+
 .post-actions {
     display: flex;
     justify-content: space-around;

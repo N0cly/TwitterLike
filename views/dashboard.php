@@ -76,7 +76,7 @@ $is_moderator = $user_data['is_moderator'];
                 <hr class="post-divider">
                 <p class="post-content"><?php echo $post['contenu']; ?></p>
                 <?php if(!empty($post['image'])): ?>
-                    <img src="<?php echo $post['image']; ?>" alt="Image du post" class="post-image"/>
+                    <img src="../<?php echo $post['image']; ?>" alt="Image du post" class="post-image"/>
                 <?php endif; ?>
                 <div class="post-actions">
                     <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️ <?php echo $post['LikeCount']; ?></button>
