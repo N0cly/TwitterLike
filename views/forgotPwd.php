@@ -28,7 +28,6 @@
                         <input type="email" name="email" required>
                     </section>
                 </div>
-                
                 <div class="inscription-connexion-button-container">
                     <input class="connexionButton button" type="submit" value="Envoyer le code de réinitialisation">
                 </div>

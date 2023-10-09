@@ -9,7 +9,6 @@
     <link href="../css/accueil.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
-
     <title>Nexa</title>
 </head>
 

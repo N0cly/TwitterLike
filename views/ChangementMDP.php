@@ -1,44 +1,45 @@
-<?php
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page de connexion">
+    <meta name="description" content="Réinitialisation mot de passe">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="../css/style1.css" rel="stylesheet" type="text/css">
+    <link href="../css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
-    <title>Mot de passe oublié</title>
+    <title>Changement de mot de passe</title>
 </head>
 
 <body>
     <section class="main">
-        <section class="container-form">
-            <h2>Changez votre mot de passe</h2>
-        </section>
-        <!-- Formulaire -->
-        <section class="choice-form">
+        <section class="accueil form">
+            <section class="head">
+                <img class="logo-nexa" src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa">
+            </section>
             <form method="post" action="../User/changeMDP">
+                <h3>Changez votre mot de passe</h3>
+                <div class=contentExplainForm>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, provident eligendi. Consectetur
+                        debitis possimus</p>
+                </div>
+                <div class="field">
+                    <label for="confirmNewMDP">Veuillez entrez votre mot de passe :</label>
+                    <section class="field-email">
+                        <input type="password" name="newMDP" required>
+                    </section>
+                </div>
 
-                <section class=confirmPassword>
-                    <label for="newMDP">Entrez votre nouveau mot de passe :</label>
-                    <input type="password" name="newMDP" required>
-                </section>
-
-                <section class=confirmPassword>
-                    <label for="confirmNewMDP">Confirmez votre nouveau mot de passe :</label>
-                    <input type="password" name="confirmNewMDP" required>
-                </section>
-
-                <input class="connexionButton button" type="submit" value="Changer de mot de passe">
+                <div class="field">
+                    <label for="confirmNewMDP">Veuillez confirmez votre nouveau mot de passe :</label>
+                    <section class="field-email">
+                        <input type="password" name="confirmNewMDP" required>
+                    </section>
+                </div>
+                <div class="inscription-connexion-button-container">
+                    <input class="connexionButton button" type="submit" value="Changer de mot de passe">
+                </div>
             </form>
-
         </section>
     </section>
 </body>
