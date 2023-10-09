@@ -26,7 +26,7 @@ $email = $_SESSION["email"];
         </section>
         <!-- Formulaire -->
         <section class="choice-form">
-            <form method="post" action="../index.php?user=checkCodeVerif">
+            <form method="post" action="../User/checkCodeVerif">
                 <label for="code">Code :</label>
                 <input type="code" name="code" required>
                 <input type="submit" value="Envoyer le code de réinitialisation">

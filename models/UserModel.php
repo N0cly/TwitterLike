@@ -13,14 +13,16 @@ use PDOException;
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-class userModel
+class UserModel
 {
 
 
     public function connectDB()
     {
+
+        $path = __DIR__ . "/../db/db_nexa.sqlite";
         try {
-            $db = new PDO('sqlite:./db/db_nexa.sqlite');
+            $db = new PDO('sqlite:' . $path);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
@@ -38,6 +40,7 @@ class userModel
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        //$this->connectDB()->close();
         return $result !== false;
     }
 
@@ -50,6 +53,7 @@ class userModel
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        //$this->connectDB()->close();
 
         return $result !== false;
     }
@@ -64,9 +68,10 @@ class userModel
             header('Location: ../index.php?erreur=username_existe');
             exit;
         } else {
+
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Si l'email n'existe pas, insérez les données dans la base de données
-            $query = "INSERT INTO users (email, mdp, username) VALUES (:email, :mot_de_passe, :username)";
+            $query = "INSERT INTO users (email, mdp, username, first_connexion) VALUES (:email, :mot_de_passe, :username, datetime('now'))";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':mot_de_passe', $hashed_password, PDO::PARAM_STR);
@@ -76,6 +81,8 @@ class userModel
             // Redirigez l'utilisateur vers la page de confirmation ou de connexion
             $userModel = new UserModel();
             $userModel->checkLogin($email, $password);
+            //$this->connectDB()->close();
+
             exit;
         }
     }
@@ -131,21 +138,27 @@ class userModel
 
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;
+                    //$this->connectDB()->close();
+
                     header("Location: ../views/codeVerif.php");
                     exit;
                 } else {
+                    // $this->connectDB()->close();
+
                     header('Location: ../index.php?erreur=email_non_envoye');
+
                     exit;
                 }
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         } else {
+            //$this->connectDB()->close();
+
             header('Location: ../index.php?erreur=db_error');
             exit;
         }
     }
-
     public function checkLogin($username, $password)
     {
         $query = "SELECT * FROM users WHERE (email = :email OR username = :username)";
@@ -154,21 +167,31 @@ class userModel
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->execute();
 
-        $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$stmt->execute()) {
+            $errorInfo = $stmt->errorInfo();
+            print_r($errorInfo);
+        }
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        if ($utilisateur && password_verify($password, $utilisateur['mdp'])) {
-            // Le mot de passe correspond, vous pouvez continuer avec l'authentification
+
+        if ($user && password_verify($password, $user['mdp'])) {
             session_start();
             $_SESSION['utilisateur_connecte'] = true;
-            $_SESSION['email'] = $utilisateur['email'];
-            $_SESSION['username'] = $utilisateur['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['username'] = $user['username'];
 
-            // Redirigez l'utilisateur vers la page de tableau de bord ou autre
+            //actualisation de last_connexion
+            $query = "UPDATE users SET last_connexion = datetime('now') WHERE email = :email";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':email', $user['email'], PDO::PARAM_STR);
+            $stmt->execute();
+
             header('Location: ../views/dashboard.php');
             exit;
         } else {
-            // Le mot de passe ne correspond pas, affichez un message d'erreur ou redirigez
+            //$this->connectDB()->close();
+
             header('Location: ../index.php?erreur=mauvais_mot_de_passe');
             exit;
         }
@@ -188,8 +211,10 @@ class userModel
             $codeBD = $row['codeMDPOublie'];
             if ($codeBD == $code) {
                 header('Location: ../views/ChangementMDP.php');
-                exit(); // Assurez-vous de quitter le script après la redirection.
+                exit();
             } else {
+
+                //$this->connectDB()->close();
 
                 //header('Location: index.php?erreur=code_errone');
                 echo $code;
@@ -211,10 +236,45 @@ class userModel
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
+            //$this->connectDB()->close();
+
             $this->checkLogin($email, $newMDP);
         } else {
+            //this->connectDB()->close();
+
             header("location:../index.php?mdp_corespondent_pas");
         }
 
     }
+
+    public function isModerator($email)
+    {
+        $query = "SELECT * FROM users WHERE (email = :email OR username = :email)";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user_data = $stmt->fetch();
+
+        session_start();
+        $_SESSION['is_moderator'] = $user_data['is_moderator'];
+        //$this->connectDB()->close();
+
+
+    }
+
+    public function getUserData($username)
+    {
+        $query = "SELECT * FROM users WHERE username = :username";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
+        //$this->connectDB()->close();
+
+
+        return $user_data;
+    }
+
+
 }

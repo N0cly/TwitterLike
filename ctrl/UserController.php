@@ -2,7 +2,11 @@
 
 //namespace ctrl;
 
-use Model\userModel;
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/models/UserModel.php';
+
+
+use Model\UserModel;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -32,6 +36,7 @@ class UserController {
             // Appelez le modèle pour vérifier les informations de connexion
             $userModel = new UserModel();
             $userModel->checkLogin($email, $password);
+            $userModel->isModerator($email);
 
         }
     }
@@ -41,6 +46,9 @@ class UserController {
             $_SERVER["REQUEST_METHOD"] == "POST") {
             // Récupérer l'adresse e-mail soumise par l'utilisateur
             $email = $_POST["email"];
+            session_start();
+
+            $_SESSION["email"] = $email;
 
             $userModel = new UserModel();
             $userModel->resetPwd($email);
@@ -82,6 +90,15 @@ class UserController {
             $userModel->changeMDP($newMDP, $confirmNewMDP, $email);
         }
     }
+
+    public  function getUser($email){
+        $userModel = new UserModel();
+        $user = $userModel->getUserData($email);
+
+        return $user;
+    }
+
+
 
     // Autres méthodes pour gérer les utilisateurs
 }
