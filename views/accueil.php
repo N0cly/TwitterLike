@@ -38,7 +38,7 @@
                         <label for="username">Username :</label>
                         <section class="field-email">
 
-                            <input type="text" id="username" name="username" class="" placeholder="Dylan_du_92"
+                            <input type="text" id="username" name="username" class="textfield" placeholder="Dylan_du_92"
                                 required>
                         </section>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="field">
                         <label for="email">Email :</label>
                         <section class="field-email">
-                            <input type="email" id="email" name="email" class="" placeholder="email@exemple.com"
+                            <input type="email" id="email" name="email" class="textfield" placeholder="email@exemple.com"
                                 required>
                         </section>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="field ">
                         <label for="mot_de_passe">Mot de passe :</label>
                         <section class="field-pswd">
-                            <input type="password" name="mot_de_passe" id="mdp1" class="mdp field-pswd__mdp" required
+                            <input type="password" name="mot_de_passe" id="mdp1" class="mdp field-pswd__mdp textfield" required
                                 placeholder="********">
                             <label class="switch ">
                                 <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp1')">
@@ -74,14 +74,14 @@
                     <div class="field">
                         <label for="email">Email or Username :</label>
                         <section class="field-email">
-                            <input class="" type="text" name="email" placeholder="nocly_" required><br>
+                            <input class="textfield" type="text" name="email" placeholder="nocly_" required><br>
                         </section>
                     </div>
 
                     <div class="field ">
                         <label for="mot_de_passe">Mot de passe :</label>
                         <section class="field-pswd">
-                            <input type="password" name="mot_de_passe" id="mdp2" class="mdp field-pswd__mdp" required
+                            <input type="password" name="mot_de_passe" id="mdp2" class="mdp field-pswd__mdp textfield" required
                                 placeholder="********">
                             <label class="switch ">
                                 <input type="checkbox" class="" onclick="togglePasswordVisibility('mdp2')">

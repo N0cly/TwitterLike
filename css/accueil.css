@@ -5,6 +5,8 @@
     -ms-scrollbar-shadow-color: #003c57;
 }
 
+
+
 .button {
     background-color: #3498db;
     color: #fff;
@@ -25,6 +27,11 @@ body {
     font-family: 'Roboto', sans-serif;
     /*overflow: hidden;*/
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {
@@ -69,7 +76,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #545454;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
     background-size: 300% 300%;
@@ -98,12 +105,18 @@ body {
 }
 
 .head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    width: 100%;
+    height: 100%;
     margin-bottom: 20px;
 }
 
 .logo-nexa {
-    max-width: 200px;
+    max-width: 12vw;
+    transform: translateX(-5px);
 }
 
 h2 {
@@ -204,6 +217,22 @@ label {
 }
 
 
+/*.textfield{*/
+/*    border: none;*/
+/*    outline: none;*/
+/*    border-radius: 15px;*/
+/*    padding: 1em;*/
+/*    background-color: #ccc;*/
+/*    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);*/
+/*    transition: 300ms ease-in-out;*/
+/*}*/
+
+/*.textfield:focus{*/
+/*    background-color: white;*/
+/*    transform: scale(1.05);*/
+/*    box-shadow: 3px 3px 50px #969696,*/
+/*    -3px -3px 50px #ffffff;*/
+/*}*/
 
 /* The switch - the box around the slider */
 .switch {
@@ -286,7 +315,7 @@ input:hover:checked + .slider:before {
 
 .NexaInformation {
     position: absolute;
-    bottom: -30%;
+    bottom: 0;
     width: 100%;
     text-align: center;
     padding: 20px;
