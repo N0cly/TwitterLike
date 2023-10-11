@@ -68,7 +68,7 @@ class UserModel
             header('Location: ../index.php?erreur=username_existe');
             exit;
         } else {
-            //envoyer un mail avec un code
+            //on met dans un atribut le CODE INSCRIPTION
             $uniqid = uniqid(true);
             $code = strtoupper(substr($uniqid, -5));
 
@@ -76,7 +76,7 @@ class UserModel
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':code', $code, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            //page de confirmation d'inscription ou on dmd le code
+            //ponvoyer 
             
             
 
