@@ -68,6 +68,17 @@ class UserModel
             header('Location: ../index.php?erreur=username_existe');
             exit;
         } else {
+            //envoyer un mail avec un code
+            $uniqid = uniqid(true);
+            $code = strtoupper(substr($uniqid, -5));
+
+            $query = "UPDATE users SET codeMDPOublie = :code WHERE email = :email";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            //page de confirmation d'inscription ou on dmd le code
+            
+            
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Si l'email n'existe pas, insérez les données dans la base de données
