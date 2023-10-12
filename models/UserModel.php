@@ -69,21 +69,65 @@ class UserModel
             exit;
         } else {
 
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+
+            $uniqid = uniqid(true);
+            $codeInscription = strtoupper(substr($uniqid, -5));
+
             // Si l'email n'existe pas, insérez les données dans la base de données
-            $query = "INSERT INTO users (email, mdp, username, first_connexion) VALUES (:email, :mot_de_passe, :username, datetime('now'))";
+            $query = "INSERT INTO users (codeInscription) VALUES (:codeInscription);";
             $stmt = $this->connectDB()->prepare($query);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':mot_de_passe', $hashed_password, PDO::PARAM_STR);
-            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-            $stmt->execute();
+            $stmt->bindParam(':codeInscription', $codeInscription, PDO::PARAM_STR);
 
-            // Redirigez l'utilisateur vers la page de confirmation ou de connexion
-            $userModel = new UserModel();
-            $userModel->checkLogin($email, $password);
-            //$this->connectDB()->close();
+            if ($stmt->execute()) {
+                // Envoi de l'e-mail avec le code de réinitialisation
+                require 'vendor/autoload.php';
 
-            exit;
+                $mail = new PHPMailer(true);
+
+                try {
+                    $mail->setLanguage('fr', '/optional/path/to/language/directory/');
+                    //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'socialnetwork.nexa@gmail.com';
+                    $mail->Password = 'uhxxocpnwxrxzwqv';
+                    $mail->SMTPSecure = "tls";
+                    $mail->Port = 587;
+
+                    $mail->setFrom('socialnetwork.nexa@gmail.com', 'Mailer');
+                    $mail->addAddress($email);
+                    $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
+
+                    $mail->CharSet = 'UTF-8';
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Réinitialisation de mot de passe';
+                    $mail->Body = "Votre code d'inscription' de mot de passe est : $codeInscription";
+                    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                    if ($mail->send()) {
+                        $_SESSION['email'] = $email;
+                        //$this->connectDB()->close();
+
+                        header("Location: ../views/codeVerifInscription.php");
+                        exit;
+                    } else {
+                        // $this->connectDB()->close();
+
+                        header('Location: ../index.php?erreur=email_non_envoye');
+
+                        exit;
+                    }
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            } else {
+                //$this->connectDB()->close();
+
+                header('Location: ../index.php?erreur=db_error');
+                exit;
+            }
         }
     }
 
@@ -189,6 +233,7 @@ class UserModel
 
             header('Location: ../views/dashboard.php');
             exit;
+            //refaire ca pour qu'on puisse savoir quelle erreur a été commise au login
         } else {
             //$this->connectDB()->close();
 
@@ -223,6 +268,40 @@ class UserModel
 
         }
     }
+
+    public function checkCodeVerifInscription($email, $password, $username, $code)
+    {
+
+        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $codeBD = $row['codeInscription'];
+            if ($codeBD == $code) {
+
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $query = "INSERT INTO users (username, email, mdp, first_connexion) VALUES (:username, :email, :hashed_password, DATETIME('now'))";
+                $stmt = $this->connectDB()->prepare($query);
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
+                $stmt->execute();
+
+                $this->checkLogin($email, $password);
+                exit();
+
+            } else {
+
+                header('Location: index.php?erreur=code_errone');
+            }
+
+        }
+    }
+
 
     public function changeMDP($newMDP, $confirmNewMDP, $email)
     {
