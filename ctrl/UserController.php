@@ -55,6 +55,7 @@ class UserController {
         }
     }
 
+
     public function checkCodeVerif()
     {
         if (
@@ -98,7 +99,12 @@ class UserController {
         return $user;
     }
 
+    public function verifyEmail($email){
+        $userModel = new UserModel();
+        $user = $userModel->verifyEmail($email);
 
+        return $user;
+    }
 
     // Autres méthodes pour gérer les utilisateurs
 }

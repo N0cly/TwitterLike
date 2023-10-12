@@ -58,14 +58,70 @@ class UserModel
         return $result !== false;
     }
 
+    public function verifyEmail($email)
+    {
+        $uniqid = uniqid(true);
+        $code = strtoupper(substr($uniqid, -5));
+
+        require 'vendor/autoload.php';
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->setLanguage('fr', '/optional/path/to/language/directory/');
+            //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'socialnetwork.nexa@gmail.com';
+            $mail->Password = 'uhxxocpnwxrxzwqv';
+            $mail->SMTPSecure = "tls";
+            $mail->Port = 587;
+
+            $mail->setFrom('socialnetwork.nexa@gmail.com', 'Nexa');
+            $mail->addAddress($email);
+//            $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
+
+            $mail->CharSet = 'UTF-8';
+            $mail->isHTML(true);
+            $mail->Subject = 'Confirmation de votre inscription';
+            $mail->Body = "Votre code de confirmation est : $code";
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            if ($mail->send()) {
+                $_SESSION['email'] = $email;
+                $_SESSION['code'] = $code;
+
+                //$this->connectDB()->close();
+
+                header("Location: ../views/codeVerif.php");
+                exit;
+            } else {
+                // $this->connectDB()->close();
+
+                header('Location: ../index.php?erreur=email_non_envoye');
+
+                exit;
+            }
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
 
     public function createUser($email, $username, $password)
     {
         if ($this->checkEmailExists($email)) {
-            header('Location: ../index.php?erreur=email_existe');
+
+            session_start();
+            $_SESSION['error_message']= "Email déjà utilisé";
+
+            header('Location: ../index.php');
             exit;
         } elseif ($this->checkUsernameExists($username)) {
-            header('Location: ../index.php?erreur=username_existe');
+            session_start();
+            $_SESSION['error_message']= "Username déjà utilisé";
+
+            header('Location: ../index.php');
             exit;
         } else {
 
@@ -93,7 +149,6 @@ class UserModel
     public function deleteUser($id)
     { /* ... */
     }
-
     public function resetPwd($email)
     {
         if (!$this->checkEmailExists($email)) {
@@ -126,7 +181,7 @@ class UserModel
                 $mail->SMTPSecure = "tls";
                 $mail->Port = 587;
 
-                $mail->setFrom('socialnetwork.nexa@gmail.com', 'Mailer');
+                $mail->setFrom('socialnetwork.nexa@gmail.com', 'Nexa');
                 $mail->addAddress($email);
                 $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
@@ -191,8 +246,10 @@ class UserModel
             exit;
         } else {
             //$this->connectDB()->close();
+            session_start();
+            $_SESSION['error_message']= "Identifiant ou mot de passe incorrect";
 
-            header('Location: ../index.php?erreur=mauvais_mot_de_passe');
+            header('Location: ../index.php');
             exit;
         }
     }
