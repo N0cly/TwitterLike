@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin:ess 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -25,9 +25,10 @@ body {
 }
 
 .logo-img {
-    width: 3em;
+    width: 10em;
     background-color: white;
     padding: 0.3em;
+    text-align: center;
 }
 
 .search-btn,
@@ -108,6 +109,17 @@ body {
     margin-bottom: 0.6em;
     border: 1px solid #ccc;
     border-radius: 0.3em;
+}
+
+.button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .input-container button,
