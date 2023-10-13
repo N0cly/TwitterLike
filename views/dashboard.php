@@ -87,8 +87,7 @@ $is_moderator = $user_data['is_moderator'];
             foreach ($posts as $post): ?>
                 <div class="post">
                     <div class="post-header">
-                        <img src="<?php echo empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>"
-                            alt="Photo de profil" class="post-pp post-pp-hover">
+                        <img src="../<?php echo $post['pp']; ?>" alt="Photo de profil" class="post-pp post-pp-hover">
                         <h3 class="post-username">
                             <?php echo $post['user']; ?>
                         </h3>
@@ -98,7 +97,7 @@ $is_moderator = $user_data['is_moderator'];
                         <?php echo $post['contenu']; ?>
                     </p>
                     <?php if (!empty($post['image'])): ?>
-                        <img src="../<?php echo $post['image']; ?>" alt="Photo de p^rofil" class="post-image" />
+                        <img src="../<?php echo $post['image']; ?>" alt="Photo de profil" class="post-image" />
                     <?php endif; ?>
                     <div class="post-actions">
                         <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️

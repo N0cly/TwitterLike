@@ -102,22 +102,31 @@ class PostModel
 
             // Déplace le fichier téléchargé vers le répertoire de téléchargement
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                // Si le déplacement du fichier échoue, réinitialise $imagePath à null
+                // Si le déplacement du fichier échoue, réinitialisez $imagePath à null
                 $imagePath = null;
             }
         } else {
             $imagePath = null;
         }
 
-        $query = "INSERT INTO Post (user, contenu, image, Time) VALUES (:username, :contenu, :image, datetime('now'))";
+        $query = "SELECT pp FROM users WHERE username = :username";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':username', $user, PDO::PARAM_STR);
+        $stmt->execute();
+        $pp = $stmt->fetchColumn();
+
+
+        $query = "INSERT INTO Post (user, contenu, image, Time, pp) VALUES (:username, :contenu, :image, datetime('now'), :pp)";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':username', $user, PDO::PARAM_STR);
         $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
         $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
+        $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
         $stmt->execute();
 
         header("Location: ../views/dashboard.php");
     }
+
 
 
 

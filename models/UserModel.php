@@ -367,17 +367,18 @@ class UserModel
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $pp = 'Images/pdp/Default.png';
         if ($row) {
             $codeBD = $row['codeInscription'];
             if ($codeBD == $code) {
 
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $query = "INSERT INTO users (username, email, mdp, first_connexion) VALUES (:username, :email, :hashed_password, DATETIME('now'))";
+                $query = "INSERT INTO users (username, email, mdp, first_connexion, pp) VALUES (:username, :email, :hashed_password, DATETIME('now'), :pp)";
                 $stmt = $this->connectDB()->prepare($query);
                 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
+                $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
                 $stmt->execute();
 
                 $this->checkLogin($email, $password);
