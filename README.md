@@ -16,7 +16,6 @@ Ce projet est une plateforme de médias sociaux appelée Nexa, conçue pour perm
 5. [Utilisation](#utilisation)
 6. [Contributions](#contributions)
 7. [Auteurs](#auteurs)
-8. [License](#license)
 
 ## Introduction
 
@@ -51,7 +50,6 @@ Ce projet est construit en utilisant les technologies suivantes :
 - JavaScript
 - SQLite
 - HTML/CSS
-- Bootstrap
 
 ## Installation
 
@@ -74,7 +72,7 @@ Les contributions à ce projet sont les bienvenues. Si vous souhaitez apporter d
 
 ## Auteurs
 
-- [AMETTLER Thibault](https://github.com/N0cly) (2225001)
+- [AMETTLER Thibault](https://github.com/TibOwO) (2225001)
 - [BEDOS Enzo](https://github.com/N0cly) (2225009a)
 - [HENRICY Noah](https://github.com/HENRICY-Noah-2225043a) (2225043a)
 - [LIMOSANI Francesco](https://github.com/LIMOSANI-Francesco-2225055a) (2225055a)
