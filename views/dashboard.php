@@ -99,7 +99,7 @@ $is_moderator = $user_data['is_moderator'];
                         <?php echo $post['contenu']; ?>
                     </p>
                     <?php if (!empty($post['image'])): ?>
-                        <img src="../<?php echo $post['image']; ?>" alt="Image du post" class="post-image" />
+                        <img src="../<?php echo $post['image']; ?>" alt="Photo de p^rofil" class="post-image" />
                     <?php endif; ?>
                     <div class="post-actions">
                         <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️

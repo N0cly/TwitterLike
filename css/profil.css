@@ -30,8 +30,12 @@ main {
     text-align: center;
 }
 
+.pp{
+    max-height: 20vh;
+}
+
 .profile-info img {
-    max-width: 150px;
+    max-width: 300px;
     border-radius: 50%;
 }
 
