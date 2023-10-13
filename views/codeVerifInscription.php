@@ -11,16 +11,16 @@ $email = $_SESSION["email"];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Réinitialisation mot de passe">
+    <meta name="description" content="Confirmation inscription">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
     <link href="../css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
-    <title>Mot de passe oublié</title>
+    <title>Confirmation inscription</title>
 </head>
 
 <body>
 
-<?php include('message_ESI.php'); ?>
+    <?php include('message_ESI.php'); ?>
 
     <section class="main">
         <section class="accueil form">
@@ -28,7 +28,7 @@ $email = $_SESSION["email"];
                 <img class="logo-nexa" src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa">
             </section>
             <form method="post" action="../User/checkCodeVerifInscription">
-                <h3>Mot de passe oublié</h3>
+                <h3>Confirmation inscription</h3>
                 <div class="contentExplainForm">
                     <p>Entrez votre code d'inscription recu par email afin de pouvoir terminer votre inscription.
                     </p>

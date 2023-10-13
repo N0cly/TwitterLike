@@ -2,7 +2,7 @@
 session_start();
 $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'err_user';
 
-if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !== true || !isset($_SESSION['utilisateur_connecte'])){
+if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !== true || !isset($_SESSION['utilisateur_connecte'])) {
     header("Location: ../");
 }
 // Après que l'utilisateur se soit connecté avec succès
@@ -30,11 +30,18 @@ $is_moderator = $user_data['is_moderator'];
     <title>Nexa - Réseau Social</title>
     <link rel="stylesheet" href="../css/style_dash.css">
     <link rel="stylesheet1" href="../css/user-preview.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nexa !">
+    <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
+    <title>Nexa</title>
 </head>
 
 <body>
 
-<?php include('message_ESI.php'); ?>
+    <?php include('message_ESI.php'); ?>
 
 
     <header class="header">
