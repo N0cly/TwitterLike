@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 if (isset($_SESSION['error_message'])) {
     echo '
 <script src="../js/message_ESI.js"></script>

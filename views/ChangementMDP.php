@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['codeCheck'])){
+    header("Location: codeVerif.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

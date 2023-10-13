@@ -1,6 +1,10 @@
 <?php
 session_start();
-$user = isset($_SESSION['username']) ? $_SESSION['username'] : 'Inconnu';
+$user = isset($_SESSION['username']) ? $_SESSION['username'] : 'err_user';
+
+if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !== true || !isset($_SESSION['utilisateur_connecte'])){
+    header("Location: ../");
+}
 // Après que l'utilisateur se soit connecté avec succès
 
 require_once('../ctrl/UserController.php');

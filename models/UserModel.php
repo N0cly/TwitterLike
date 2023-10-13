@@ -46,10 +46,13 @@ class UserModel
 
     public function checkUsernameExists($username)
     {
+        $err = "err_user";
         // Vérifiez si le nom d'utilisateur existe déjà dans la base de données
-        $query = "SELECT * FROM users WHERE username = :username";
+        $query = "SELECT * FROM users WHERE username = :username or username = :err";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':err', $err, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +104,9 @@ class UserModel
 
                 session_start();
                 $_SESSION["error_message"] = "Email non envoyé";
-                header('Location: ../index.php');
+                $_SESSION['utilisateur_connecte'] = false;
+
+                header('Location: ../');
 
                 exit;
             }
@@ -116,14 +121,16 @@ class UserModel
 
             session_start();
             $_SESSION['error_message']= "Email déjà utilisé";
+            $_SESSION['utilisateur_connecte'] = false;
 
-            header('Location: ../index.php');
+            header('Location: ../');
             exit;
         } elseif ($this->checkUsernameExists($username)) {
             session_start();
             $_SESSION['error_message']= "Username déjà utilisé";
+            $_SESSION['utilisateur_connecte'] = false;
 
-            header('Location: ../index.php');
+            header('Location: ../');
             exit;
         } else {
 
@@ -175,7 +182,9 @@ class UserModel
 
                         session_start();
                         $_SESSION["error_message"] = "Email non envoyé";
-                        header('Location: ../index.php');
+                        $_SESSION['utilisateur_connecte'] = false;
+
+                        header('Location: ../');
 
                         exit;
                     }
@@ -187,7 +196,9 @@ class UserModel
 
                 session_start();
                 $_SESSION["error_message"] ="Erreur connexion a la base de données";
-                header('Location: ../index.php');
+                $_SESSION['utilisateur_connecte'] = false;
+
+                header('Location: ../');
                 exit;
             }
         }
@@ -204,7 +215,9 @@ class UserModel
         if (!$this->checkEmailExists($email)) {
             session_start();
             $_SESSION["error_message"] = "Email inexistant, créé un compte !";
-            header('Location: ../index.php');
+            $_SESSION['utilisateur_connecte'] = false;
+
+            header('Location: ../');
 
             exit;
         }
@@ -247,6 +260,7 @@ class UserModel
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;
                     //$this->connectDB()->close();
+                    $_SESSION['codeSend'] = true;
 
                     header("Location: ../views/codeVerif.php");
                     exit;
@@ -255,7 +269,7 @@ class UserModel
 
                     session_start();
                     $_SESSION["error_message"] = "Code Vérif non envoyé";
-                    header('Location: ../index.php');
+                    header('Location: ../');
 
                     exit;
                 }
@@ -267,7 +281,7 @@ class UserModel
 
             session_start();
             $_SESSION["error_message"] ="Erreur connexion a la base de données";
-            header('Location: ../index.php');
+            header('Location: ../');
             exit;
         }
     }
@@ -306,8 +320,10 @@ class UserModel
             //$this->connectDB()->close();
             session_start();
             $_SESSION['error_message']= "Identifiant ou mot de passe incorrect";
+            $_SESSION['utilisateur_connecte'] = false;
 
-            header('Location: ../index.php');
+
+            header('Location: ../');
             exit;
         }
     }
@@ -325,6 +341,8 @@ class UserModel
         if ($row) {
             $codeBD = $row['codeMDPOublie'];
             if ($codeBD == $code) {
+                $_SESSION['codeCheck'] = true;
+
                 header('Location: ../views/ChangementMDP.php');
                 exit();
             } else {
@@ -369,7 +387,7 @@ class UserModel
 
                 session_start();
                 $_SESSION["error_message"] ="Code erroné !";
-                header('Location: ../index.php');
+                header('Location: ../');
                 exit;
             }
 
@@ -394,7 +412,7 @@ class UserModel
             $this->checkLogin($email, $newMDP);
             session_start();
             $_SESSION["success_message"] ="Mot de passe modifié avec success";
-            header('Location: ../index.php');
+            header('Location: ../');
             exit;
         } else {
             //this->connectDB()->close();

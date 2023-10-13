@@ -2,6 +2,9 @@
 session_start();
 $email = $_SESSION["email"];
 
+if (!isset($_SESSION['codeSend'] )){
+    header("Location: ../");
+}
 
 ?>
 
