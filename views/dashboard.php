@@ -30,6 +30,9 @@ $is_moderator = $user_data['is_moderator'];
 
 <body>
 
+<?php include('message_ESI.php'); ?>
+
+
     <header class="header">
         <div class="left-header">
             <button id="searchBtn" class="search-btn">🔍</button>

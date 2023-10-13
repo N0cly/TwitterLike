@@ -18,6 +18,10 @@ class PostModel
             return $db;
         } catch (PDOException $e) {
             die('Erreur de connexion à la base de données : ' . $e->getMessage());
+            session_start();
+            $_SESSION["error_message"] ="Connexion impossible a la DB !";
+            header('Location: ../index.php');
+            exit;
         }
     }
 

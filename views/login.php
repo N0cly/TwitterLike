@@ -6,9 +6,7 @@
 </head>
 <body>
 <h1>Connexion</h1>
-<?php if (isset($errorMessage)) : ?>
-    <p><?php echo $errorMessage; ?></p>
-<?php endif; ?>
+
 <form method="post" action="index.php?action=traitement_connexion">
     <label for="username">Nom d'utilisateur :</label>
     <input type="text" id="username" name="username" required><br>

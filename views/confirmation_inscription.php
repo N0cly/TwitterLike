@@ -22,6 +22,8 @@ if (!isset($_SESSION["utilisateur_connecte"]) || $_SESSION["utilisateur_connecte
 </head>
 
 <body>
+<?php include('message_ESI.php'); ?>
+
     <section class=main>
         <h2>Inscription bien enregistrée</h2>
         <section>

@@ -12,6 +12,9 @@
 </head>
 
 <body>
+
+<?php include('message_ESI.php'); ?>
+
     <section class="main">
         <section class="accueil form">
             <section class="head">

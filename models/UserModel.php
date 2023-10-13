@@ -99,7 +99,9 @@ class UserModel
             } else {
                 // $this->connectDB()->close();
 
-                header('Location: ../index.php?erreur=email_non_envoye');
+                session_start();
+                $_SESSION["error_message"] = "Email non envoyé";
+                header('Location: ../index.php');
 
                 exit;
             }
@@ -171,7 +173,9 @@ class UserModel
                     } else {
                         // $this->connectDB()->close();
 
-                        header('Location: ../index.php?erreur=email_non_envoye');
+                        session_start();
+                        $_SESSION["error_message"] = "Email non envoyé";
+                        header('Location: ../index.php');
 
                         exit;
                     }
@@ -181,7 +185,9 @@ class UserModel
             } else {
                 //$this->connectDB()->close();
 
-                header('Location: ../index.php?erreur=db_error');
+                session_start();
+                $_SESSION["error_message"] ="Erreur connexion a la base de données";
+                header('Location: ../index.php');
                 exit;
             }
         }
@@ -196,7 +202,10 @@ class UserModel
     public function resetPwd($email)
     {
         if (!$this->checkEmailExists($email)) {
-            header('Location: ../index.php?erreur=email_inexistant');
+            session_start();
+            $_SESSION["error_message"] = "Email inexistant, créé un compte !";
+            header('Location: ../index.php');
+
             exit;
         }
 
@@ -244,7 +253,9 @@ class UserModel
                 } else {
                     // $this->connectDB()->close();
 
-                    header('Location: ../index.php?erreur=email_non_envoye');
+                    session_start();
+                    $_SESSION["error_message"] = "Code Vérif non envoyé";
+                    header('Location: ../index.php');
 
                     exit;
                 }
@@ -254,7 +265,9 @@ class UserModel
         } else {
             //$this->connectDB()->close();
 
-            header('Location: ../index.php?erreur=db_error');
+            session_start();
+            $_SESSION["error_message"] ="Erreur connexion a la base de données";
+            header('Location: ../index.php');
             exit;
         }
     }
@@ -318,9 +331,10 @@ class UserModel
 
                 //$this->connectDB()->close();
 
-                //header('Location: index.php?erreur=code_errone');
-                echo $code;
-                echo $codeBD;
+                session_start();
+                $_SESSION["error_message"] ="Code vérif erroné !";
+                header('Location: codeVerif.php');
+                exit;
             }
 
         }
@@ -353,7 +367,10 @@ class UserModel
 
             } else {
 
-                header('Location: index.php?erreur=code_errone');
+                session_start();
+                $_SESSION["error_message"] ="Code erroné !";
+                header('Location: ../index.php');
+                exit;
             }
 
         }
@@ -375,10 +392,16 @@ class UserModel
             //$this->connectDB()->close();
 
             $this->checkLogin($email, $newMDP);
+            session_start();
+            $_SESSION["success_message"] ="Mot de passe modifié avec success";
+            header('Location: ../index.php');
+            exit;
         } else {
             //this->connectDB()->close();
-
-            header("location:../index.php?mdp_corespondent_pas");
+            session_start();
+            $_SESSION["error_message"] ="Les mots de passes ne coorespondent pas !";
+            header('Location: ChangementMDP.php');
+            exit;
         }
 
     }
