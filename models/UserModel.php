@@ -83,7 +83,7 @@ class UserModel
 
             $mail->setFrom('socialnetwork.nexa@gmail.com', 'Nexa');
             $mail->addAddress($email);
-//            $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
+            //            $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
             $mail->CharSet = 'UTF-8';
             $mail->isHTML(true);
@@ -120,14 +120,14 @@ class UserModel
         if ($this->checkEmailExists($email)) {
 
             session_start();
-            $_SESSION['error_message']= "Email déjà utilisé";
+            $_SESSION['error_message'] = "Email déjà utilisé";
             $_SESSION['utilisateur_connecte'] = false;
 
             header('Location: ../');
             exit;
         } elseif ($this->checkUsernameExists($username)) {
             session_start();
-            $_SESSION['error_message']= "Username déjà utilisé";
+            $_SESSION['error_message'] = "Username déjà utilisé";
             $_SESSION['utilisateur_connecte'] = false;
 
             header('Location: ../');
@@ -195,7 +195,7 @@ class UserModel
                 //$this->connectDB()->close();
 
                 session_start();
-                $_SESSION["error_message"] ="Erreur connexion a la base de données";
+                $_SESSION["error_message"] = "Erreur connexion a la base de données";
                 $_SESSION['utilisateur_connecte'] = false;
 
                 header('Location: ../');
@@ -280,7 +280,7 @@ class UserModel
             //$this->connectDB()->close();
 
             session_start();
-            $_SESSION["error_message"] ="Erreur connexion a la base de données";
+            $_SESSION["error_message"] = "Erreur connexion a la base de données";
             header('Location: ../');
             exit;
         }
@@ -319,7 +319,7 @@ class UserModel
         } else {
             //$this->connectDB()->close();
             session_start();
-            $_SESSION['error_message']= "Identifiant ou mot de passe incorrect";
+            $_SESSION['error_message'] = "Identifiant ou mot de passe incorrect";
             $_SESSION['utilisateur_connecte'] = false;
 
 
@@ -350,7 +350,7 @@ class UserModel
                 //$this->connectDB()->close();
 
                 session_start();
-                $_SESSION["error_message"] ="Code vérif erroné !";
+                $_SESSION["error_message"] = "Code vérif erroné !";
                 header('Location: codeVerif.php');
                 exit;
             }
@@ -386,7 +386,7 @@ class UserModel
             } else {
 
                 session_start();
-                $_SESSION["error_message"] ="Code erroné !";
+                $_SESSION["error_message"] = "Code erroné !";
                 header('Location: ../');
                 exit;
             }
@@ -411,13 +411,13 @@ class UserModel
 
             $this->checkLogin($email, $newMDP);
             session_start();
-            $_SESSION["success_message"] ="Mot de passe modifié avec success";
+            $_SESSION["success_message"] = "Mot de passe modifié avec success";
             header('Location: ../');
             exit;
         } else {
             //this->connectDB()->close();
             session_start();
-            $_SESSION["error_message"] ="Les mots de passes ne coorespondent pas !";
+            $_SESSION["error_message"] = "Les mots de passes ne coorespondent pas !";
             header('Location: ChangementMDP.php');
             exit;
         }
@@ -452,6 +452,45 @@ class UserModel
 
         return $user_data;
     }
+
+    public function ChangeUserInfo()
+    {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+            session_start();
+            $newDesc = $_POST["newDesc"];
+            $user = $_SESSION["username"];
+
+            if (isset($_FILES['newPP']) && $_FILES['newPP']['error'] == 0) {
+                $uploadDir = 'Images/pdp/';
+
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+
+                $imageFileName = uniqid() . '_' . basename($_FILES['newPP']['name']);
+                $ppPath = $uploadDir . $imageFileName;
+
+                if (move_uploaded_file($_FILES['newPP']['tmp_name'], $ppPath)) {
+                    $query = "UPDATE users SET pp = :newPP, description = :newDesc WHERE username = :user";
+                    $stmt = $this->connectDB()->prepare($query);
+                    $stmt->bindParam(':newPP', $ppPath, PDO::PARAM_STR);
+                    $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
+                    $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+                    $stmt->execute();
+                }
+            } else {
+                $query = "UPDATE users SET description = :newDesc WHERE username = :user";
+                $stmt = $this->connectDB()->prepare($query);
+                $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
+                $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+                $stmt->execute();
+            }
+
+            header("Location: ../views/profil.php");
+        }
+    }
+
+
 
 
 }

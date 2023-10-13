@@ -132,12 +132,27 @@ class UserController
         return $user;
     }
 
-    public function verifyEmail($email){
+    public function verifyEmail($email)
+    {
         $userModel = new UserModel();
         $user = $userModel->verifyEmail($email);
 
         return $user;
     }
 
-    // Autres méthodes pour gérer les utilisateurs
+    public function ChangeUserInfo()
+    {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+            $newPP = isset($_FILES['newPP']) ? $_FILES['newPP'] : null;
+
+            session_start();
+            $newDesc = $_POST["newDesc"];
+            $user = $_SESSION["username"];
+
+            $userModel = new UserModel();
+            $userModel->ChangeUserInfo($newPP, $newDesc, $user);
+        }
+
+        // Autres méthodes pour gérer les utilisateurs
+    }
 }

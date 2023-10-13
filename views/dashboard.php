@@ -48,11 +48,11 @@ $is_moderator = $user_data['is_moderator'];
             <button id="searchBtn" class="search-btn">🔍</button>
             <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
         </div>
-        <img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img">
+        <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
+
         <div class="user-icon">
             <i class="fas fa-user-circle"></i>
-            <a href="profil.php" class="username-link"><img
-                    src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Profil"
+            <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
                     class="post-pp post-pp-hover"></a>
             <?php if ($is_moderator): ?>
                 <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon" />

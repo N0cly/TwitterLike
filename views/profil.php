@@ -31,7 +31,6 @@ $is_moderator = $user_data['is_moderator'];
     <link rel="stylesheet" href="../css/style_dash.css">
     <link rel="stylesheet1" href="../css/user-preview.css">
     <link href="../css/profil.css" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
@@ -47,11 +46,11 @@ $is_moderator = $user_data['is_moderator'];
         <button id="searchBtn" class="search-btn">🔍</button>
         <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
     </div>
-    <img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img">
+    <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
+
     <div class="user-icon">
         <i class="fas fa-user-circle"></i>
-        <a href="profil.php" class="username-link"><img
-                src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Profil"
+        <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
                 class="post-pp post-pp-hover"></a>
         <?php if ($is_moderator): ?>
             <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon" />
@@ -66,17 +65,18 @@ $is_moderator = $user_data['is_moderator'];
         <!-- Contenu principal de la page -->
         <section class="profile">
             <div class="profile-info">
-                <img src="<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
+                <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
                 <h1>
                     <?php echo $user; ?>
                 </h1>
-                <p>Description ou informations sur l'utilisateur</p>
+                <p>
+                    <?php echo $user_data['description']; ?>
+                </p>
                 <a href="modifier_profil.php">Modifier le profil</a>
             </div>
             <div class="profile-posts">
                 <!-- Affichage des publications de l'utilisateur -->
                 <h2>Publications récentes</h2>
-
                 <div class="post">
                     <?php foreach ($posts as $post): ?>
                         <div class="post">
@@ -92,7 +92,7 @@ $is_moderator = $user_data['is_moderator'];
                                 <?php echo $post['contenu']; ?>
                             </p>
                             <?php if (!empty($post['image'])): ?>
-                                <img src="../<?php echo $post['image']; ?>" alt="Photo de p^rofil" class="post-image" />
+                                <img src="../<?php echo $post['image']; ?>" alt="Photo de profil" class="post-image" />
                             <?php endif; ?>
                             <div class="post-actions">
                                 <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️
@@ -139,11 +139,12 @@ $is_moderator = $user_data['is_moderator'];
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                            <!-- La bannière "Afficher les commentaires" est générée par JavaScript, donc pas besoin ici -->
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-        
+        </section>
+    </main>
+</body>
 
-
+</html>
