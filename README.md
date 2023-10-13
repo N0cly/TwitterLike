@@ -16,7 +16,6 @@ Ce projet est une plateforme de médias sociaux appelée Nexa, conçue pour perm
 5. [Utilisation](#utilisation)
 6. [Contributions](#contributions)
 7. [Auteurs](#auteurs)
-8. [License](#license)
 
 ## Introduction
 
