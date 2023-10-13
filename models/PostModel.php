@@ -19,7 +19,7 @@ class PostModel
         } catch (PDOException $e) {
             die('Erreur de connexion à la base de données : ' . $e->getMessage());
             session_start();
-            $_SESSION["error_message"] ="Connexion impossible a la DB !";
+            $_SESSION["error_message"] = "Connexion impossible a la DB !";
             header('Location: ../index.php');
             exit;
         }
@@ -125,6 +125,18 @@ class PostModel
     {
         $query = "SELECT * FROM Post ORDER BY Time DESC";
         $stmt = $this->connectDB()->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public function getAllPostsUser($user)
+    {
+        $query = "SELECT * FROM Post WHERE user = :user ORDER BY Time DESC";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':user', $user);
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

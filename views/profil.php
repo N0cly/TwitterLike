@@ -15,11 +15,10 @@ $user_data = $userCtrl->getUser($user);
 
 require_once('../ctrl/PostController.php');
 $postCtrl = new PostController();
-$post_fetch = $postCtrl->getPostsAll($user);
+$posts = $postCtrl->getAllPostsUser($user);
 
 $userCtrl->getUser($user);
 
-$posts = $post_fetch;
 $is_moderator = $user_data['is_moderator'];
 ?>
 
@@ -100,10 +99,10 @@ $is_moderator = $user_data['is_moderator'];
                                     <?php echo $post['LikeCount']; ?>
                                 </button>
                                 <button class="post-action comment" data-id_post="<?php echo $post['id_post']; ?>">💬
-                                    <?php echo $post['Comment']; ?>
+                                    <?php echo array_key_exists('Comment', $post) ? $post['Comment'] : ''; ?>
                                 </button>
                                 <button class="post-action share">🔗
-                                    <?php echo $post['partage']; ?>
+                                    <?php echo array_key_exists('partage', $post) ? $post['partage'] : ''; ?>
                                 </button>
                                 <?php if ($is_moderator): ?>
                                     <button class="post-action delete"
@@ -144,11 +143,7 @@ $is_moderator = $user_data['is_moderator'];
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <!-- Répéter cette structure pour afficher d'autres publications -->
             </div>
-        </section>
-    </main>
-</body>
+        
 
 
-</html>

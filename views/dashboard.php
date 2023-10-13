@@ -34,7 +34,6 @@ $is_moderator = $user_data['is_moderator'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
     <title>Nexa</title>
 </head>

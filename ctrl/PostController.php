@@ -52,6 +52,13 @@ class PostController
 
         return $posts;
     }
+    public function getAllPostsUser($user)
+    {
+        $postModel = new PostModel();
+        $posts = $postModel->getAllPostsUser($user); // Remplacez par la méthode appropriée pour obtenir les publications de l'utilisateur
+
+        return $posts;
+    }
 
     public function getComments($id_post)
     {
