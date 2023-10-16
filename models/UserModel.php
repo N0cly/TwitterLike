@@ -140,11 +140,11 @@ class UserModel
             $codeInscription = strtoupper(substr($uniqid, -5));
 
             // Si l'email n'existe pas, insérez les données dans la base de données
-            $query = "INSERT INTO users (codeInscription) VALUES (:codeInscription);";
-            $stmt = $this->connectDB()->prepare($query);
-            $stmt->bindParam(':codeInscription', $codeInscription, PDO::PARAM_STR);
+//            $query = "INSERT INTO users (codeInscription) VALUES (:codeInscription);";
+//            $stmt = $this->connectDB()->prepare($query);
+//            $stmt->bindParam(':codeInscription', $codeInscription, PDO::PARAM_STR);
 
-            if ($stmt->execute()) {
+            if (isset($codeInscription)) {
                 // Envoi de l'e-mail avec le code de réinitialisation
                 require 'vendor/autoload.php';
 
@@ -161,7 +161,7 @@ class UserModel
                     $mail->SMTPSecure = "tls";
                     $mail->Port = 587;
 
-                    $mail->setFrom('socialnetwork.nexa@gmail.com', 'Mailer');
+                    $mail->setFrom('socialnetwork.nexa@gmail.com', 'Nexa');
                     $mail->addAddress($email);
                     $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
@@ -173,6 +173,7 @@ class UserModel
 
                     if ($mail->send()) {
                         $_SESSION['email'] = $email;
+                        $_SESSION['codeInscription'] = $codeInscription;
                         //$this->connectDB()->close();
 
                         header("Location: ../views/codeVerifInscription.php");
@@ -361,38 +362,37 @@ class UserModel
     public function checkCodeVerifInscription($email, $password, $username, $code)
     {
 
-        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
-        $stmt = $this->connectDB()->prepare($query);
-        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+//        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
+//        $stmt = $this->connectDB()->prepare($query);
+//        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+//        $stmt->execute();
+//
+//        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $pp = 'Images/pdp/Default.png';
-        if ($row) {
-            $codeBD = $row['codeInscription'];
-            if ($codeBD == $code) {
 
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $query = "INSERT INTO users (username, email, mdp, first_connexion, pp) VALUES (:username, :email, :hashed_password, DATETIME('now'), :pp)";
-                $stmt = $this->connectDB()->prepare($query);
-                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-                $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
-                $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
-                $stmt->execute();
+        if ($_SESSION["codeInscription"] == strtoupper($code)) {
 
-                $this->checkLogin($email, $password);
-                exit();
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $query = "INSERT INTO users (username, email, mdp, first_connexion, pp) VALUES (:username, :email, :hashed_password, DATETIME('now'), :pp)";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
+            $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
+            $stmt->execute();
 
-            } else {
+            $this->checkLogin($email, $password);
+            exit();
 
-                session_start();
-                $_SESSION["error_message"] = "Code erroné !";
-                header('Location: ../');
-                exit;
-            }
+        } else {
 
+            session_start();
+            $_SESSION["error_message"] = "Code erroné !";
+            header("Location: ../views/codeVerifInscription.php");
+            exit;
         }
+
+
     }
 
 
