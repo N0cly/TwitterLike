@@ -69,6 +69,8 @@ body {
 }
 
 .username-link {
+    display: flex;
+    align-items: center;
     color: white;
     text-decoration: none;
     margin-left: 0.6em;
@@ -152,7 +154,7 @@ body {
     min-width: 300px;
     background-color: #fff;
     border-radius: 0.5em;
-    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
+    box-shadow: 0 0 0.6em rgba(0, 0, 0, 0.1);
 }
 
 #ouvrirPublication,
@@ -170,7 +172,7 @@ body {
     border-radius: 0.5em;
     padding: 1em;
     margin-bottom: 1em;
-    box-shadow: 0 0 0.6em rgba(0,0,0,0.1);
+    box-shadow: 0 0 0.6em rgba(0, 0, 0, 0.1);
 }
 
 .post-header {
@@ -190,9 +192,7 @@ body {
     font-weight: bold;
 }
 
-.post-pp-hover{
-
-}
+.post-pp-hover {}
 
 .post-divider {
     margin-bottom: 1em;
@@ -205,7 +205,7 @@ body {
     margin-bottom: 1em;
 }
 
-.post-image{
+.post-image {
     max-width: 65vw;
     max-height: 65vh;
 }
@@ -237,11 +237,13 @@ body {
 }
 
 .post-action.like {
-    color: #ccc; /* Couleur par défaut du cœur (gris) */
+    color: #ccc;
+    /* Couleur par défaut du cœur (gris) */
 }
 
 .post-action.like.liked {
-    color: red; /* Couleur du cœur lorsqu'il est 'liké' */
+    color: red;
+    /* Couleur du cœur lorsqu'il est 'liké' */
 }
 
 .comment {
@@ -262,17 +264,22 @@ body {
 .comments-container {
     margin-top: 10px;
     padding: 5px;
-    font-size: 0.9em; /* Vous pouvez ajuster la taille de la police des commentaires ici */
+    font-size: 0.9em;
+    /* Vous pouvez ajuster la taille de la police des commentaires ici */
 }
 
 .comment-banner {
     cursor: pointer;
-    background-color: #f0f0f0; /* Couleur de fond de la bannière des commentaires */
-    color: #333; /* Couleur du texte de la bannière des commentaires */
+    background-color: #f0f0f0;
+    /* Couleur de fond de la bannière des commentaires */
+    color: #333;
+    /* Couleur du texte de la bannière des commentaires */
     text-align: center;
     padding: 5px;
-    font-size: 0.8em; /* Taille de la police de la bannière des commentaires */
-    border-top: 1px solid #ddd; /* Bordure supérieure de la bannière des commentaires */
+    font-size: 0.8em;
+    /* Taille de la police de la bannière des commentaires */
+    border-top: 1px solid #ddd;
+    /* Bordure supérieure de la bannière des commentaires */
 }
 
 .comment-content {

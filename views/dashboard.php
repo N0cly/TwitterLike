@@ -52,14 +52,18 @@ $is_moderator = $user_data['is_moderator'];
 
         <div class="user-icon">
             <i class="fas fa-user-circle"></i>
-            <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
-                    class="post-pp post-pp-hover"></a>
-            <?php if ($is_moderator): ?>
-                <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon" />
-            <?php endif; ?>
-            <?php echo $user; ?>
+            <a href="profil.php" class="username-link">
+                <img src="../<?php echo $user_data['pp']; ?>" alt="Profil" class="post-pp post-pp-hover">
+                <?php if ($is_moderator): ?>
+                    <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon">
+                <?php endif; ?>
+                <span class="username-link">
+                    <?php echo $user ?>
+                </span>
             </a>
         </div>
+
+
     </header>
 
     <main class="main-content">

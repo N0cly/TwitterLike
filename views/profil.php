@@ -81,8 +81,8 @@ $is_moderator = $user_data['is_moderator'];
                     <?php foreach ($posts as $post): ?>
                         <div class="post">
                             <div class="post-header">
-                                <img src="<?php echo empty($post['pp']) ? 'https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg' : $post['pp']; ?>"
-                                    alt="Photo de profil" class="post-pp post-pp-hover">
+                                <img src="../<?php echo $post['pp']; ?>" alt="Photo de profil"
+                                    class="post-pp post-pp-hover">
                                 <h3 class="post-username">
                                     <?php echo $post['user']; ?>
                                 </h3>
