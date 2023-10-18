@@ -27,7 +27,7 @@ class PostModel
 
     public function getPostsAll($user)
     {
-        $query = "SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked FROM Post WHERE id_pere IS NULL ORDER BY Time DESC";
+        $query = "SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE id_pere IS NULL ORDER BY Time DESC";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':user', $user);
         $stmt->execute();
@@ -35,6 +35,7 @@ class PostModel
 
         return $posts;
     }
+
 
     public function getPosts()
     {
@@ -143,7 +144,7 @@ class PostModel
 
     public function getAllPostsUser($user)
     {
-        $query = "SELECT * FROM Post WHERE user = :user ORDER BY Time DESC";
+        $query = "SELECT *, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE id_pere IS NULL AND user = :user ORDER BY Time DESC";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':user', $user);
         $stmt->execute();
