@@ -139,11 +139,6 @@ class UserModel
             $uniqid = uniqid(true);
             $codeInscription = strtoupper(substr($uniqid, -5));
 
-            // Si l'email n'existe pas, insérez les données dans la base de données
-//            $query = "INSERT INTO users (codeInscription) VALUES (:codeInscription);";
-//            $stmt = $this->connectDB()->prepare($query);
-//            $stmt->bindParam(':codeInscription', $codeInscription, PDO::PARAM_STR);
-
             if (isset($codeInscription)) {
                 // Envoi de l'e-mail avec le code de réinitialisation
                 require 'vendor/autoload.php';
@@ -362,7 +357,7 @@ class UserModel
     public function checkCodeVerifInscription($email, $password, $username, $code)
     {
 
-//        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
+        //        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
 //        $stmt = $this->connectDB()->prepare($query);
 //        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
 //        $stmt->execute();

@@ -15,13 +15,12 @@ class CategorieController
 {
     public function ajouterCategorie()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $nom_categorie = $_POST['nom_categorie'];
             $libelle = $_POST['libelle'];
 
             $categorieModel = new CategorieModel();
-            $result = $categorieModel->ajouterCategorie($nom_categorie, $libelle);
-            return $result;
+            $categorieModel->ajouterCategorie($nom_categorie, $libelle);
         }
     }
 
