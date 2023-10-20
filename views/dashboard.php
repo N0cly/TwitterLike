@@ -16,10 +16,13 @@ $user_data = $userCtrl->getUser($user);
 require_once('../ctrl/PostController.php');
 $postCtrl = new PostController();
 $post_fetch = $postCtrl->getPostsAll($user);
-
-
-
 $posts = $post_fetch;
+
+require_once('../ctrl/CategorieController.php');
+$categorieCtrl = new CategorieController();
+$categorie_fetch = $categorieCtrl->getCategorieAll();
+$categorie = $categorie_fetch;
+
 $is_moderator = $user_data['is_moderator'];
 ?>
 <!DOCTYPE html>
@@ -67,7 +70,25 @@ $is_moderator = $user_data['is_moderator'];
     </header>
 
     <main class="main-content">
-        <section class="left-panel"></section>
+        <section class="left-panel">
+            <h2>Ajouter une catégorie</h2>
+            <form id="addCategoryForm" action="../Categorie/ajouterCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" placeholder="Nouvelle catégorie" required>
+                <input type="text" name="libelle" id="newLibelle" placeholder="Libellé de la catégorie" required>
+                <button type="submit">Ajouter</button>
+            </form>
+
+            <h2>Catégories</h2>
+            <ul id="categoryList">
+                <?php
+                foreach ($categorie as $categorie): ?>
+                    <h3 class="post-username">
+                        <?php echo $categorie['nom_categorie']; ?>
+                    </h3>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+
         <section class="right-panel">
             <button id="ouvrirPublication" class="button">Nouvelle publication</button>
             <div id="modal" class="modal">
@@ -91,7 +112,8 @@ $is_moderator = $user_data['is_moderator'];
             foreach ($posts as $post): ?>
                 <div class="post">
                     <div class="post-header">
-                        <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur" class="post-pp post-pp-hover">
+                        <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur"
+                            class="post-pp post-pp-hover">
                         <h3 class="post-username">
                             <?php echo $post['user']; ?>
                         </h3>
@@ -120,7 +142,6 @@ $is_moderator = $user_data['is_moderator'];
                     <div id="commentModal<?php echo $post['id_post']; ?>" class="modal">
                         <div class="modal-content">
                             <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
-
                                 <input type="hidden" name="id_pere" id="id_pere<?php echo $post['id_post']; ?>"
                                     value="<?php echo $post['id_post']; ?>">
                                 <div class="input-container">
@@ -146,7 +167,6 @@ $is_moderator = $user_data['is_moderator'];
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <!-- La bannière "Afficher les commentaires" est générée par JavaScript, donc pas besoin ici -->
                 </div>
             <?php endforeach; ?>
         </section>
