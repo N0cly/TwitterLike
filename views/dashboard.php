@@ -71,27 +71,34 @@ $is_moderator = $user_data['is_moderator'];
 
     <main class="main-content">
         <section class="left-panel">
-            <h2>Ajouter une catégorie</h2>
-            <form id="addCategoryForm" action="../Categorie/ajouterCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" placeholder="Nouvelle catégorie" required>
-                <input type="text" name="libelle" id="newLibelle" placeholder="Libellé de la catégorie" required>
-                <button type="submit">Ajouter</button>
+
+            <h2 class="section-title">Ajouter une catégorie</h2>
+            <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                    placeholder="Nouvelle catégorie" required>
+                <input type="text" name="libelle" id="newLibelle" class="category-input"
+                    placeholder="Libellé de la catégorie" required>
+                <button type="submit" class="category-button">Ajouter</button>
             </form>
 
-            <h2>Catégories</h2>
-            <ul id="categoryList">
+            <h2 class="section-title">Catégories</h2>
+            <ul id="categoryList" class="category-list">
                 <?php
                 foreach ($categorie as $categorie): ?>
-                    <h3 class="post-username">
+                    <h3 class="category-item">
                         <?php echo $categorie['nom_categorie']; ?>
                     </h3>
                 <?php endforeach; ?>
             </ul>
-            <form id="removeCategoryForm" action="../Categorie/removeCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" placeholder="Catégorie à supprimer" required>
-                <button type="submit">supprimer</button>
+
+            <h2 class="section-title">Supprimer une catégorie</h2>
+            <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                    placeholder="Catégorie à supprimer" required>
+                <button type="submit" class="category-button">Supprimer</button>
             </form>
         </section>
+
 
         <section class="right-panel">
             <button id="ouvrirPublication" class="button">Nouvelle publication</button>
