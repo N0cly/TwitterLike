@@ -87,6 +87,10 @@ $is_moderator = $user_data['is_moderator'];
                     </h3>
                 <?php endforeach; ?>
             </ul>
+            <form id="removeCategoryForm" action="../Categorie/removeCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" placeholder="Catégorie à supprimer" required>
+                <button type="submit">supprimer</button>
+            </form>
         </section>
 
         <section class="right-panel">
