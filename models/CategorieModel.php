@@ -50,6 +50,31 @@ class CategorieModel
         }
     }
 
+    public function removeCategorie($nom_categorie)
+    {
+        session_start();
+
+        try {
+
+            // Préparez la requête d'insertion
+            $query = "DELETE FROM categorie WHERE :nom_categorie = nom_categorie";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
+
+            // Exécutez la requête
+            if ($stmt->execute()) {
+                header("Location: ../views/dashboard.php");
+                exit;
+            } else {
+                $_SESSION['error_message'] = "Erreur lors de l'ajout de la catégorie dans la base de données";
+            }
+        } catch (PDOException $e) {
+            $_SESSION['error_message'] = "Erreur lors de l'ajout de la catégorie";
+            error_log($e->getMessage());
+            exit;
+        }
+    }
+
     public function getCategorieAll()
     {
         try {

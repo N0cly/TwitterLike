@@ -24,6 +24,16 @@ class CategorieController
         }
     }
 
+    public function removeCategorie()
+    {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $nom_categorie = $_POST['nom_categorie'];
+
+            $categorieModel = new CategorieModel();
+            $categorieModel->removeCategorie($nom_categorie);
+        }
+    }
+
 
     public function getCategorieAll()
     {
