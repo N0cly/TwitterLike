@@ -113,6 +113,15 @@ $is_moderator = $user_data['is_moderator'];
                             <label for="image">Image :</label>
                             <input type="file" id="image" name="image">
                         </div>
+                        <div class="input-container">
+                            <label for="choix-couleur">Choisissez une catégorie :</label>
+                            <select id="choix-couleur">
+                                <option value="rouge">Rouge</option>
+                                <option value="vert">Vert</option>
+                                <option value="bleu">Bleu</option>
+                                <option value="jaune">Jaune</option>
+                            </select>
+                        </div>
                         <input type="submit" value="Publier">
                     </form>
                 </div>
