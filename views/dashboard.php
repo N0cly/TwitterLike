@@ -21,7 +21,8 @@ $posts = $post_fetch;
 require_once('../ctrl/CategorieController.php');
 $categorieCtrl = new CategorieController();
 $categorie_fetch = $categorieCtrl->getCategorieAll();
-$categorie = $categorie_fetch;
+$categorieLeftPannel = $categorie_fetch;
+$categorieRightPannel = $categorie_fetch;
 
 $is_moderator = $user_data['is_moderator'];
 ?>
@@ -84,7 +85,7 @@ $is_moderator = $user_data['is_moderator'];
             <h2 class="section-title">Catégories</h2>
             <ul id="categoryList" class="category-list">
                 <?php
-                foreach ($categorie as $categorie): ?>
+                foreach ($categorieLeftPannel as $categorie): ?>
                     <h3 class="category-item">
                         <?php echo $categorie['nom_categorie']; ?>
                     </h3>
@@ -114,13 +115,17 @@ $is_moderator = $user_data['is_moderator'];
                             <input type="file" id="image" name="image">
                         </div>
                         <div class="input-container">
-                            <label for="choix-couleur">Choisissez une catégorie :</label>
-                            <select id="choix-couleur">
-                                <option value="rouge">Rouge</option>
-                                <option value="vert">Vert</option>
-                                <option value="bleu">Bleu</option>
-                                <option value="jaune">Jaune</option>
+                            <label for="CategorieSelect">Choisissez une catégorie :</label>
+                            <select id="categorieSelect" name="categorie">
+                                <?php
+                                foreach ($categorieRightPannel as $category): ?>
+                                    <option value="<?php echo $category['nom_categorie']; ?>">
+                                        <?php echo $category['nom_categorie']; ?>
+                                    </option>
+                                <?php endforeach;
+                                ?>
                             </select>
+
                         </div>
                         <input type="submit" value="Publier">
                     </form>

@@ -38,9 +38,10 @@ class PostController
             session_start();
             // Obtenez l'username à partir de la session
             $user = $_SESSION['username'];
+            $categorie = $_POST['categorie'];
 
             $postModel = new PostModel();
-            $postModel->createPost($user, $content, $image);
+            $postModel->createPost($user, $content, $image, $categorie);
         }
     }
 

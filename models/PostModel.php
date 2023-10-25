@@ -87,7 +87,7 @@ class PostModel
 
 
 
-    public function createPost($user, $contenu, $image)
+    public function createPost($user, $contenu, $image, $categorie)
     {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploadDir = 'uploads/';
@@ -117,12 +117,13 @@ class PostModel
         $pp = $stmt->fetchColumn();
 
 
-        $query = "INSERT INTO Post (user, contenu, image, Time, pp) VALUES (:username, :contenu, :image, datetime('now'), :pp)";
+        $query = "INSERT INTO Post (user, contenu, image, Time, pp, categorie) VALUES (:username, :contenu, :image, datetime('now'), :pp, :categorie)";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':username', $user, PDO::PARAM_STR);
         $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
         $stmt->bindParam(':image', $imagePath, PDO::PARAM_STR);
         $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
+        $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR);
         $stmt->execute();
 
         header("Location: ../views/dashboard.php");
