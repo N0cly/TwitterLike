@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none; /* Pour supprimer le soulignement */
+    color: #000; /* Choisir la couleur du texte que vous souhaitez */
+}
+
 body {
     margin: 0;
     padding: 0;
