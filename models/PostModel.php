@@ -147,7 +147,7 @@ class PostModel
 
     public function getComments($id_pere)
     {
-        $query = "SELECT Post.*, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE Post.id_pere = :id_pere ORDER BY Post.Time";
+        $query = "SELECT Post.*, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE Post.id_pere = :id_pere ORDER BY Post.Time DESC";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':id_pere', $id_pere);
         $stmt->execute();
@@ -196,7 +196,7 @@ class PostModel
         $stmt->bindParam(':pp', $pp, PDO::PARAM_STR);
         $stmt->bindParam(':id_pere', $id_pere, PDO::PARAM_STR);
         $stmt->execute();
-        header("Location: post.php?id=" . $id_pere); // Remplacez 'post.php?id=' par l'URL de votre page
+        header("Location: ../views/post.php?id=" . $id_pere);
 
 
     }

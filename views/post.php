@@ -115,6 +115,10 @@ $is_moderator = $user_data['is_moderator'];
                             <?php echo $comment['user']; ?>
                         </h3>
                     </div>
+                    <p class="post-content">
+                        <?php echo $comment['contenu']; ?>
+                    </p>
+
                 </div>
             <?php endforeach; ?>
         </section>
