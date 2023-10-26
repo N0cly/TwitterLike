@@ -58,9 +58,6 @@ $is_moderator = $user_data['is_moderator'];
             <i class="fas fa-user-circle"></i>
             <a href="profil.php" class="username-link">
                 <img src="../<?php echo $user_data['pp']; ?>" alt="Profil" class="post-pp post-pp-hover">
-                <?php if ($is_moderator): ?>
-                    <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon">
-                <?php endif; ?>
                 <span class="username-link">
                     <?php echo $user ?>
                 </span>
@@ -72,16 +69,16 @@ $is_moderator = $user_data['is_moderator'];
 
     <main class="main-content">
         <section class="left-panel">
-
-            <h2 class="section-title">Ajouter une catégorie</h2>
-            <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                    placeholder="Nouvelle catégorie" required>
-                <input type="text" name="libelle" id="newLibelle" class="category-input"
-                    placeholder="Libellé de la catégorie" required>
-                <button type="submit" class="category-button">Ajouter</button>
-            </form>
-
+            <?php if ($is_moderator == 1): ?>
+                <h2 class="section-title">Ajouter une catégorie</h2>
+                <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
+                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                        placeholder="Nouvelle catégorie" required>
+                    <input type="text" name="libelle" id="newLibelle" class="category-input"
+                        placeholder="Libellé de la catégorie" required>
+                    <button type="submit" class="category-button">Ajouter</button>
+                </form>
+            <?php endif; ?>
             <h2 class="section-title">Catégories</h2>
             <ul id="categoryList" class="category-list">
                 <?php
@@ -92,12 +89,14 @@ $is_moderator = $user_data['is_moderator'];
                 <?php endforeach; ?>
             </ul>
 
-            <h2 class="section-title">Supprimer une catégorie</h2>
-            <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                    placeholder="Catégorie à supprimer" required>
-                <button type="submit" class="category-button">Supprimer</button>
-            </form>
+            <?php if ($is_moderator == 1): ?>
+                <h2 class="section-title">Supprimer une catégorie</h2>
+                <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
+                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                        placeholder="Catégorie à supprimer" required>
+                    <button type="submit" class="category-button">Supprimer</button>
+                </form>
+            <?php endif; ?>
         </section>
 
 
@@ -160,7 +159,7 @@ $is_moderator = $user_data['is_moderator'];
                         <button class="post-action share">🔗
                             <?php echo $post['partage']; ?>
                         </button>
-                        <?php if ($is_moderator): ?>
+                        <?php if ($is_moderator == 1): ?>
                             <button class="post-action delete" data-id_post="<?php echo $post['id_post']; ?>">🗑</button>
                         <?php endif; ?>
                     </div>
