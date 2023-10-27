@@ -21,7 +21,8 @@ $posts = $post_fetch;
 require_once('../ctrl/CategorieController.php');
 $categorieCtrl = new CategorieController();
 $categorie_fetch = $categorieCtrl->getCategorieAll();
-$categorie = $categorie_fetch;
+$categorieLeftPannel = $categorie_fetch;
+$categorieRightPannel = $categorie_fetch;
 
 $is_moderator = $user_data['is_moderator'];
 ?>
@@ -57,9 +58,6 @@ $is_moderator = $user_data['is_moderator'];
             <i class="fas fa-user-circle"></i>
             <a href="profil.php" class="username-link">
                 <img src="../<?php echo $user_data['pp']; ?>" alt="Profil" class="post-pp post-pp-hover">
-                <?php if ($is_moderator): ?>
-                    <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon">
-                <?php endif; ?>
                 <span class="username-link">
                     <?php echo $user ?>
                 </span>
@@ -71,32 +69,34 @@ $is_moderator = $user_data['is_moderator'];
 
     <main class="main-content">
         <section class="left-panel">
-
-            <h2 class="section-title">Ajouter une catégorie</h2>
-            <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                    placeholder="Nouvelle catégorie" required>
-                <input type="text" name="libelle" id="newLibelle" class="category-input"
-                    placeholder="Libellé de la catégorie" required>
-                <button type="submit" class="category-button">Ajouter</button>
-            </form>
-
+            <?php if ($is_moderator == 1): ?>
+                <h2 class="section-title">Ajouter une catégorie</h2>
+                <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
+                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                        placeholder="Nouvelle catégorie" required>
+                    <input type="text" name="libelle" id="newLibelle" class="category-input"
+                        placeholder="Libellé de la catégorie" required>
+                    <button type="submit" class="category-button">Ajouter</button>
+                </form>
+            <?php endif; ?>
             <h2 class="section-title">Catégories</h2>
             <ul id="categoryList" class="category-list">
                 <?php
-                foreach ($categorie as $categorie): ?>
+                foreach ($categorieLeftPannel as $categorie): ?>
                     <h3 class="category-item">
                         <?php echo $categorie['nom_categorie']; ?>
                     </h3>
                 <?php endforeach; ?>
             </ul>
 
-            <h2 class="section-title">Supprimer une catégorie</h2>
-            <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
-                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                    placeholder="Catégorie à supprimer" required>
-                <button type="submit" class="category-button">Supprimer</button>
-            </form>
+            <?php if ($is_moderator == 1): ?>
+                <h2 class="section-title">Supprimer une catégorie</h2>
+                <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
+                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                        placeholder="Catégorie à supprimer" required>
+                    <button type="submit" class="category-button">Supprimer</button>
+                </form>
+            <?php endif; ?>
         </section>
 
 
@@ -114,13 +114,17 @@ $is_moderator = $user_data['is_moderator'];
                             <input type="file" id="image" name="image">
                         </div>
                         <div class="input-container">
-                            <label for="choix-couleur">Choisissez une catégorie :</label>
-                            <select id="choix-couleur">
-                                <option value="rouge">Rouge</option>
-                                <option value="vert">Vert</option>
-                                <option value="bleu">Bleu</option>
-                                <option value="jaune">Jaune</option>
+                            <label for="CategorieSelect">Choisissez une catégorie :</label>
+                            <select id="categorieSelect" name="categorie">
+                                <?php
+                                foreach ($categorieRightPannel as $category): ?>
+                                    <option value="<?php echo $category['nom_categorie']; ?>">
+                                        <?php echo $category['nom_categorie']; ?>
+                                    </option>
+                                <?php endforeach;
+                                ?>
                             </select>
+
                         </div>
                         <input type="submit" value="Publier">
                     </form>
@@ -139,54 +143,57 @@ $is_moderator = $user_data['is_moderator'];
                         </h3>
                     </div>
                     <hr class="post-divider">
-                    <p class="post-content">
-                        <?php echo $post['contenu']; ?>
-                    </p>
-                    <?php if (!empty($post['image'])): ?>
-                        <img src="../<?php echo $post['image']; ?>" alt="Photo de profil" class="post-image" />
-                    <?php endif; ?>
-                    <div class="post-actions">
-                        <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️
-                            <?php echo $post['LikeCount']; ?>
-                        </button>
-                        <button class="post-action comment" data-id_post="<?php echo $post['id_post']; ?>">💬
-                            <?php echo $post['Comment']; ?>
-                        </button>
-                        <button class="post-action share">🔗
-                            <?php echo $post['partage']; ?>
-                        </button>
-                        <?php if ($is_moderator): ?>
-                            <button class="post-action delete" data-id_post="<?php echo $post['id_post']; ?>">🗑</button>
+
+                    <a href="post.php?id=<?php echo $post['id_post']; ?>">
+                        <p class="post-content">
+                            <?php echo $post['contenu']; ?>
+                        </p>
+                        <?php if (!empty($post['image'])): ?>
+                            <img src="../<?php echo $post['image']; ?>" alt="Photo de profil" class="post-image" />
                         <?php endif; ?>
-                    </div>
-                    <div id="commentModal<?php echo $post['id_post']; ?>" class="modal">
-                        <div class="modal-content">
-                            <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="id_pere" id="id_pere<?php echo $post['id_post']; ?>"
-                                    value="<?php echo $post['id_post']; ?>">
-                                <div class="input-container">
-                                    <label for="contenu">Commentaire :</label>
-                                    <textarea id="contenu" name="contenu"></textarea>
-                                </div>
-                                <input type="submit" value="Commenter">
-                            </form>
+                        <div class="post-actions">
+                            <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️
+                                <?php echo $post['LikeCount']; ?>
+                            </button>
+                            <button class="post-action comment" data-id_post="<?php echo $post['id_post']; ?>">💬
+                                <?php echo $post['Comment']; ?>
+                            </button>
+                            <button class="post-action share">🔗
+                                <?php echo $post['partage']; ?>
+                            </button>
+                            <?php if ($is_moderator == 1): ?>
+                                <button class="post-action delete" data-id_post="<?php echo $post['id_post']; ?>">🗑</button>
+                            <?php endif; ?>
                         </div>
-                    </div>
-                    <div class="comments-container" id="comments<?php echo $post['id_post']; ?>" style="display:none;">
-                        <?php
-                        $comments = $postCtrl->getComments($post['id_post']);
-                        foreach ($comments as $comment):
-                            ?>
-                            <div class="comment">
-                                <p class="comment-content">
-                                    <?php echo $comment['contenu']; ?>
-                                </p>
-                                <p class="comment-user">
-                                    <?php echo $comment['user']; ?>
-                                </p>
+                        <div id="commentModal<?php echo $post['id_post']; ?>" class="modal">
+                            <div class="modal-content">
+                                <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="id_pere" id="id_pere<?php echo $post['id_post']; ?>"
+                                        value="<?php echo $post['id_post']; ?>">
+                                    <div class="input-container">
+                                        <label for="contenu">Commentaire :</label>
+                                        <textarea id="contenu" name="contenu"></textarea>
+                                    </div>
+                                    <input type="submit" value="Commenter">
+                                </form>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                        </div>
+                        <div class="comments-container" id="comments<?php echo $post['id_post']; ?>" style="display:none;">
+                            <?php
+                            $comments = $postCtrl->getComments($post['id_post']);
+                            foreach ($comments as $comment):
+                                ?>
+                                <div class="comment">
+                                    <p class="comment-content">
+                                        <?php echo $comment['contenu']; ?>
+                                    </p>
+                                    <p class="comment-user">
+                                        <?php echo $comment['user']; ?>
+                                    </p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </section>

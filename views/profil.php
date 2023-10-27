@@ -52,9 +52,6 @@ $is_moderator = $user_data['is_moderator'];
         <i class="fas fa-user-circle"></i>
         <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
                 class="post-pp post-pp-hover"></a>
-        <?php if ($is_moderator): ?>
-            <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon" />
-        <?php endif; ?>
         <?php echo $user; ?>
         </a>
     </div>
@@ -69,6 +66,9 @@ $is_moderator = $user_data['is_moderator'];
                 <h1>
                     <?php echo $user; ?>
                 </h1>
+                <?php if ($is_moderator == 1): ?>
+                    <h4>Modérateur</h4>
+                <?php endif; ?>
                 <p>
                     <?php echo $user_data['description']; ?>
                 </p>
@@ -81,7 +81,8 @@ $is_moderator = $user_data['is_moderator'];
                     <?php foreach ($posts as $post): ?>
                         <div class="post">
                             <div class="post-header">
-                                <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur" class="post-pp post-pp-hover">
+                                <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur"
+                                    class="post-pp post-pp-hover">
                                 <h3 class="post-username">
                                     <?php echo $post['user']; ?>
                                 </h3>
