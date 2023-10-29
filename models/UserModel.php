@@ -326,6 +326,8 @@ class UserModel
 
     public function checkCodeVerif($email, $code)
     {
+        session_start();
+        include('message_ESI.php');
 
         $query = "SELECT codeMDPOublie FROM users WHERE (email = :email )";
         $stmt = $this->connectDB()->prepare($query);
@@ -343,11 +345,8 @@ class UserModel
                 exit();
             } else {
 
-                //$this->connectDB()->close();
-
-                session_start();
                 $_SESSION["error_message"] = "Code vérif erroné !";
-                header('Location: codeVerif.php');
+                header('Location: ../views/codeVerif.php');
                 exit;
             }
 
@@ -356,13 +355,6 @@ class UserModel
 
     public function checkCodeVerifInscription($email, $password, $username, $code)
     {
-
-        //        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
-//        $stmt = $this->connectDB()->prepare($query);
-//        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
-//        $stmt->execute();
-//
-//        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $pp = 'Images/pdp/Default.png';
 
         if ($_SESSION["codeInscription"] == strtoupper($code)) {

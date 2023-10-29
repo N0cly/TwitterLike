@@ -2,7 +2,7 @@
 session_start();
 $email = $_SESSION["email"];
 
-if (!isset($_SESSION['codeSend'] )){
+if (!isset($_SESSION['codeSend'])) {
     header("Location: ../");
 }
 
@@ -19,11 +19,13 @@ if (!isset($_SESSION['codeSend'] )){
     <link href="../css/accueil.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Mot de passe oublié</title>
+    <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
+
 </head>
 
 <body>
 
-<?php include('message_ESI.php'); ?>
+    <?php include('message_ESI.php'); ?>
 
     <section class="main">
         <section class="accueil form">
