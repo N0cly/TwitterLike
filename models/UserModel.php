@@ -449,44 +449,46 @@ class UserModel
         return $user_data;
     }
 
-    public function ChangeUserInfo()
+    public function lougout()
     {
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER["REQUEST_METHOD"] == "POST") {
-            session_start();
-            $newDesc = $_POST["newDesc"];
-            $user = $_SESSION["username"];
-
-            if (isset($_FILES['newPP']) && $_FILES['newPP']['error'] == 0) {
-                $uploadDir = 'Images/pdp/';
-
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-
-                $imageFileName = uniqid() . '_' . basename($_FILES['newPP']['name']);
-                $ppPath = $uploadDir . $imageFileName;
-
-                if (move_uploaded_file($_FILES['newPP']['tmp_name'], $ppPath)) {
-                    $query = "UPDATE users SET pp = :newPP, description = :newDesc WHERE username = :user";
-                    $stmt = $this->connectDB()->prepare($query);
-                    $stmt->bindParam(':newPP', $ppPath, PDO::PARAM_STR);
-                    $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
-                    $stmt->bindParam(':user', $user, PDO::PARAM_STR);
-                    $stmt->execute();
-                }
-            } else {
-                $query = "UPDATE users SET description = :newDesc WHERE username = :user";
-                $stmt = $this->connectDB()->prepare($query);
-                $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
-                $stmt->bindParam(':user', $user, PDO::PARAM_STR);
-                $stmt->execute();
-            }
-
-            header("Location: ../views/profil.php");
+        if (isset($_POST['logout'])) {
+            // Détruisez la session et redirigez vers la page de connexion ou toute autre destination souhaitée.
+            session_destroy();
+            header("Location: ../"); // Changez cette URL vers la destination de déconnexion souhaitée.
+            exit;
         }
     }
 
 
+    public function ChangeUserInfo($newPP, $newDesc, $user, )
+    {
+        if (isset($_FILES['newPP']) && $_FILES['newPP']['error'] == 0) {
+            $uploadDir = 'Images/pdp/';
 
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            $imageFileName = uniqid() . '_' . basename($_FILES['newPP']['name']);
+            $ppPath = $uploadDir . $imageFileName;
+
+            if (move_uploaded_file($_FILES['newPP']['tmp_name'], $ppPath)) {
+                $query = "UPDATE users SET pp = :newPP, description = :newDesc WHERE username = :user";
+                $stmt = $this->connectDB()->prepare($query);
+                $stmt->bindParam(':newPP', $ppPath, PDO::PARAM_STR);
+                $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
+                $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+                $stmt->execute();
+            }
+        } else {
+            $query = "UPDATE users SET description = :newDesc WHERE username = :user";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
+            $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+            $stmt->execute();
+        }
+
+        header("Location: ../views/profil.php");
+    }
 
 }

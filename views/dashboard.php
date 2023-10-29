@@ -53,6 +53,10 @@ $is_moderator = $user_data['is_moderator'];
             <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
         </div>
         <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
+        <form action="../User/logout" method="post">
+            <input class='button' type="submit" name="logout" value="Se déconnecter">
+        </form>
+
 
         <div class="user-icon">
             <i class="fas fa-user-circle"></i>
