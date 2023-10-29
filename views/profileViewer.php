@@ -11,6 +11,8 @@ $userViewed = $_GET['user'];
 require_once('../ctrl/UserController.php');
 $userCtrl = new UserController();
 $user_data = $userCtrl->getUser($user);
+$userViwed_data = $userCtrl->getUser($userViewed);
+
 
 //     Partie commentée pour récupérer les messages
 
@@ -63,17 +65,16 @@ $is_moderator = $user_data['is_moderator'];
         <!-- Contenu principal de la page -->
         <section class="profile">
             <div class="profile-info">
-                <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
+                <img src="../<?php echo $userViwed_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
                 <h1>
-                    <?php echo $user; ?>
+                    <?php echo $userViewed; ?>
                 </h1>
-                <?php if ($is_moderator == 1): ?>
+                <?php if ($userViwed_data['is_moderator'] == 1): ?>
                     <h4>Modérateur</h4>
                 <?php endif; ?>
                 <p>
-                    <?php echo $user_data['description']; ?>
+                    <?php echo $userViwed_data['description']; ?>
                 </p>
-                <a href="modifier_profil.php">Modifier le profil</a>
             </div>
             <div class="profile-posts">
                 <!-- Affichage des publications de l'utilisateur -->
