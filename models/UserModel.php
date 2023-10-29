@@ -338,7 +338,7 @@ class UserModel
 
         if ($row) {
             $codeBD = $row['codeMDPOublie'];
-            if ($codeBD == $code) {
+            if ($codeBD === strtoupper($code)) {
                 $_SESSION['codeCheck'] = true;
 
                 header('Location: ../views/ChangementMDP.php');
