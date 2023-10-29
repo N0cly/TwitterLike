@@ -1,6 +1,6 @@
 <?php
-
-if (!isset($_SESSION['codeCheck'])){
+session_start();
+if (!isset($_SESSION['codeCheck'])) {
     header("Location: codeVerif.php");
 }
 
@@ -21,7 +21,7 @@ if (!isset($_SESSION['codeCheck'])){
 
 <body>
 
-<?php include('message_ESI.php'); ?>
+    <?php include('message_ESI.php'); ?>
 
     <section class="main">
         <section class="accueil form">
