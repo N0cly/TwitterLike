@@ -35,7 +35,14 @@ class PostController
 
         return $posts;
     }
+    public function getPostsByCategory($categorie, $user)
+    {
 
+        $postModel = new PostModel();
+        $posts = $postModel->getPostsByCategory($categorie, $user); // Remplacez par la méthode appropriée pour obtenir les publications
+
+        return $posts;
+    }
 
     public function sendPost()
     {

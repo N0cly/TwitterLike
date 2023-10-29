@@ -14,9 +14,17 @@ $user_data = $userCtrl->getUser($user);
 //     Partie commentée pour récupérer les messages
 
 require_once('../ctrl/PostController.php');
-$postCtrl = new PostController();
-$post_fetch = $postCtrl->getPostsAll($user);
-$posts = $post_fetch;
+
+if (isset($_GET['category'])) {
+    $categorie = $_GET['category'];
+    $postCtrl = new PostController();
+    $posts = $postCtrl->getPostsByCategory($categorie, $user);
+} else {
+    $postCtrl = new PostController();
+    $posts = $postCtrl->getPostsAll($user);
+}
+
+
 
 require_once('../ctrl/CategorieController.php');
 $categorieCtrl = new CategorieController();
@@ -46,30 +54,7 @@ $is_moderator = $user_data['is_moderator'];
 
     <?php include('message_ESI.php'); ?>
 
-
-    <header class="header">
-        <div class="left-header">
-            <button id="searchBtn" class="search-btn">🔍</button>
-            <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
-        </div>
-        <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
-        <form action="../User/logout" method="post">
-            <input class='button' type="submit" name="logout" value="Se déconnecter">
-        </form>
-
-
-        <div class="user-icon">
-            <i class="fas fa-user-circle"></i>
-            <a href="profil.php" class="username-link">
-                <img src="../<?php echo $user_data['pp']; ?>" alt="Profil" class="post-pp post-pp-hover">
-                <span class="username-link">
-                    <?php echo $user ?>
-                </span>
-            </a>
-        </div>
-
-
-    </header>
+    <?php include('header.php'); ?>
 
     <main class="main-content">
         <section class="left-panel">
@@ -87,9 +72,11 @@ $is_moderator = $user_data['is_moderator'];
             <ul id="categoryList" class="category-list">
                 <?php
                 foreach ($categorieLeftPannel as $categorie): ?>
-                    <h3 class="category-item">
-                        <?php echo $categorie['nom_categorie']; ?>
-                    </h3>
+                    <a href="dashboard.php?category=<?php echo $categorie['nom_categorie']; ?>">
+                        <h3 class="category-item">
+                            <?php echo $categorie['nom_categorie']; ?>
+                        </h3>
+                    </a>
                 <?php endforeach; ?>
             </ul>
 

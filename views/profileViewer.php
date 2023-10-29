@@ -44,21 +44,8 @@ $is_moderator = $user_data['is_moderator'];
 
 <?php include('message_ESI.php'); ?>
 
-<header class="header">
-    <div class="left-header">
-        <button id="searchBtn" class="search-btn">🔍</button>
-        <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
-    </div>
-    <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
+<?php include('header.php'); ?>
 
-    <div class="user-icon">
-        <i class="fas fa-user-circle"></i>
-        <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
-                class="post-pp post-pp-hover"></a>
-        <?php echo $user; ?>
-        </a>
-    </div>
-</header>
 
 <body>
     <main>
@@ -79,8 +66,8 @@ $is_moderator = $user_data['is_moderator'];
             <div class="profile-posts">
                 <!-- Affichage des publications de l'utilisateur -->
                 <h2>Publications récentes</h2>
-                <div class="post">
-                    <?php foreach ($posts as $post): ?>
+                <?php foreach ($posts as $post): ?>
+                    <a href="post.php?id=<?php echo $post['id_post']; ?>">
                         <div class="post">
                             <div class="post-header">
                                 <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur"
@@ -142,8 +129,8 @@ $is_moderator = $user_data['is_moderator'];
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                </div>
+                    </a>
+                <?php endforeach; ?>
             </div>
         </section>
     </main>

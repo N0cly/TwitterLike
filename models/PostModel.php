@@ -49,6 +49,29 @@ class PostModel
         return $result;
     }
 
+    public function getPostsByCategory($categorie, $user)
+    {
+        $query = "SELECT Post.*, 
+                  (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, 
+                  (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, 
+                  Users.pp AS user_pp 
+                  FROM Post 
+                  LEFT JOIN Users ON Post.user = Users.username 
+                  WHERE categorie = :categorie 
+                  AND id_pere IS NULL 
+                  ORDER BY Time DESC";
+
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR); // J'ai changé PDO::PARAM_INT en PDO::PARAM_STR car la catégorie est généralement une chaîne de caractères
+        $stmt->bindParam(':user', $user, PDO::PARAM_STR); // Assurez-vous de lier :user si vous l'utilisez dans la requête
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
+    }
+
+
 
     public function getPostLikes($id_post)
     {

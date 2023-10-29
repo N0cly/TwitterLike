@@ -15,12 +15,4 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.style.display = "none";
         }
     });
-
-    effacerContenuBtn.addEventListener("click", () => {
-        contenuTextarea.value = "";
-    });
-
-    effacerImageBtn.addEventListener("click", () => {
-        imageInput.value = "";
-    });
 });

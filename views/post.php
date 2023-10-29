@@ -57,23 +57,10 @@ $is_moderator = $user_data['is_moderator'];
 
     <?php include('message_ESI.php'); ?>
 
-    <header class="header">
-        <div class="left-header">
-            <button id="searchBtn" class="search-btn">🔍</button>
-            <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
-        </div>
-        <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
 
-        <div class="user-icon">
-            <i class="fas fa-user-circle"></i>
-            <a href="profil.php" class="username-link">
-                <img src="../<?php echo $user_data['pp']; ?>" alt="Profil" class="post-pp post-pp-hover">
-                <span class="username-link">
-                    <?php echo $user ?>
-                </span>
-            </a>
-        </div>
-    </header>
+
+    <?php include('header.php'); ?>
+
 
     <main class="main-content">
 
