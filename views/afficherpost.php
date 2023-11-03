@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../css/afficherpost.css">
+
 <?php
 // Partie commentée pour afficher les messages
 foreach ($posts as $post): ?>

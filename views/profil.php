@@ -5,13 +5,10 @@ $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'err_user';
 if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !== true || !isset($_SESSION['utilisateur_connecte'])) {
     header("Location: ../");
 }
-// Après que l'utilisateur se soit connecté avec succès
 
 require_once('../ctrl/UserController.php');
 $userCtrl = new UserController();
 $user_data = $userCtrl->getUser($user);
-
-//     Partie commentée pour récupérer les messages
 
 require_once('../ctrl/PostController.php');
 $postCtrl = new PostController();
@@ -28,8 +25,6 @@ $is_moderator = $user_data['is_moderator'];
 <head>
     <meta charset="UTF-8">
     <title>Nexa - Réseau Social</title>
-    <link rel="stylesheet" href="../css/style_dash.css">
-    <link rel="stylesheet1" href="../css/user-preview.css">
     <link href="../css/profil.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">
@@ -46,30 +41,29 @@ $is_moderator = $user_data['is_moderator'];
 
 
 <body>
-    <main>
-        <!-- Contenu principal de la page -->
-        <section class="profile">
-            <div class="profile-info">
-                <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
-                <h1>
-                    <?php echo $user; ?>
-                </h1>
-                <?php if ($is_moderator == 1): ?>
-                    <h4>Modérateur</h4>
-                <?php endif; ?>
-                <p>
-                    <?php echo $user_data['description']; ?>
-                </p>
-                <a href="modifier_profil.php">Modifier le profil</a>
-            </div>
-            <div class="profile-posts">
-                <!-- Affichage des publications de l'utilisateur -->
-                <h2>Publications récentes</h2>
+<main>
+    <section class="profil">
+        <div class="profil-info">
+            <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
+            <h1>
+                <?php echo $user; ?>
+            </h1>
+            <?php if ($is_moderator == 1): ?>
+                <h4>Modérateur</h4>
+            <?php endif; ?>
+            <p>
+                <?php echo $user_data['description']; ?>
+            </p>
+            <a href="modifier_profil.php">Modifier le profil</a>
+        </div>
+        <div class="profil-posts">
+            <!-- Affichage des publications de l'utilisateur -->
+            <h2>Publications récentes</h2>
 
-                <?php include('afficherpost.php'); ?>
-            </div>
-        </section>
-    </main>
+            <?php include('afficherpost.php'); ?>
+        </div>
+    </section>
+</main>
 </body>
 
 </html>

@@ -40,8 +40,7 @@ $is_moderator = $user_data['is_moderator'];
 <head>
     <meta charset="UTF-8">
     <title>Nexa - Réseau Social</title>
-    <link rel="stylesheet" href="../css/style_dash.css">
-    <link rel="stylesheet1" href="../css/user-preview.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">

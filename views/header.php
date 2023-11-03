@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="../css/header.css">
+
+
 <header class="header">
     <div class="left-header">
         <form id="searchForm" class="search-form">
