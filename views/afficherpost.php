@@ -32,7 +32,7 @@ foreach ($posts as $post): ?>
                 <?php echo $post['partage']; ?>
             </button>
             <?php if ($is_moderator == 1): ?>
-                <button class="post-action delete" data-id_post="<?php echo $post['id_post']; ?>">🗑</button>
+                <a class="post-action delete" href="supprimerPost.php?id=<?php echo $post['id_post']; ?>">🗑</a>
             <?php endif; ?>
         </div>
         <div class="comments-container" id="comments<?php echo $post['id_post']; ?>" style="display:none;">
