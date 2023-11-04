@@ -20,6 +20,9 @@ foreach ($posts as $post): ?>
     <?php if (!empty($post['image'])): ?>
         <img src="../<?php echo $post['image']; ?>" alt="Photo de profil" class="post-image" />
     <?php endif; ?>
+    <p class="post-date">
+        <?php echo $post['Time']; ?>
+    </p>
     <div class="post-actions">
         <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️
             <?php echo $post['LikeCount']; ?>
@@ -29,9 +32,10 @@ foreach ($posts as $post): ?>
             <?php echo $post['partage']; ?>
         </button>
         <?php if ($is_moderator == 1): ?>
-            <button class="post-action delete" data-id_post="<?php echo $post['id_post']; ?>">🗑</button>
+            <a class="post-action delete" href="supprimerPost.php?id=<?php echo $post['id_post']; ?>">🗑</a>
         <?php endif; ?>
     </div>
+
     <div id="commentModal<?php echo $post['id_post']; ?>" class="modal">
         <div class="modal-content">
             <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">

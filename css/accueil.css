@@ -6,8 +6,6 @@
     -ms-scrollbar-shadow-color: #003c57;
 }
 
-
-
 .button {
     background-color: #3498db;
     color: #fff;
@@ -32,11 +30,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Roboto', sans-serif;
+    background-color: #545454;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
+    background-size: 300% 300%;
+    animation: color 8s ease-in-out infinite;
 }
 
-h2 {
-    font-weight: 700;
-}
 
 .register{
     display: none;
@@ -64,23 +66,6 @@ form h3{
     color: #ffffff;
     font-weight: bolder;
     font-size: 225%;
-}
-
-.contentExplainForm{
-    color: #ffffff;
-    margin-bottom: 4vh;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #545454;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
-    background-size: 300% 300%;
-    animation: color 8s ease-in-out infinite;
 }
 
 @keyframes color {
@@ -118,13 +103,6 @@ body {
     max-width: 12vw;
     transform: translateX(-5px);
 }
-
-h2 {
-    font-weight: 700;
-    color: #333;
-}
-
-
 
 .choice-form__button{
 
@@ -191,14 +169,6 @@ label {
     width: 17vw;
 }
 
-.checkpswd {
-    position: absolute;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    cursor:pointer;
-    vertical-align: middle;
-}
 
 .field-pswd, .field-email {
     display: flex;
@@ -216,25 +186,6 @@ label {
     text-align: center;
 }
 
-
-/*.textfield{*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    border-radius: 15px;*/
-/*    padding: 1em;*/
-/*    background-color: #ccc;*/
-/*    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);*/
-/*    transition: 300ms ease-in-out;*/
-/*}*/
-
-/*.textfield:focus{*/
-/*    background-color: white;*/
-/*    transform: scale(1.05);*/
-/*    box-shadow: 3px 3px 50px #969696,*/
-/*    -3px -3px 50px #ffffff;*/
-/*}*/
-
-/* The switch - the box around the slider */
 .switch {
     /* Variables */
     --switch_width: 2em;
@@ -251,14 +202,12 @@ label {
     height: var(--switch_height);
 }
 
-/* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .slider {
     box-sizing: border-box;
     border: 2px solid var(--outline_color);
@@ -307,12 +256,10 @@ input:checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
 }
 
-/* Raise thumb when hovered & checked */
 input:hover:checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.3em);
     box-shadow: 0 0.3em 0 var(--outline_color);
 }
-
 
 @media screen and (min-width: 767px) and (max-width: 1023px){
     .accueil{
@@ -338,15 +285,6 @@ input:hover:checked + .slider:before {
         position: relative;
     }
 
-    .checkpswd {
-        position: absolute;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        cursor:pointer;
-        vertical-align: middle;
-    }
-
     .forgotPwd{
         color: #dcdcdc;
         text-decoration: none;
@@ -369,11 +307,6 @@ input:hover:checked + .slider:before {
 
     .logo-nexa {
         max-width: 100px;
-    }
-
-    h2 {
-        font-weight: 700;
-        color: #333;
     }
 
     .choice-form__button{
@@ -425,15 +358,6 @@ input:hover:checked + .slider:before {
         position: relative;
     }
 
-    .checkpswd {
-        position: absolute;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        cursor:pointer;
-        vertical-align: middle;
-    }
-
     .forgotPwd{
         color: #dcdcdc;
         text-decoration: none;
@@ -457,11 +381,6 @@ input:hover:checked + .slider:before {
 
     .logo-nexa {
         max-width: 100px;
-    }
-
-    h2 {
-        font-weight: 700;
-        color: #333;
     }
 
     .choice-form__button{
@@ -489,4 +408,3 @@ input:hover:checked + .slider:before {
         backdrop-filter: blur(50px);
     }
 }
-

@@ -58,6 +58,23 @@ class PostController
             $postModel->createPost($user, $content, $image, $categorie);
         }
     }
+    public function supprimerPost()
+    {
+
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $reponse = $_POST["choix"];
+            session_start();
+            $id_post = $_SESSION['post_id'];
+            $postModel = new PostModel();
+            $post = $postModel->supprimerPost($id_post, $reponse);
+
+            return $post;
+
+        }
+    }
+
+
+
 
     public function sendComment()
     {

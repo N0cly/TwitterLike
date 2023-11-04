@@ -43,28 +43,34 @@ $is_moderator = $user_data['is_moderator'];
 
 
 <body>
-<main>
-    <section class="profile">
-        <div class="profile-info">
-            <img src="../<?php echo $userViwed_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
-            <h1>
-                <?php echo $userViewed; ?>
-            </h1>
-            <?php if ($userViwed_data['is_moderator'] == 1): ?>
-                <h4>Modérateur</h4>
-            <?php endif; ?>
-            <p>
-                <?php echo $userViwed_data['description']; ?>
-            </p>
-        </div>
-        <div class="profile-posts">
-            <!-- Affichage des publications de l'utilisateur -->
-            <h2>Publications récentes</h2>
+    <main>
+        <section class="profile">
+            <div class="profile-info">
+                <img src="../<?php echo $userViwed_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
+                <h1>
+                    <?php echo $userViewed; ?>
+                </h1>
+                <?php if ($userViwed_data['is_moderator'] == 1): ?>
+                    <h4>Modérateur</h4>
+                <?php endif; ?>
 
-            <?php include('afficherpost.php'); ?>
-        </div>
-    </section>
-</main>
+                <p>
+                    Dernière connexion :
+                    <?php echo $user_data['last_connexion']; ?>
+                </p>
+
+                <p>
+                    <?php echo $userViwed_data['description']; ?>
+                </p>
+            </div>
+            <div class="profile-posts">
+                <!-- Affichage des publications de l'utilisateur -->
+                <h2>Publications récentes</h2>
+
+                <?php include('afficherpost.php'); ?>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
