@@ -49,6 +49,7 @@ class CategorieController
 
     public function getLibelleCategorie($categorie)
     {
+
         $categorieModel = new CategorieModel();
         $libelle = $categorieModel->getLibelleCategorie($categorie); // Remplacez par la méthode appropriée pour obtenir les publications
 
