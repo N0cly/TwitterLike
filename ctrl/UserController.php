@@ -48,7 +48,18 @@ class UserController
             $userModel->isModerator($email);
 
         }
+    } // Ajoutez cette fonction à votre UserController
+    public function logout()
+    {
+        if (isset($_POST['logout'])) {
+            // Détruisez la session et redirigez vers la page de connexion ou toute autre destination souhaitée.
+            session_start();
+            session_destroy();
+            header('Location: ../');
+            exit;
+        }
     }
+
 
     public function forgotPwd()
     {

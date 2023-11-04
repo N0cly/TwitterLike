@@ -139,11 +139,6 @@ class UserModel
             $uniqid = uniqid(true);
             $codeInscription = strtoupper(substr($uniqid, -5));
 
-            // Si l'email n'existe pas, insérez les données dans la base de données
-//            $query = "INSERT INTO users (codeInscription) VALUES (:codeInscription);";
-//            $stmt = $this->connectDB()->prepare($query);
-//            $stmt->bindParam(':codeInscription', $codeInscription, PDO::PARAM_STR);
-
             if (isset($codeInscription)) {
                 // Envoi de l'e-mail avec le code de réinitialisation
                 require 'vendor/autoload.php';
@@ -331,6 +326,8 @@ class UserModel
 
     public function checkCodeVerif($email, $code)
     {
+        session_start();
+        include('message_ESI.php');
 
         $query = "SELECT codeMDPOublie FROM users WHERE (email = :email )";
         $stmt = $this->connectDB()->prepare($query);
@@ -341,18 +338,15 @@ class UserModel
 
         if ($row) {
             $codeBD = $row['codeMDPOublie'];
-            if ($codeBD == $code) {
+            if ($codeBD === strtoupper($code)) {
                 $_SESSION['codeCheck'] = true;
 
                 header('Location: ../views/ChangementMDP.php');
                 exit();
             } else {
 
-                //$this->connectDB()->close();
-
-                session_start();
                 $_SESSION["error_message"] = "Code vérif erroné !";
-                header('Location: codeVerif.php');
+                header('Location: ../views/codeVerif.php');
                 exit;
             }
 
@@ -361,13 +355,6 @@ class UserModel
 
     public function checkCodeVerifInscription($email, $password, $username, $code)
     {
-
-//        $query = "SELECT codeInscription FROM users WHERE (codeInscription = :code )";
-//        $stmt = $this->connectDB()->prepare($query);
-//        $stmt->bindParam(':code', $code, PDO::PARAM_STR);
-//        $stmt->execute();
-//
-//        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $pp = 'Images/pdp/Default.png';
 
         if ($_SESSION["codeInscription"] == strtoupper($code)) {
@@ -454,44 +441,36 @@ class UserModel
         return $user_data;
     }
 
-    public function ChangeUserInfo()
+
+    public function ChangeUserInfo($newPP, $newDesc, $user, )
     {
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER["REQUEST_METHOD"] == "POST") {
-            session_start();
-            $newDesc = $_POST["newDesc"];
-            $user = $_SESSION["username"];
+        if (isset($_FILES['newPP']) && $_FILES['newPP']['error'] == 0) {
+            $uploadDir = 'Images/pdp/';
 
-            if (isset($_FILES['newPP']) && $_FILES['newPP']['error'] == 0) {
-                $uploadDir = 'Images/pdp/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
 
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
+            $imageFileName = uniqid() . '_' . basename($_FILES['newPP']['name']);
+            $ppPath = $uploadDir . $imageFileName;
 
-                $imageFileName = uniqid() . '_' . basename($_FILES['newPP']['name']);
-                $ppPath = $uploadDir . $imageFileName;
-
-                if (move_uploaded_file($_FILES['newPP']['tmp_name'], $ppPath)) {
-                    $query = "UPDATE users SET pp = :newPP, description = :newDesc WHERE username = :user";
-                    $stmt = $this->connectDB()->prepare($query);
-                    $stmt->bindParam(':newPP', $ppPath, PDO::PARAM_STR);
-                    $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
-                    $stmt->bindParam(':user', $user, PDO::PARAM_STR);
-                    $stmt->execute();
-                }
-            } else {
-                $query = "UPDATE users SET description = :newDesc WHERE username = :user";
+            if (move_uploaded_file($_FILES['newPP']['tmp_name'], $ppPath)) {
+                $query = "UPDATE users SET pp = :newPP, description = :newDesc WHERE username = :user";
                 $stmt = $this->connectDB()->prepare($query);
+                $stmt->bindParam(':newPP', $ppPath, PDO::PARAM_STR);
                 $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
                 $stmt->bindParam(':user', $user, PDO::PARAM_STR);
                 $stmt->execute();
             }
-
-            header("Location: ../views/profil.php");
+        } else {
+            $query = "UPDATE users SET description = :newDesc WHERE username = :user";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':newDesc', $newDesc, PDO::PARAM_STR);
+            $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+            $stmt->execute();
         }
+
+        header("Location: ../views/profil.php");
     }
-
-
-
 
 }

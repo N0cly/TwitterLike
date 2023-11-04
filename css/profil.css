@@ -1,79 +1,71 @@
-/* Style de base pour la page */
-body {
-    font-family: 'Roboto', sans-serif;    margin: 0;
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
     padding: 0;
-}
-
-header {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+    box-sizing: border-box;
 }
 
 
-main {
+.profil-body a {
+    text-decoration: none; /* Pour supprimer le soulignement */
+    color: #000; /* Choisir la couleur du texte que vous souhaitez */
+}
+
+
+.profil-body main {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Style de la section de profil */
-.profile {
+.profil-body .profil {
     display: flex;
     justify-content: space-between;
 }
 
-.profile-info {
+
+.profil-body .profil-info {
     flex: 1;
     text-align: center;
 }
 
-.pp{
-    max-height: 20vh;
-}
-
-.profile-info img {
+.profil-body .profil-info img {
     max-width: 300px;
     border-radius: 50%;
 }
 
-.profile-info h1 {
-    font-size: 24px;
+.profil-body .profil-info h1 {
+    font-size: 32px;
     margin: 10px 0;
 }
 
-.profile-info p {
+.profil-body .profil-info p {
     font-size: 16px;
     margin: 10px 0;
 }
 
-.profile-info a {
+.profil-body .profil-info a {
     text-decoration: none;
     color: #3498db;
 }
 
-.profile-posts {
+.profil-body .pp{
+    max-height: 20vh;
+}
+
+.profil-body .profil-posts {
     flex: 2;
 }
 
-/* Style pour les publications de l'utilisateur */
-.profile-posts h2 {
+.profil-body .profil-posts h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.post {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 20px;
-}
 
-.post img {
-    max-width: 100%;
-    height: auto;
-}
 
-.post p {
-    font-size: 16px;
-}
+
+
+
+
+

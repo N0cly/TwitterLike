@@ -13,12 +13,12 @@ $email = $_SESSION["email"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Confirmation inscription">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="../css/accueil.css" rel="stylesheet" type="text/css">
+    <link href="../css/codeVerifInscription.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Confirmation inscription</title>
 </head>
 
-<body>
+<body class="codeVerifInscription-body">
 
     <?php include('message_ESI.php'); ?>
 

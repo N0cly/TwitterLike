@@ -6,7 +6,9 @@
     -ms-scrollbar-shadow-color: #003c57;
 }
 
-.accueil-body .button {
+
+
+.codeVerif-body .button {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -17,13 +19,12 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.accueil-body .button:hover {
+.codeVerif-body .button:hover {
     background-color: #2980b9;
     transform: scale(1.1);
 }
 
-.accueil-body {
-    /*overflow: hidden;*/
+.codeVerif-body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -39,16 +40,11 @@
     animation: color 8s ease-in-out infinite;
 }
 
-
-.accueil-body .register{
-    display: none;
-}
-
 ::-webkit-scrollbar{
     display: none;
 }
 
-.accueil-body .accueil{
+.codeVerif-body .accueil{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,16 +52,19 @@
     gap: 4rem;
     width: 100%;
     padding:  2rem 0;
-
 }
 
-
-.accueil-body form h3{
+.codeVerif-body form h3{
     text-align: center;
     padding: 2%;
     color: #ffffff;
     font-weight: bolder;
     font-size: 225%;
+}
+
+.codeVerif-body .contentExplainForm{
+    color: #ffffff;
+    margin-bottom: 4vh;
 }
 
 @keyframes color {
@@ -81,15 +80,7 @@
 
 }
 
-.accueil-body .container-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px;
-    margin-top: 5vh;
-}
-
-.accueil-body .head {
+.codeVerif-body .head {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,43 +90,12 @@
     margin-bottom: 20px;
 }
 
-.accueil-body .logo-nexa {
+.codeVerif-body .logo-nexa {
     max-width: 12vw;
     transform: translateX(-5px);
 }
 
-.accueil-body .choice-form__button{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.06);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-    border: 1.5px solid rgba(255, 255, 255, 0.06);
-    border-radius: 8px;
-    margin-top: 35px;
-}
-
-.accueil-body .choice-form__button button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    font-weight: 700;
-    backdrop-filter: blur(50px);
-}
-
-.accueil-body .choice-form__button button:hover {
-    background-color: #2980b9;
-}
-
-.accueil-body .accueil form {
+.codeVerif-body .accueil form {
     background-color: rgba(255, 255, 255, 0.06);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
@@ -147,7 +107,7 @@
 
 }
 
-.accueil-body .field {
+.codeVerif-body .field {
     margin-bottom: 1vh;
     display: flex;
     flex-direction: column;
@@ -156,12 +116,12 @@
 
 }
 
-.accueil-body label {
+.codeVerif-body label {
     color: #dcdcdc;
     font-size: 100%;
 }
 
-.accueil-body .field input {
+.codeVerif-body .field input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -170,24 +130,17 @@
 }
 
 
-.accueil-body .field-pswd, .field-email {
+.codeVerif-body .field-email {
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.accueil-body .forgotPwd{
-
-    color: #dcdcdc;
-    text-decoration: none;
-}
-
-.accueil-body .inscription-connexion-button-container {
+.codeVerif-body .inscription-connexion-button-container {
     text-align: center;
 }
 
-.accueil-body .switch {
-    /* Variables */
+.codeVerif-body .switch {
     --switch_width: 2em;
     --switch_height: 1em;
     --thumb_color: #e8e8e8;
@@ -202,13 +155,13 @@
     height: var(--switch_height);
 }
 
-.accueil-body .switch input {
+.codeVerif-body .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.accueil-body .slider {
+.codeVerif-body .slider {
     box-sizing: border-box;
     border: 2px solid var(--outline_color);
     position: absolute;
@@ -222,7 +175,7 @@
     border-radius: var(--switch_height);
 }
 
-.accueil-body .slider:before {
+.codeVerif-body .slider:before {
     box-sizing: border-box;
     position: absolute;
     content: "";
@@ -238,152 +191,101 @@
     transition: .15s;
 }
 
-.accueil-body input:checked + .slider {
+.codeVerif-body input:checked + .slider {
     background-color: var(--track_active_color);
 }
 
-.accueil-body input:focus-visible + .slider {
+.codeVerif-body input:focus-visible + .slider {
     box-shadow: 0 0 0 2px var(--track_active_color);
 }
 
-/* Raise thumb when hovered */
-.accueil-body input:hover + .slider:before {
+.codeVerif-body input:hover + .slider:before {
     transform: translateY(-0.3em);
     box-shadow: 0 0.3em 0 var(--outline_color);
 }
 
-.accueil-body input:checked + .slider:before {
+.codeVerif-body input:checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
 }
 
-.accueil-body input:hover:checked + .slider:before {
+.codeVerif-body input:hover:checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.3em);
     box-shadow: 0 0.3em 0 var(--outline_color);
 }
 
 @media screen and (min-width: 767px) and (max-width: 1023px){
-    .accueil-body .accueil{
+    .codeVerif-body .accueil{
         width: 100%;
         padding:  2rem 0;
     }
 
-    .accueil-body .field input {
+    .codeVerif-body .field input {
         width: 100%;
     }
 
-    .accueil-body .choice-form__button button {
-        width: 100%;
-    }
-
-    .accueil-body .field {
+    .codeVerif-body .field {
         margin-bottom: 8%;
     }
 
-    .accueil-body .field-pswd, .field-email {
+    .codeVerif-body .field-email {
         display: flex;
         align-items: center;
         position: relative;
     }
 
-    .accueil-body .forgotPwd{
-        color: #dcdcdc;
-        text-decoration: none;
-    }
-
-    .accueil-body .inscription-connexion-button-container {
+    .codeVerif-body .inscription-connexion-button-container {
         text-align: center;
     }
 
-    .accueil-body .container-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .accueil-body .head {
+    .codeVerif-body .head {
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .accueil-body .logo-nexa {
+    .codeVerif-body .logo-nexa {
         max-width: 100px;
     }
 
-    .accueil-body .choice-form__button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.06);
-        -webkit-backdrop-filter: blur(15px);
-        backdrop-filter: blur(15px);
-        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        border: 1.5px solid rgba(255, 255, 255, 0.06);
-        border-radius: 8px;
-    }
-
-    .accueil-body .choice-form__button button {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-        font-weight: 700;
-        backdrop-filter: blur(50px);
-    }
 }
 @media screen and (max-width: 767px){
-    .accueil-body .accueil{
+    .codeVerif-body .accueil{
         width: 100%;
         padding:  2rem 0;
     }
 
-    .accueil-body .field input {
+    .codeVerif-body .field input {
         width: 100%;
     }
 
-    .accueil-body .choice-form__button button {
-        width: 100%;
-    }
-
-    .accueil-body .field {
+    .codeVerif-body .field {
         margin-bottom: 8%;
     }
 
-    .accueil-body .field-pswd, .field-email {
+    .codeVerif-body .field-email {
         display: flex;
         align-items: center;
         position: relative;
     }
 
-    .accueil-body .forgotPwd{
-        color: #dcdcdc;
-        text-decoration: none;
-    }
-
-    .accueil-body .inscription-connexion-button-container {
+    .codeVerif-body .inscription-connexion-button-container {
         text-align: center;
     }
 
-    .accueil-body .container-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 12px;
-    }
-
-    .accueil-body .head {
+    .codeVerif-body .head {
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .accueil-body .logo-nexa {
+    .codeVerif-body .logo-nexa {
         max-width: 100px;
     }
 
-    .accueil-body .choice-form__button{
+    h2 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .codeVerif-body .choice-form__button{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -396,7 +298,7 @@
         border-radius: 8px;
     }
 
-    .accueil-body .choice-form__button button {
+    .codeVerif-body .choice-form__button button {
         background-color: #3498db;
         color: #fff;
         border: none;
@@ -408,3 +310,4 @@
         backdrop-filter: blur(50px);
     }
 }
+

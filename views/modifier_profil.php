@@ -28,8 +28,6 @@ $is_moderator = $user_data['is_moderator'];
 <head>
     <meta charset="UTF-8">
     <title>Modifier le Profil - Nexa</title>
-    <link rel="stylesheet" href="../css/style_dash.css">
-    <link rel="stylesheet" href="../css/profil.css">
     <link href="../css/modifier_profil.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">
@@ -38,25 +36,9 @@ $is_moderator = $user_data['is_moderator'];
     <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
 </head>
 
-<body>
-    <header class="header">
-        <div class="left-header">
-            <button id="searchBtn" class="search-btn">🔍</button>
-            <input type="text" id="searchInput" class="search-input" placeholder="Recherche...">
-        </div>
-        <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
+<body class="modif-profil">
 
-        <div class="user-icon">
-            <i class="fas fa-user-circle"></i>
-            <a href="profil.php" class="username-link"><img src="../<?php echo $user_data['pp']; ?>" alt="Profil"
-                    class="post-pp post-pp-hover"></a>
-            <?php if ($is_moderator): ?>
-                <img src="../Images/icon/modo.png" alt="Modérateur" class="moderator-icon" />
-            <?php endif; ?>
-            <?php echo $user; ?>
-            </a>
-        </div>
-    </header>
+    <?php include('header.php'); ?>
 
 
     <main>

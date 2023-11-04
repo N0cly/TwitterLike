@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Réinitialisation mot de passe">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="../css/accueil.css" rel="stylesheet" type="text/css">
+    <link href="../css/forgotPwd.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Mot de passe oublié</title>
 </head>
 
-<body>
+<body class="forgotPwd-body">
 
 <?php include('message_ESI.php'); ?>
 

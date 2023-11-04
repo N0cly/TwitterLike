@@ -2,7 +2,7 @@
 session_start();
 $email = $_SESSION["email"];
 
-if (!isset($_SESSION['codeSend'] )){
+if (!isset($_SESSION['codeSend'])) {
     header("Location: ../");
 }
 
@@ -16,14 +16,16 @@ if (!isset($_SESSION['codeSend'] )){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Réinitialisation mot de passe">
     <meta name="author" content="Henricy Limosani Safran Amettler Zoppi Bedos">
-    <link href="../css/accueil.css" rel="stylesheet" type="text/css">
+    <link href="../css/codeVerif.css" rel="stylesheet" type="text/css">
     <link rel="icon" href="Images/Logos/Logo_Nexa-smaller.png">
     <title>Mot de passe oublié</title>
+    <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
+
 </head>
 
-<body>
+<body class="codeVerif-body">
 
-<?php include('message_ESI.php'); ?>
+    <?php include('message_ESI.php'); ?>
 
     <section class="main">
         <section class="accueil form">
