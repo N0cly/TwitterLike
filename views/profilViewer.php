@@ -42,7 +42,7 @@ $is_moderator = $user_data['is_moderator'];
 <?php include('header.php'); ?>
 
 
-<body>
+<body class="profilViewer-body">
 <main>
     <section class="profile">
         <div class="profile-info">

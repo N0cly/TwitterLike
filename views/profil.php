@@ -34,13 +34,15 @@ $is_moderator = $user_data['is_moderator'];
     <title>Nexa</title>
 </head>
 
+
+
+
+<body class="profil-body">
+
 <?php include('message_ESI.php'); ?>
 
 
 <?php include('header.php'); ?>
-
-
-<body>
 <main>
     <section class="profil">
         <div class="profil-info">

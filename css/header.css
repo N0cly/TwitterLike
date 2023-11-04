@@ -1,4 +1,4 @@
-.header {
+.header-body {
     background-color: #00aaff;
     color: white;
     padding: 1em;
@@ -8,24 +8,24 @@
     width: 100%;
 }
 
-.left-header {
+.header-body .left-header {
     display: flex;
     align-items: center;
 }
 
-.logo-img {
+.header-body .logo-img {
     width: 10em;
     background-color: white;
     padding: 0.3em;
     text-align: center;
 }
 
-.search-btn,
-.search-input {
+.header-body .search-btn,
+.header-body .search-input {
     margin-left: 0.6em;
 }
 
-.search-btn {
+.header-body .search-btn {
     background: none;
     border: none;
     color: white;
@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 
-.search-input {
+.header-body .search-input {
     width: 6em;
     height: 2em;
     border: none;
@@ -45,18 +45,18 @@
     outline: none;
 }
 
-.search-input:hover {
+.header-body .search-input:hover {
     width: 12em;
     background: rgba(255, 255, 255, 0.5);
 }
 
-.user-icon {
+.header-body .user-icon {
     font-size: 1.5em;
     display: flex;
     align-items: center;
 }
 
-.username-link {
+.header-body .username-link {
     display: flex;
     align-items: center;
     color: white;
@@ -64,7 +64,7 @@
     margin-left: 0.6em;
 }
 
-.button {
+.header-body .button {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -75,12 +75,12 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.button:hover {
+.header-body .button:hover {
     background-color: #2980b9;
     transform: scale(1.1);
 }
 
-.post-pp {
+.header-body .post-pp {
     width: 3em;
     height: 3em;
     border-radius: 50%;

@@ -19,7 +19,7 @@ if (!isset($_SESSION['codeCheck'])) {
     <title>Changement de mot de passe</title>
 </head>
 
-<body>
+<body class="ChangementMDP-body">
 
     <?php include('message_ESI.php'); ?>
 

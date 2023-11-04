@@ -17,7 +17,7 @@ session_start();
     <title>Nexa</title>
 </head>
 
-<body>
+<body class="accueil-body">
     <section class="main">
 
         <?php include('message_ESI.php'); ?>

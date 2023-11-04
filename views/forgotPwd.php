@@ -11,7 +11,7 @@
     <title>Mot de passe oublié</title>
 </head>
 
-<body>
+<body class="forgotPwd-body">
 
 <?php include('message_ESI.php'); ?>
 

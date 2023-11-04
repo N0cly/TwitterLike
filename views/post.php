@@ -52,7 +52,7 @@ $is_moderator = $user_data['is_moderator'];
     <title>Nexa</title>
 </head>
 
-<body>
+<body class="post-body">
 
     <?php include('message_ESI.php'); ?>
 

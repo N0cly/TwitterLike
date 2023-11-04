@@ -23,7 +23,7 @@ if (!isset($_SESSION['codeSend'])) {
 
 </head>
 
-<body>
+<body class="codeVerif-body">
 
     <?php include('message_ESI.php'); ?>
 

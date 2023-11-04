@@ -49,7 +49,7 @@ $is_moderator = $user_data['is_moderator'];
     <title>Nexa</title>
 </head>
 
-<body>
+<body class="dashboard-body">
 
     <?php include('message_ESI.php'); ?>
 
@@ -64,7 +64,7 @@ $is_moderator = $user_data['is_moderator'];
                         placeholder="Nouvelle catégorie" required>
                     <input type="text" name="libelle" id="newLibelle" class="category-input"
                         placeholder="Libellé de la catégorie" required>
-                    <button type="submit" class="category-button">Ajouter</button>
+                    <button type="submit" class="category-button dashboard-button">Ajouter</button>
                 </form>
             <?php endif; ?>
             <h2 class="section-title">Catégories</h2>
@@ -84,14 +84,14 @@ $is_moderator = $user_data['is_moderator'];
                 <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
                     <input type="text" name="nom_categorie" id="newCategory" class="category-input"
                         placeholder="Catégorie à supprimer" required>
-                    <button type="submit" class="category-button">Supprimer</button>
+                    <button type="submit" class="category-button dashboard-button">Supprimer</button>
                 </form>
             <?php endif; ?>
         </section>
 
 
         <section class="right-panel">
-            <button id="ouvrirPublication" class="button">Nouvelle publication</button>
+            <button id="ouvrirPublication" class="dashboard-button ">Nouvelle publication</button>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <form action="../Post/sendPost" method="post" enctype="multipart/form-data">

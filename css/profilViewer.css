@@ -5,30 +5,30 @@
     box-sizing: border-box;
 }
 
-main {
+.profilViewer-body main {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-a {
+.profilViewer-body a {
     text-decoration: none; /* Pour supprimer le soulignement */
     color: #000; /* Choisir la couleur du texte que vous souhaitez */
 }
 
 
-.main-content {
+.profilViewer-body .main-content {
     display: flex;
     justify-content: space-between;
     height: calc(100vh - 3.7em);
 }
 
-body {
+.profilViewer-body {
     font-family: 'Roboto', sans-serif;    margin: 0;
     padding: 0;
 }
 
-header {
+.profilViewer-body header {
     background-color: #3498db;
     color: #fff;
     padding: 10px;
@@ -37,61 +37,61 @@ header {
 
 
 
-.profile {
+.profilViewer-body .profile {
     display: flex;
     justify-content: space-between;
 }
 
-.profile-info {
+.profilViewer-body .profile-info {
     flex: 1;
     text-align: center;
 }
 
-.pp{
+.profilViewer-body .pp{
     max-height: 20vh;
 }
 
-.profile-info img {
+.profilViewer-body .profile-info img {
     max-width: 300px;
     border-radius: 50%;
 }
 
-.profile-info h1 {
+.profilViewer-body .profile-info h1 {
     font-size: 32px;
     margin: 10px 0;
 }
 
-.profile-info p {
+.profilViewer-body .profile-info p {
     font-size: 16px;
     margin: 10px 0;
 }
 
-.profile-info a {
+.profilViewer-body .profile-info a {
     text-decoration: none;
     color: #3498db;
 }
 
-.profile-posts {
+.profilViewer-body .profile-posts {
     flex: 2;
 }
 
-.profile-posts h2 {
+.profilViewer-body .profile-posts h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.post {
+.profilViewer-body .post {
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.post img {
+.profilViewer-body .post img {
     max-width: 100%;
     height: auto;
 }
 
-.post p {
+.profilViewer-body .post p {
     font-size: 16px;
 }
 

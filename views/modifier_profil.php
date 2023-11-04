@@ -36,7 +36,7 @@ $is_moderator = $user_data['is_moderator'];
     <link rel="icon" href="../Images/Logos/Logo_Nexa-smaller.png">
 </head>
 
-<body>
+<body class="modif-profil">
 
     <?php include('header.php'); ?>
 

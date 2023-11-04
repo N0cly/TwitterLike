@@ -2,13 +2,12 @@
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    /*overflow: hidden;*/
     -ms-scrollbar-shadow-color: #003c57;
 }
 
 
 
-.button {
+.codeVerifInscription-body .button {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -19,12 +18,12 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-.button:hover {
+.codeVerifInscription-body .button:hover {
     background-color: #2980b9;
     transform: scale(1.1);
 }
 
-body {
+.codeVerifInscription-bod {
     /*overflow: hidden;*/
     overflow-x: hidden;
     margin: 0;
@@ -32,21 +31,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-h2 {
-    font-weight: 700;
-}
-
-.register{
-    display: none;
+    font-family: 'Roboto', sans-serif;
+    background-color: #545454;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
+    background-size: 300% 300%;
+    animation: color 8s ease-in-out infinite;
 }
 
 ::-webkit-scrollbar{
     display: none;
 }
 
-.accueil{
+.codeVerifInscription-body .accueil{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +56,7 @@ h2 {
 }
 
 
-form h3{
+.codeVerifInscription-bod form h3{
     text-align: center;
     padding: 2%;
     color: #ffffff;
@@ -66,21 +64,9 @@ form h3{
     font-size: 225%;
 }
 
-.contentExplainForm{
+.codeVerifInscription-body .contentExplainForm{
     color: #ffffff;
     margin-bottom: 4vh;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #545454;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(0deg,#003c57,#007198,#007198,#003c57);
-    background-size: 300% 300%;
-    animation: color 8s ease-in-out infinite;
 }
 
 @keyframes color {
@@ -96,15 +82,7 @@ body {
 
 }
 
-.container-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px;
-    margin-top: 5vh;
-}
-
-.head {
+.codeVerifInscription-body .head {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,62 +92,24 @@ body {
     margin-bottom: 20px;
 }
 
-.logo-nexa {
+.codeVerifInscription-body .logo-nexa {
     max-width: 12vw;
     transform: translateX(-5px);
 }
 
-h2 {
-    font-weight: 700;
-    color: #333;
-}
 
-
-
-.choice-form__button{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.06);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-    border: 1.5px solid rgba(255, 255, 255, 0.06);
-    border-radius: 8px;
-    margin-top: 35px;
-}
-
-.choice-form__button button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    font-weight: 700;
-    backdrop-filter: blur(50px);
-}
-
-.choice-form__button button:hover {
-    background-color: #2980b9;
-}
-
-.accueil form {
+.codeVerifInscription-body .accueil form {
     background-color: rgba(255, 255, 255, 0.06);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     box-shadow: 1px 25px 23px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    /*-webkit-box-shadow: 0px 25px 23px rgba(0, 0, 0, 0.15);*/
     border: 1.5px solid rgba(255, 255, 255, 0.06);
     padding: 2% 6% ;
 
 }
 
-.field {
+.codeVerifInscription-body .field {
     margin-bottom: 1vh;
     display: flex;
     flex-direction: column;
@@ -178,12 +118,12 @@ h2 {
 
 }
 
-label {
+.codeVerifInscription-bod label {
     color: #dcdcdc;
     font-size: 100%;
 }
 
-.field input {
+.codeVerifInscription-body .field input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -191,52 +131,18 @@ label {
     width: 17vw;
 }
 
-.checkpswd {
-    position: absolute;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    cursor:pointer;
-    vertical-align: middle;
-}
 
-.field-pswd, .field-email {
+.codeVerifInscription-body .field-email {
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.forgotPwd{
-
-    color: #dcdcdc;
-    text-decoration: none;
-}
-
-.inscription-connexion-button-container {
+.codeVerifInscription-body .inscription-connexion-button-container {
     text-align: center;
 }
 
-
-/*.textfield{*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    border-radius: 15px;*/
-/*    padding: 1em;*/
-/*    background-color: #ccc;*/
-/*    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);*/
-/*    transition: 300ms ease-in-out;*/
-/*}*/
-
-/*.textfield:focus{*/
-/*    background-color: white;*/
-/*    transform: scale(1.05);*/
-/*    box-shadow: 3px 3px 50px #969696,*/
-/*    -3px -3px 50px #ffffff;*/
-/*}*/
-
-/* The switch - the box around the slider */
-.switch {
-    /* Variables */
+.codeVerifInscription-body .switch {
     --switch_width: 2em;
     --switch_height: 1em;
     --thumb_color: #e8e8e8;
@@ -251,15 +157,13 @@ label {
     height: var(--switch_height);
 }
 
-/* Hide default HTML checkbox */
-.switch input {
+.codeVerifInscription-body .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
-.slider {
+.codeVerifInscription-body .slider {
     box-sizing: border-box;
     border: 2px solid var(--outline_color);
     position: absolute;
@@ -273,7 +177,7 @@ label {
     border-radius: var(--switch_height);
 }
 
-.slider:before {
+.codeVerifInscription-body .slider:before {
     box-sizing: border-box;
     position: absolute;
     content: "";
@@ -289,204 +193,101 @@ label {
     transition: .15s;
 }
 
-input:checked + .slider {
+.codeVerifInscription-body :checked + .slider {
     background-color: var(--track_active_color);
 }
 
-input:focus-visible + .slider {
+.codeVerifInscription-body :focus-visible + .slider {
     box-shadow: 0 0 0 2px var(--track_active_color);
 }
 
 /* Raise thumb when hovered */
-input:hover + .slider:before {
+.codeVerifInscription-body :hover + .slider:before {
     transform: translateY(-0.3em);
     box-shadow: 0 0.3em 0 var(--outline_color);
 }
 
-input:checked + .slider:before {
+.codeVerifInscription-body :checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
 }
 
-/* Raise thumb when hovered & checked */
-input:hover:checked + .slider:before {
+.codeVerifInscription-bod input:hover:checked + .slider:before {
     transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.3em);
     box-shadow: 0 0.3em 0 var(--outline_color);
 }
 
 
 @media screen and (min-width: 767px) and (max-width: 1023px){
-    .accueil{
+    .codeVerifInscription-body .accueil{
         width: 100%;
         padding:  2rem 0;
     }
 
-    .field input {
+    .codeVerifInscription-body .field input {
         width: 100%;
     }
 
-    .choice-form__button button {
-        width: 100%;
-    }
-
-    .field {
+    .codeVerifInscription-body .field {
         margin-bottom: 8%;
     }
 
-    .field-pswd, .field-email {
+    .codeVerifInscription-body .field-email {
         display: flex;
         align-items: center;
         position: relative;
     }
 
-    .checkpswd {
-        position: absolute;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        cursor:pointer;
-        vertical-align: middle;
-    }
-
-    .forgotPwd{
-        color: #dcdcdc;
-        text-decoration: none;
-    }
-
-    .inscription-connexion-button-container {
+    .codeVerifInscription-body .inscription-connexion-button-container {
         text-align: center;
     }
 
-    .container-form {
+    .codeVerifInscription-body .container-form {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .head {
+    .codeVerifInscription-body .head {
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .logo-nexa {
+    .codeVerifInscription-body .logo-nexa {
         max-width: 100px;
-    }
-
-    h2 {
-        font-weight: 700;
-        color: #333;
-    }
-
-    .choice-form__button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.06);
-        -webkit-backdrop-filter: blur(15px);
-        backdrop-filter: blur(15px);
-        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        border: 1.5px solid rgba(255, 255, 255, 0.06);
-        border-radius: 8px;
-    }
-
-    .choice-form__button button {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-        font-weight: 700;
-        backdrop-filter: blur(50px);
     }
 }
 @media screen and (max-width: 767px){
-    .accueil{
+    .codeVerifInscription-body .accueil{
         width: 100%;
         padding:  2rem 0;
     }
 
-    .field input {
+    .codeVerifInscription-body .field input {
         width: 100%;
     }
 
-    .choice-form__button button {
-        width: 100%;
-    }
-
-    .field {
+    .codeVerifInscription-body .field {
         margin-bottom: 8%;
     }
 
-    .field-pswd, .field-email {
+    .codeVerifInscription-body .field-email {
         display: flex;
         align-items: center;
         position: relative;
     }
 
-    .checkpswd {
-        position: absolute;
-        right: 10px;
-        width: 30px;
-        height: 30px;
-        cursor:pointer;
-        vertical-align: middle;
-    }
-
-    .forgotPwd{
-        color: #dcdcdc;
-        text-decoration: none;
-    }
-
-    .inscription-connexion-button-container {
+    .codeVerifInscription-body .inscription-connexion-button-container {
         text-align: center;
     }
 
-    .container-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 12px;
-    }
-
-    .head {
+    .codeVerifInscription-body .head {
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .logo-nexa {
+    .codeVerifInscription-body .logo-nexa {
         max-width: 100px;
     }
 
-    h2 {
-        font-weight: 700;
-        color: #333;
-    }
-
-    .choice-form__button{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.06);
-        -webkit-backdrop-filter: blur(15px);
-        backdrop-filter: blur(15px);
-        -webkit-box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        box-shadow: 0 25px 23px rgba(0, 0, 0, 0.15);
-        border: 1.5px solid rgba(255, 255, 255, 0.06);
-        border-radius: 8px;
-    }
-
-    .choice-form__button button {
-        background-color: #3498db;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-        font-weight: 700;
-        backdrop-filter: blur(50px);
-    }
 }
 

@@ -18,7 +18,7 @@ $email = $_SESSION["email"];
     <title>Confirmation inscription</title>
 </head>
 
-<body>
+<body class="codeVerifInscription-body">
 
     <?php include('message_ESI.php'); ?>
 

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../css/header.css">
 
 
-<header class="header">
+<header class="header-body">
     <div class="left-header">
         <form id="searchForm" class="search-form">
             <div class="left-header">
@@ -21,5 +21,4 @@
                 class="post-pp post-pp-hover"></a>
         <?php echo $user; ?>
     </div>
-    </a>
 </header>
