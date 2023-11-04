@@ -36,19 +36,6 @@ foreach ($posts as $post): ?>
         <?php endif; ?>
     </div>
 
-    <div id="commentModal<?php echo $post['id_post']; ?>" class="modal">
-        <div class="modal-content">
-            <form action="traitement_commentaire.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id_pere" id="id_pere<?php echo $post['id_post']; ?>"
-                    value="<?php echo $post['id_post']; ?>">
-                <div class="input-container">
-                    <label for="contenu">Commentaire :</label>
-                    <textarea id="contenu" name="contenu"></textarea>
-                </div>
-                <input type="submit" value="Commenter">
-            </form>
-        </div>
-    </div>
     <div class="comments-container" id="comments<?php echo $post['id_post']; ?>" style="display:none;">
         <?php
         $comments = $postCtrl->getComments($post['id_post']);

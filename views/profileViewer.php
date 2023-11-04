@@ -7,8 +7,6 @@ if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !==
 }
 
 $userViewed = $_GET['user'];
-var_dump($userViewed);
-var_dump($user);
 if ($userViewed == $user) {
     header('Location: profil.php');
 }
