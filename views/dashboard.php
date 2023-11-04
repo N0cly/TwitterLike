@@ -94,7 +94,7 @@ $is_moderator = $user_data['is_moderator'];
         <section class="right-panel">
             <button id="ouvrirPublication" class="button">Nouvelle publication</button>
             <?php if ($is_categorySet == true): ?>
-                <h3 class="category-item">
+                <h3>
                     <?php echo $categorie['libelle']; ?>
                 </h3>
             <?php endif; ?>
