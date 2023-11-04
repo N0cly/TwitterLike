@@ -28,9 +28,14 @@ class CategorieController
     {
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
             $nom_categorie = $_POST['nom_categorie'];
-
-            $categorieModel = new CategorieModel();
-            $categorieModel->removeCategorie($nom_categorie);
+            if ($nom_categorie == 'Divers') {
+                session_start();
+                $_SESSION['error_message'] = "Vous ne pouvez pas supprimer la categorie divers";
+                header("Location: ../views/dashboard.php");
+            } else {
+                $categorieModel = new CategorieModel();
+                $categorieModel->removeCategorie($nom_categorie);
+            }
         }
     }
 

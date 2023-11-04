@@ -49,6 +49,22 @@ class PostModel
         return $result;
     }
 
+
+    public function supprimerPost($id_post, $reponse)
+    {
+        if ($reponse == 'oui') {
+            $query = "DELETE FROM Post WHERE id_post = :id_post";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+            $stmt->execute();
+            header("Location: ../views/dashboard.php");
+            $_SESSION["success_message"] = "Suppréssion confirmée";
+        } else {
+            $_SESSION["error_message"] = "Suppréssion annulé";
+            header("Location: ../views/dashboard.php");
+        }
+    }
+
     public function getPostsByCategory($categorie, $user)
     {
         $query = "SELECT Post.*, 

@@ -43,24 +43,31 @@ $is_moderator = $user_data['is_moderator'];
 
 
 <?php include('header.php'); ?>
-<main>
-    <section class="profil">
-        <div class="profil-info">
-            <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
-            <h1>
-                <?php echo $user; ?>
-            </h1>
-            <?php if ($is_moderator == 1): ?>
-                <h4>Modérateur</h4>
-            <?php endif; ?>
-            <p>
-                <?php echo $user_data['description']; ?>
-            </p>
-            <a href="modifier_profil.php">Modifier le profil</a>
-        </div>
-        <div class="profil-posts">
-            <!-- Affichage des publications de l'utilisateur -->
-            <h2>Publications récentes</h2>
+
+
+<body>
+    <main>
+        <section class="profil">
+            <div class="profil-info">
+                <img src="../<?php echo $user_data['pp']; ?>" alt="Photo de profil" class="pp pp-hover">
+                <h1>
+                    <?php echo $user; ?>
+                </h1>
+                <?php if ($is_moderator == 1): ?>
+                    <h4>Modérateur</h4>
+                <?php endif; ?>
+                <p>
+                    Créé le :
+                    <?php echo $user_data['first_connexion']; ?>
+                </p>
+                <p>
+                    <?php echo $user_data['description']; ?>
+                </p>
+                <a href="modifier_profil.php">Modifier le profil</a>
+            </div>
+            <div class="profil-posts">
+                <!-- Affichage des publications de l'utilisateur -->
+                <h2>Publications récentes</h2>
 
             <?php include('afficherpost.php'); ?>
         </div>

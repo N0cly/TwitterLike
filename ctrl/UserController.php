@@ -55,7 +55,6 @@ class UserController
             // Détruisez la session et redirigez vers la page de connexion ou toute autre destination souhaitée.
             session_start();
             session_destroy();
-            header("Location: ../"); // Changez cette URL vers la destination de déconnexion souhaitée.
             exit;
         }
     }
