@@ -31,7 +31,7 @@ foreach ($posts as $post): ?>
         <button class="post-action share">🔗
             <?php echo $post['partage']; ?>
         </button>
-        <?php if ($is_moderator == 1): ?>
+        <?php if ($is_moderator == 1 || $post['user'] == $user): ?>
             <a class="post-action delete" href="supprimerPost.php?id=<?php echo $post['id_post']; ?>">🗑</a>
         <?php endif; ?>
     </div>

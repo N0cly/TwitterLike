@@ -13,6 +13,7 @@ $user_data = $userCtrl->getUser($user);
 
 //     Partie commentée pour récupérer les messages
 
+
 require_once('../ctrl/PostController.php');
 if (isset($_GET['id'])) {
     $postId = $_GET['id'];
@@ -22,7 +23,6 @@ if (isset($_GET['id'])) {
     header('dashboard.php');
 }
 $_SESSION['post_id'] = $postId;
-var_dump($_SESSION['post_id']);
 $postCtrl = new PostController();
 $post_fetch = $postCtrl->getPost($postId);
 $post = $post_fetch;
@@ -36,6 +36,13 @@ $categorieRightPannel = $categorie_fetch;
 $comments = $postCtrl->getComments($postId);
 
 $is_moderator = $user_data['is_moderator'];
+
+if ($is_moderator == 0) {
+    if ($user != $post['user']) {
+        $_SESSION['error_message'] = "Vous n'avez pas le droit d'ètre là";
+        header("Location: ../views/dashboard.php");
+    }
+}
 ?>
 
 <!DOCTYPE html>

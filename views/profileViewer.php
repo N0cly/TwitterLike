@@ -7,7 +7,9 @@ if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !==
 }
 
 $userViewed = $_GET['user'];
-
+if ($userViewed == $_SESSION['username']) {
+    header('profil.php');
+}
 require_once('../ctrl/UserController.php');
 $userCtrl = new UserController();
 $user_data = $userCtrl->getUser($user);
@@ -20,6 +22,7 @@ $posts = $postCtrl->getAllPostsUser($userViewed);
 $userCtrl->getUser($userViewed);
 
 $is_moderator = $user_data['is_moderator'];
+
 ?>
 
 <!DOCTYPE html>
