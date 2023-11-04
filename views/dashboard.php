@@ -14,11 +14,12 @@ $user_data = $userCtrl->getUser($user);
 //     Partie commentée pour récupérer les messages
 
 require_once('../ctrl/PostController.php');
-
+$is_categorySet = false;
 if (isset($_GET['category'])) {
     $categorie = $_GET['category'];
     $postCtrl = new PostController();
     $posts = $postCtrl->getPostsByCategory($categorie, $user);
+    $is_categorySet = true;
 } else {
     $postCtrl = new PostController();
     $posts = $postCtrl->getPostsAll($user);
@@ -92,6 +93,11 @@ $is_moderator = $user_data['is_moderator'];
 
         <section class="right-panel">
             <button id="ouvrirPublication" class="button">Nouvelle publication</button>
+            <?php if ($is_categorySet == true): ?>
+                <h3 class="category-item">
+                    <?php echo $categorie['libelle']; ?>
+                </h3>
+            <?php endif; ?>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <form action="../Post/sendPost" method="post" enctype="multipart/form-data">
