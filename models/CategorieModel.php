@@ -100,5 +100,16 @@ class CategorieModel
         }
     }
 
+    public function getLibelleCategorie($categorie)
+    {
+        $query = "SELECT libelle FROM Categorie WHERE nom_categorie = :categorie";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':categorie', $categorie);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['libelle'];
+    }
 
 }

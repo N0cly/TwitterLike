@@ -30,8 +30,11 @@ if (isset($_GET['category'])) {
 require_once('../ctrl/CategorieController.php');
 $categorieCtrl = new CategorieController();
 $categorie_fetch = $categorieCtrl->getCategorieAll();
+
 $categorieLeftPannel = $categorie_fetch;
 $categorieRightPannel = $categorie_fetch;
+$categorieLibelle = $categorieCtrl->getLibelleCategorie($categorie);
+
 
 $is_moderator = $user_data['is_moderator'];
 ?>
@@ -52,88 +55,88 @@ $is_moderator = $user_data['is_moderator'];
 
 <body class="dashboard-body">
 
-    <?php include('message_ESI.php'); ?>
+<?php include('message_ESI.php'); ?>
 
-    <?php include('header.php'); ?>
+<?php include('header.php'); ?>
 
-    <main class="main-content">
-        <section class="left-panel">
-            <?php if ($is_moderator == 1): ?>
-                <h2 class="section-title">Ajouter une catégorie</h2>
-                <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
-                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                        placeholder="Nouvelle catégorie" required>
-                    <input type="text" name="libelle" id="newLibelle" class="category-input"
-                        placeholder="Libellé de la catégorie" required>
-                    <button type="submit" class="category-button dashboard-button">Ajouter</button>
+<main class="main-content">
+    <section class="left-panel">
+        <?php if ($is_moderator == 1): ?>
+            <h2 class="section-title">Ajouter une catégorie</h2>
+            <form id="addCategoryForm" class="category-form" action="../Categorie/ajouterCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                       placeholder="Nouvelle catégorie" required>
+                <input type="text" name="libelle" id="newLibelle" class="category-input"
+                       placeholder="Libellé de la catégorie" required>
+                <button type="submit" class="category-button dashboard-button">Ajouter</button>
+            </form>
+        <?php endif; ?>
+        <h2 class="section-title">Catégories</h2>
+        <ul id="categoryList" class="category-list">
+            <?php
+            foreach ($categorieLeftPannel as $categorie): ?>
+                <a href="dashboard.php?category=<?php echo $categorie['nom_categorie']; ?>">
+                    <h3 class="category-item">
+                        <?php echo $categorie['nom_categorie']; ?>
+                    </h3>
+                </a>
+            <?php endforeach; ?>
+        </ul>
+
+        <?php if ($is_moderator == 1): ?>
+            <h2 class="section-title">Supprimer une catégorie</h2>
+            <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
+                <input type="text" name="nom_categorie" id="newCategory" class="category-input"
+                       placeholder="Catégorie à supprimer" required>
+                <button type="submit" class="category-button dashboard-button">Supprimer</button>
+            </form>
+        <?php endif; ?>
+    </section>
+
+
+    <section class="right-panel">
+        <button id="ouvrirPublication" class="dashboard-button">Nouvelle publication</button>
+        <?php if ($is_categorySet == true): ?>
+            <h3>
+                <?php echo $categorieLibelle; ?>
+            </h3>
+        <?php endif; ?>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <form action="../Post/sendPost" method="post" enctype="multipart/form-data">
+                    <div class="input-container">
+                        <label for="contenu">Contenu :</label>
+                        <textarea id="contenu" name="contenu"></textarea>
+                    </div>
+                    <div class="input-container">
+                        <label for="image">Image :</label>
+                        <input type="file" id="image" name="image">
+                    </div>
+                    <div class="input-container">
+                        <label for="CategorieSelect">Choisissez une catégorie :</label>
+                        <select id="categorieSelect" name="categorie">
+                            <?php
+                            foreach ($categorieRightPannel as $category): ?>
+                                <option value="<?php echo $category['nom_categorie']; ?>">
+                                    <?php echo $category['nom_categorie']; ?>
+                                </option>
+                            <?php endforeach;
+                            ?>
+                        </select>
+
+                    </div>
+                    <input type="submit" value="Publier">
                 </form>
-            <?php endif; ?>
-            <h2 class="section-title">Catégories</h2>
-            <ul id="categoryList" class="category-list">
-                <?php
-                foreach ($categorieLeftPannel as $categorie): ?>
-                    <a href="dashboard.php?category=<?php echo $categorie['nom_categorie']; ?>">
-                        <h3 class="category-item">
-                            <?php echo $categorie['nom_categorie']; ?>
-                        </h3>
-                    </a>
-                <?php endforeach; ?>
-            </ul>
-
-            <?php if ($is_moderator == 1): ?>
-                <h2 class="section-title">Supprimer une catégorie</h2>
-                <form id="removeCategoryForm" class="category-form" action="../Categorie/removeCategorie" method="post">
-                    <input type="text" name="nom_categorie" id="newCategory" class="category-input"
-                        placeholder="Catégorie à supprimer" required>
-                    <button type="submit" class="category-button dashboard-button">Supprimer</button>
-                </form>
-            <?php endif; ?>
-        </section>
-
-
-        <section class="right-panel">
-            <button id="ouvrirPublication" class="dashboard-button">Nouvelle publication</button>
-            <?php if ($is_categorySet == true): ?>
-                <h3>
-                    <?php echo $categorie['libelle']; ?>
-                </h3>
-            <?php endif; ?>
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <form action="../Post/sendPost" method="post" enctype="multipart/form-data">
-                        <div class="input-container">
-                            <label for="contenu">Contenu :</label>
-                            <textarea id="contenu" name="contenu"></textarea>
-                        </div>
-                        <div class="input-container">
-                            <label for="image">Image :</label>
-                            <input type="file" id="image" name="image">
-                        </div>
-                        <div class="input-container">
-                            <label for="CategorieSelect">Choisissez une catégorie :</label>
-                            <select id="categorieSelect" name="categorie">
-                                <?php
-                                foreach ($categorieRightPannel as $category): ?>
-                                    <option value="<?php echo $category['nom_categorie']; ?>">
-                                        <?php echo $category['nom_categorie']; ?>
-                                    </option>
-                                <?php endforeach;
-                                ?>
-                            </select>
-
-                        </div>
-                        <input type="submit" value="Publier">
-                    </form>
-                </div>
             </div>
+        </div>
 
 
-            <?php include('afficherpost.php'); ?>
+        <?php include('afficherpost.php'); ?>
 
-        </section>
-    </main>
+    </section>
+</main>
 
-    <script src="../js/script_dash.js"></script>
+<script src="../js/script_dash.js"></script>
 
 </body>
 

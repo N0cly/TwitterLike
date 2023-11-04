@@ -1,12 +1,12 @@
 <?php
 
 //namespace ctrl;
+use Model\CategorieModel;
 
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/CategorieModel.php';
 
 
-use Model\CategorieModel;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -45,6 +45,14 @@ class CategorieController
         $categorieModel = new CategorieModel();
         $result = $categorieModel->getCategorieAll();
         return $result;
+    }
+
+    public function getLibelleCategorie($categorie)
+    {
+        $categorieModel = new CategorieModel();
+        $libelle = $categorieModel->getLibelleCategorie($categorie); // Remplacez par la méthode appropriée pour obtenir les publications
+
+        return $libelle;
     }
 
 
