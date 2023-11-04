@@ -55,25 +55,30 @@ class CategorieModel
         session_start();
 
         try {
+            // Mettre à jour les catégories des posts existants
+            $updateQuery = "UPDATE Post SET categorie = 'Divers' WHERE categorie = :nom_categorie";
+            $stmtUpdate = $this->connectDB()->prepare($updateQuery);
+            $stmtUpdate->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
+            $stmtUpdate->execute();
 
-            // Préparez la requête d'insertion
-            $query = "DELETE FROM categorie WHERE :nom_categorie = nom_categorie";
-            $stmt = $this->connectDB()->prepare($query);
-            $stmt->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
+            // Supprimer la catégorie
+            $deleteQuery = "DELETE FROM categorie WHERE nom_categorie = :nom_categorie";
+            $stmtDelete = $this->connectDB()->prepare($deleteQuery);
+            $stmtDelete->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
 
-            // Exécutez la requête
-            if ($stmt->execute()) {
+            if ($stmtDelete->execute()) {
                 header("Location: ../views/dashboard.php");
                 exit;
             } else {
-                $_SESSION['error_message'] = "Erreur lors de l'ajout de la catégorie dans la base de données";
+                $_SESSION['error_message'] = "Erreur lors de la suppression de la catégorie de la base de données";
             }
         } catch (PDOException $e) {
-            $_SESSION['error_message'] = "Erreur lors de l'ajout de la catégorie";
+            $_SESSION['error_message'] = "Erreur lors de la suppression de la catégorie";
             error_log($e->getMessage());
             exit;
         }
     }
+
 
     public function getCategorieAll()
     {
