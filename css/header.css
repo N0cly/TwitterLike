@@ -1,88 +1,48 @@
 .header-body {
-    background-color: #00aaff;
-    color: white;
-    padding: 1em;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.header-body .left-header {
-    display: flex;
+    justify-content: space-between; /* Pour séparer les éléments à gauche et à droite */
     align-items: center;
 }
 
-.header-body .logo-img {
-    width: 10em;
-    background-color: white;
-    padding: 0.3em;
-    text-align: center;
-}
-
-.header-body .search-btn,
-.header-body .search-input {
-    margin-left: 0.6em;
-}
-
-.header-body .search-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-.header-body .search-input {
-    width: 6em;
-    height: 2em;
-    border: none;
-    border-radius: 1em;
-    padding-left: 0.9em;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    transition: width 0.4s ease, background 0.4s ease;
-    outline: none;
-}
-
-.header-body .search-input:hover {
-    width: 12em;
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.header-body .user-icon {
-    font-size: 1.5em;
+.Logo {
     display: flex;
     align-items: center;
 }
 
-.header-body .username-link {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
-    margin-left: 0.6em;
+.logo-img {
+    width: 12em; /* Largeur du logo */
+    height: 4em; /* Hauteur du logo */
 }
 
-.header-body .button {
-    background-color: #3498db;
+.logout {
+    margin-left: 1em; /* Ajustez la marge à droite pour espacer le bouton du profil */
+}
+
+.button {
+    background-color: #e74c3c;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 0.5em 1em;
     cursor: pointer;
-    margin: 10px;
-    transition: background-color 0.3s ease-in-out;
 }
 
-.header-body .button:hover {
-    background-color: #2980b9;
-    transform: scale(1.1);
+.user-icon {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    margin-left: auto;
 }
 
-.header-body .post-pp {
+.post-pp {
     width: 3em;
     height: 3em;
     border-radius: 50%;
-    margin-right: 1em;
+    margin-right: 0.5em;
+}
+
+.username-link {
+    margin-left: 0.5em;
 }
