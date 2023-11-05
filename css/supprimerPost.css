@@ -1,4 +1,10 @@
 /* Réinitialisation des marges et des rembourrages pour une mise en page cohérente */
+
+a {
+    text-decoration: none; /* Pour supprimer le soulignement */
+    color: #000; /* Choisir la couleur du texte que vous souhaitez */
+}
+
 * {
     margin: 0;
     padding: 0;
