@@ -23,11 +23,20 @@ if (isset($_GET['category'])) {
     $categorieCtrl = new CategorieController();
     $categorieLibelle = $categorieCtrl->getLibelleCategorie($categorie);
 
-} elseif (isset($_GET['scearch'])) {
-    $contenu = $_GET['scearch'];
-    $postCtrl = new PostController();
-    $posts = $postCtrl->getPostsByContenu($contenu, $user);
-} else {
+}
+
+//elseif (isset($_GET['scearch'])) {
+//    $contenu = $_GET['scearch'];
+//    $postCtrl = new PostController();
+//    $posts = $postCtrl->getPostsByContenu($contenu, $user);
+//}
+//elseif (isset($_GET['search'])) {
+//    $searchTerm = $_GET['search'];
+//    $postCtrl = new PostController();
+//    $posts = $postCtrl->getPostsByContenu(); // Fournir le terme de recherche et l'utilisateur
+//}
+
+else {
     $postCtrl = new PostController();
     $posts = $postCtrl->getPostsAll($user);
     $categorieLibelle = "Toutes les catégories";
@@ -141,10 +150,55 @@ $is_moderator = $user_data['is_moderator'];
 
             <?php include('afficherpost.php'); ?>
 
+
         </section>
     </main>
 
     <script src="../js/script_dash.js"></script>
+
+    <script>
+
+    // function searchCategory() {
+    //     var input, filter, ul, li, a, i, txtValue;
+    //     input = document.getElementById("searchInput");
+    //     filter = input.value.toUpperCase();
+    //     ul = document.getElementById("categoryList");
+    //     li = ul.getElementsByTagName("a");
+    //     for (i = 0; i < li.length; i++) {
+    //         a = li[i].getElementsByTagName("h3")[0];
+    //         txtValue = a.textContent || a.innerText;
+    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //             li[i].style.display = "";
+    //             console.log("ok");
+    //         } else {
+    //             li[i].style.display = "none";
+    //             console.log("no");
+    //         }
+    //     }
+    // }
+
+    // function searchPost() {
+    //     var input, filter, ul, li, a, i, txtValue;
+    //     input = document.getElementById("searchInput");
+    //     filter = input.value.toUpperCase();
+    //     ul = document.getElementsByClassName("post");
+    //     li = ul;
+    //     for (i = 0; i < li.length; i++) {
+    //         a = li[i].getElementsByTagName("h3")[0];
+    //         txtValue = a.textContent || a.innerText;
+    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //             li[i].style.display = "";
+    //             console.log("ok");
+    //         } else {
+    //             li[i].style.display = "none";
+    //             console.log("no");
+    //         }
+    //     }
+    // }
+
+    </script>
+
+<?php include('footer.php'); ?>
 
 </body>
 

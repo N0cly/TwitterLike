@@ -121,4 +121,16 @@ class PostController
 
         return $comments;
     }
+
+    public function likePost()
+    {
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
+            $id_post = $_POST["id_post"];
+            session_start();
+            $user = $_SESSION['username'];
+
+            $postModel = new PostModel();
+            $postModel->likePost($id_post, $user);
+        }
+    }
 }

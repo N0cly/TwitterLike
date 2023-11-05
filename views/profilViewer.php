@@ -73,6 +73,8 @@ $is_moderator = $user_data['is_moderator'];
             </div>
         </section>
     </main>
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>

@@ -123,6 +123,7 @@ if ($is_moderator == 0) {
     </main>
 
     <script src="../js/script_dash.js"></script>
+    <?php include('footer.php'); ?>
 
 </body>
 

@@ -133,6 +133,8 @@ $is_moderator = $user_data['is_moderator'];
 
     <script src="../js/script_dash.js"></script>
 
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>

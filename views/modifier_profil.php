@@ -61,6 +61,8 @@ $is_moderator = $user_data['is_moderator'];
             </div>
         </section>
     </main>
+    <?php include('footer.php'); ?>
+
     <!-- Autres éléments de votre page, scripts, etc. -->
 </body>
 

@@ -53,6 +53,8 @@ if (!isset($_SESSION['codeCheck'])) {
             </form>
         </section>
     </section>
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>

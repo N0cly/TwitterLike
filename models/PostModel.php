@@ -256,5 +256,44 @@ class PostModel
 
     }
 
+    public function likePost($id_post, $user)
+    {
+        $query = "SELECT COUNT(*) as user_liked FROM Likes WHERE post_id = :id_post AND user = :user";
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+        $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result['user_liked'] == 1) {
+            $query = "DELETE FROM Likes WHERE post_id = :id_post AND user = :user";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+            $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $query = "UPDATE Post SET Like = Like - 1 WHERE id_post = :id_post";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return json_encode(['success' => true, 'action' => 'unliked']);
+        } else {
+            $query = "INSERT INTO Likes (post_id, user) VALUES (:id_post, :user)";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+            $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $query = "UPDATE Post SET Like = Like + 1 WHERE id_post = :id_post";
+            $stmt = $this->connectDB()->prepare($query);
+            $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return json_encode(['success' => true, 'action' => 'liked']);
+        }
+    }
+
 
 }

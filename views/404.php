@@ -27,6 +27,9 @@
     <h1>Erreur 404 - Page non trouvée</h1>
     <p>Désolé, la page que vous recherchez est introuvable.</p>
     <p><a href="../views/dashboard.php">Retour à la page d'accueil</a></p>
+
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>
