@@ -53,7 +53,7 @@ class PostModel
     public function supprimerPost($id_post, $reponse)
     {
         if ($reponse == 'oui') {
-            $query = "DELETE FROM Post WHERE id_post = :id_post";
+            $query = "DELETE FROM Post WHERE id_post = :id_post OR id_pere = :id_post";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
             $stmt->execute();
