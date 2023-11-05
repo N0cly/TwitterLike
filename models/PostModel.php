@@ -87,6 +87,32 @@ class PostModel
         return $results;
     }
 
+    public function getPostsByContenu($contenu, $user)
+    {
+        $query = "SELECT Post.*, 
+              (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, 
+              (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, 
+              Users.pp AS user_pp 
+              FROM Post 
+              LEFT JOIN Users ON Post.user = Users.username 
+              WHERE contenu LIKE :contenu 
+              AND id_pere IS NULL 
+              ORDER BY Time DESC";
+
+        $contenu = '%' . $contenu . '%'; // Ajoutez des caractères de joker pour correspondre à un contenu partiel
+
+        $stmt = $this->connectDB()->prepare($query);
+        $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
+        $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Redirigez l'utilisateur avec l'URL appropriée
+        header("Location: ../views/dashboard.php?search=" . $contenu);
+        exit(); // Assurez-vous de terminer le script après la redirection
+    }
+
 
 
     public function getPostLikes($id_post)

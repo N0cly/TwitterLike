@@ -3,13 +3,14 @@
 
 <header class="header-body">
     <div class="left-header">
-        <form id="searchForm" class="search-form">
+        <form method="GET" id="searchForm" class="search-form" action="../Post/getPostsByContenu">
             <div class="left-header">
-                <input type="text" id="searchInput" name="search" class="search-input" placeholder="Recherche..."
+                <input type="text" id="searchInput" name="contenu" class="search-input" placeholder="Recherche..."
                     required>
-                <button id="searchBtn" class="search-btn" type="button">🔍</button>
+                <button id="searchBtn" class="search-btn" type="submit">🔍</button>
             </div>
         </form>
+
     </div>
     <a href="dashboard.php"><img src="../Images/Logos/Logo_Nexa.png" alt="Logo Nexa" class="logo-img"></a>
     <form action="../User/logout" method="post">

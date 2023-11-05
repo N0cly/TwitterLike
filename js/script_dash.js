@@ -16,3 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.getElementById('copy-link').addEventListener('click', function() {
+    var postLink = document.getElementById('post-link');
+    
+    // Vérifiez si l'élément 'post-link' existe avant de tenter de copier l'URL
+    if (postLink) {
+      var textArea = document.createElement("textarea");
+      textArea.value = postLink.href;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert("L'URL du post viens d'ètre copié dans votre presse papier");
+    }
+  });

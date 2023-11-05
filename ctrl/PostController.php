@@ -37,10 +37,22 @@ class PostController
     }
     public function getPostsByCategory($categorie, $user)
     {
-
         $postModel = new PostModel();
         $posts = $postModel->getPostsByCategory($categorie, $user); // Remplacez par la méthode appropriée pour obtenir les publications
 
+        return $posts;
+    }
+
+    public function getPostsByContenu($contenu, $user)
+    {
+        if (isset($_GET['contenu'])) {
+            $contenu = $_GET['contenu'];
+            session_start();
+            $user = $_SESSION['username']; // Récupérez l'utilisateur depuis la session
+
+            $postCtrl = new PostController();
+            $posts = $postCtrl->getPostsByContenu($contenu, $user);
+        }
         return $posts;
     }
 

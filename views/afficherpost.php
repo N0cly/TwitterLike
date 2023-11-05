@@ -27,10 +27,8 @@ foreach ($posts as $post): ?>
             <button class="post-action like" data-id_post="<?php echo $post['id_post']; ?>" <?php echo $post['user_liked'] > 0 ? 'disabled' : ''; ?>>❤️
                 <?php echo $post['LikeCount']; ?>
             </button>
-            <a class="post-action comment" href="post.php?id=<?php echo $post['id_post']; ?>">💬</a>
-            <button class="post-action share">🔗
-                <?php echo $post['partage']; ?>
-            </button>
+            <a id="post-link" class="post-action comment" href="post.php?id=<?php echo $post['id_post']; ?>">💬</a>
+            <button class="post-action share" id="copy-link">🔗</button>
             <?php if ($is_moderator == 1 || $post['user'] == $user): ?>
                 <a class="post-action delete" href="supprimerPost.php?id=<?php echo $post['id_post']; ?>">🗑</a>
             <?php endif; ?>
