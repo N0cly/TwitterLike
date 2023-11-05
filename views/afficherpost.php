@@ -10,7 +10,7 @@ foreach ($posts as $post): ?>
             <div class="post">
                 <div class="post-header">
                     <img src="../<?php echo $post['user_pp']; ?>" alt="Photo de profil de l'utilisateur"
-                         class="post-pp post-pp-hover">
+                        class="post-pp post-pp-hover">
                     <h3 class="post-username">
                         <?php echo $post['user']; ?>
                     </h3>
@@ -31,7 +31,7 @@ foreach ($posts as $post): ?>
             <button class="post-action share">🔗
                 <?php echo $post['partage']; ?>
             </button>
-            <?php if ($is_moderator == 1): ?>
+            <?php if ($is_moderator == 1 || $post['user'] == $user): ?>
                 <a class="post-action delete" href="supprimerPost.php?id=<?php echo $post['id_post']; ?>">🗑</a>
             <?php endif; ?>
         </div>
@@ -52,5 +52,3 @@ foreach ($posts as $post): ?>
         </div>
     </div>
 <?php endforeach; ?>
-
-

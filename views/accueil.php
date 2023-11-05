@@ -48,7 +48,7 @@ session_start();
                         <label for="username">Username :</label>
                         <section class="field-email">
 
-                            <input type="text" id="username" name="username" class="textfield" placeholder="Dylan_du_92"
+                            <input type="text" id="username" name="username" class="textfield" placeholder="username"
                                 required>
                         </section>
                     </div>

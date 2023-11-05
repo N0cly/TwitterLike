@@ -200,12 +200,6 @@ class UserModel
         }
     }
 
-    public function updateUser($id, $data)
-    { /* ... */
-    }
-    public function deleteUser($id)
-    { /* ... */
-    }
     public function resetPwd($email)
     {
         if (!$this->checkEmailExists($email)) {

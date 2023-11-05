@@ -23,7 +23,7 @@
     transform: scale(1.1);
 }
 
-.codeVerifInscription-bod {
+.codeVerifInscription-body {
     /*overflow: hidden;*/
     overflow-x: hidden;
     margin: 0;
@@ -141,7 +141,10 @@
 .codeVerifInscription-body .inscription-connexion-button-container {
     text-align: center;
 }
-
+label{
+    color: #ffffff;
+    margin-bottom: 0.5em;
+}
 .codeVerifInscription-body .switch {
     --switch_width: 2em;
     --switch_height: 1em;
