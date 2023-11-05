@@ -74,4 +74,6 @@ $is_moderator = $user_data['is_moderator'];
         </main>
     </body>
 
+    <script src="../js/script_dash.js"></script>
+
 </html>
