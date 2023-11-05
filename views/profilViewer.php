@@ -67,7 +67,6 @@ $is_moderator = $user_data['is_moderator'];
                 </p>
             </div>
             <div class="profile-posts">
-                <!-- Affichage des publications de l'utilisateur -->
                 <h2>Publications récentes</h2>
 
                 <?php include('afficherpost.php'); ?>

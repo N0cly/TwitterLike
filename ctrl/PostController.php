@@ -31,14 +31,14 @@ class PostController
     public function getPosts()
     {
         $postModel = new PostModel();
-        $posts = $postModel->getAllPosts(); // Remplacez par la méthode appropriée pour obtenir les publications
+        $posts = $postModel->getAllPosts();
 
         return $posts;
     }
     public function getPostsByCategory($categorie, $user)
     {
         $postModel = new PostModel();
-        $posts = $postModel->getPostsByCategory($categorie, $user); // Remplacez par la méthode appropriée pour obtenir les publications
+        $posts = $postModel->getPostsByCategory($categorie, $user);
 
         return $posts;
     }
@@ -48,7 +48,7 @@ class PostController
         if (isset($_GET['contenu'])) {
             $contenu = $_GET['contenu'];
             session_start();
-            $user = $_SESSION['username']; // Récupérez l'utilisateur depuis la session
+            $user = $_SESSION['username'];
 
             $postCtrl = new PostController();
             $posts = $postCtrl->getPostsByContenu($contenu, $user);
@@ -59,10 +59,9 @@ class PostController
     public function sendPost()
     {
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
-            $image = null; // Si vous n'utilisez pas l'image pour le moment
+            $image = null;
             $content = $_POST["contenu"];
             session_start();
-            // Obtenez l'username à partir de la session
             $user = $_SESSION['username'];
             $categorie = $_POST['categorie'];
 
@@ -85,16 +84,12 @@ class PostController
         }
     }
 
-
-
-
     public function sendComment()
     {
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST") {
-            $image = null; // Si vous n'utilisez pas l'image pour le moment
+            $image = null;
             $content = $_POST["contenu"];
             session_start();
-            // Obtenez l'username à partir de la session
             $user = $_SESSION['username'];
             $id_pere = $_SESSION['post_id'];
 
@@ -107,14 +102,14 @@ class PostController
     public function getPostsAll($user)
     {
         $postModel = new PostModel();
-        $posts = $postModel->getPostsAll($user); // Remplacez par la méthode appropriée pour obtenir les publications
+        $posts = $postModel->getPostsAll($user);
 
         return $posts;
     }
     public function getAllPostsUser($user)
     {
         $postModel = new PostModel();
-        $posts = $postModel->getAllPostsUser($user); // Remplacez par la méthode appropriée pour obtenir les publications de l'utilisateur
+        $posts = $postModel->getAllPostsUser($user);
 
         return $posts;
     }
@@ -122,13 +117,8 @@ class PostController
     public function getComments($id_post)
     {
         $postModel = new PostModel();
-        $comments = $postModel->getComments($id_post); // Remplacez par la méthode appropriée pour obtenir les publications
+        $comments = $postModel->getComments($id_post);
 
         return $comments;
     }
-
-
-
-
-
 }

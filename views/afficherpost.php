@@ -3,7 +3,6 @@
 
 
 <?php
-// Partie commentée pour afficher les messages
 foreach ($posts as $post): ?>
     <div class="afficherpost">
         <a href="profilViewer.php?user=<?php echo $post['user']; ?>">

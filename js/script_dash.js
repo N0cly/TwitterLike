@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById('copy-link').addEventListener('click', function() {
     var postLink = document.getElementById('post-link');
     
-    // Vérifiez si l'élément 'post-link' existe avant de tenter de copier l'URL
     if (postLink) {
       var textArea = document.createElement("textarea");
       textArea.value = postLink.href;

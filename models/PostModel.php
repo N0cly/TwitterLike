@@ -39,7 +39,7 @@ class PostModel
 
     public function getPost($id_post)
     {
-        $query = "SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE Post.id_post = :id_post"; // Changement de :post_id à :id_post
+        $query = "SELECT Post.*, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post) as LikeCount, (SELECT COUNT(*) FROM Likes WHERE Likes.post_id = Post.id_post AND Likes.user = :user) as user_liked, Users.pp AS user_pp FROM Post LEFT JOIN Users ON Post.user = Users.username WHERE Post.id_post = :id_post";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':id_post', $id_post, PDO::PARAM_INT);
         $stmt->execute();
@@ -78,8 +78,8 @@ class PostModel
                   ORDER BY Time DESC";
 
         $stmt = $this->connectDB()->prepare($query);
-        $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR); // J'ai changé PDO::PARAM_INT en PDO::PARAM_STR car la catégorie est généralement une chaîne de caractères
-        $stmt->bindParam(':user', $user, PDO::PARAM_STR); // Assurez-vous de lier :user si vous l'utilisez dans la requête
+        $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR);
+        $stmt->bindParam(':user', $user, PDO::PARAM_STR);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -99,7 +99,7 @@ class PostModel
               AND id_pere IS NULL 
               ORDER BY Time DESC";
 
-        $contenu = '%' . $contenu . '%'; // Ajoutez des caractères de joker pour correspondre à un contenu partiel
+        $contenu = '%' . $contenu . '%';
 
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':contenu', $contenu, PDO::PARAM_STR);
@@ -108,9 +108,8 @@ class PostModel
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Redirigez l'utilisateur avec l'URL appropriée
         header("Location: ../views/dashboard.php?search=" . $contenu);
-        exit(); // Assurez-vous de terminer le script après la redirection
+        exit();
     }
 
 
@@ -147,18 +146,13 @@ class PostModel
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploadDir = 'uploads/';
 
-            // Assurez-vous que le répertoire de téléchargement existe
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
-
-            // Générez un nom de fichier unique pour éviter les collisions
             $imageFileName = uniqid() . '_' . basename($_FILES['image']['name']);
             $imagePath = $uploadDir . $imageFileName;
 
-            // Déplace le fichier téléchargé vers le répertoire de téléchargement
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                // Si le déplacement du fichier échoue, réinitialisez $imagePath à null
                 $imagePath = null;
             }
         } else {
@@ -228,18 +222,14 @@ class PostModel
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $uploadDir = 'uploads/';
 
-            // Assurez-vous que le répertoire de téléchargement existe
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
 
-            // Générez un nom de fichier unique pour éviter les collisions
             $imageFileName = uniqid() . '_' . basename($_FILES['image']['name']);
             $imagePath = $uploadDir . $imageFileName;
 
-            // Déplace le fichier téléchargé vers le répertoire de téléchargement
             if (!move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                // Si le déplacement du fichier échoue, réinitialisez $imagePath à null
                 $imagePath = null;
             }
         } else {

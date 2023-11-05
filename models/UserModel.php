@@ -32,7 +32,6 @@ class UserModel
 
     public function checkEmailExists($email)
     {
-        // Vérifiez si l'email existe déjà dans la base de données
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -40,14 +39,12 @@ class UserModel
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //$this->connectDB()->close();
         return $result !== false;
     }
 
     public function checkUsernameExists($username)
     {
         $err = "err_user";
-        // Vérifiez si le nom d'utilisateur existe déjà dans la base de données
         $query = "SELECT * FROM users WHERE username = :username or username = :err";
         $stmt = $this->connectDB()->prepare($query);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -56,7 +53,6 @@ class UserModel
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        //$this->connectDB()->close();
 
         return $result !== false;
     }
@@ -72,7 +68,6 @@ class UserModel
 
         try {
             $mail->setLanguage('fr', '/optional/path/to/language/directory/');
-            //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
@@ -83,7 +78,6 @@ class UserModel
 
             $mail->setFrom('socialnetwork.nexa@gmail.com', 'Nexa');
             $mail->addAddress($email);
-            //            $mail->addReplyTo('enzo.bedos@nocly.fr', 'Nocly');
 
             $mail->CharSet = 'UTF-8';
             $mail->isHTML(true);
@@ -95,12 +89,10 @@ class UserModel
                 $_SESSION['email'] = $email;
                 $_SESSION['code'] = $code;
 
-                //$this->connectDB()->close();
 
                 header("Location: ../views/codeVerif.php");
                 exit;
             } else {
-                // $this->connectDB()->close();
 
                 session_start();
                 $_SESSION["error_message"] = "Email non envoyé";
@@ -140,14 +132,12 @@ class UserModel
             $codeInscription = strtoupper(substr($uniqid, -5));
 
             if (isset($codeInscription)) {
-                // Envoi de l'e-mail avec le code de réinitialisation
                 require 'vendor/autoload.php';
 
                 $mail = new PHPMailer(true);
 
                 try {
                     $mail->setLanguage('fr', '/optional/path/to/language/directory/');
-                    //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
@@ -169,12 +159,10 @@ class UserModel
                     if ($mail->send()) {
                         $_SESSION['email'] = $email;
                         $_SESSION['codeInscription'] = $codeInscription;
-                        //$this->connectDB()->close();
 
                         header("Location: ../views/codeVerifInscription.php");
                         exit;
                     } else {
-                        // $this->connectDB()->close();
 
                         session_start();
                         $_SESSION["error_message"] = "Email non envoyé";
@@ -188,7 +176,6 @@ class UserModel
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
             } else {
-                //$this->connectDB()->close();
 
                 session_start();
                 $_SESSION["error_message"] = "Erreur connexion a la base de données";
@@ -221,14 +208,12 @@ class UserModel
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            // Envoi de l'e-mail avec le code de réinitialisation
             require 'vendor/autoload.php';
 
             $mail = new PHPMailer(true);
 
             try {
                 $mail->setLanguage('fr', '/optional/path/to/language/directory/');
-                //ligne debug $mail->SMTPDebug = SMTP::DEBUG_SERVER;
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -249,13 +234,11 @@ class UserModel
 
                 if ($mail->send()) {
                     $_SESSION['email'] = $email;
-                    //$this->connectDB()->close();
                     $_SESSION['codeSend'] = true;
 
                     header("Location: ../views/codeVerif.php");
                     exit;
                 } else {
-                    // $this->connectDB()->close();
 
                     session_start();
                     $_SESSION["error_message"] = "Code Vérif non envoyé";
@@ -267,7 +250,6 @@ class UserModel
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         } else {
-            //$this->connectDB()->close();
 
             session_start();
             $_SESSION["error_message"] = "Erreur connexion a la base de données";
@@ -297,7 +279,6 @@ class UserModel
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
 
-            //actualisation de last_connexion
             $query = "UPDATE users SET last_connexion = datetime('now') WHERE email = :email";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':email', $user['email'], PDO::PARAM_STR);
@@ -305,9 +286,7 @@ class UserModel
 
             header('Location: ../views/dashboard.php');
             exit;
-            //refaire ca pour qu'on puisse savoir quelle erreur a été commise au login
         } else {
-            //$this->connectDB()->close();
             session_start();
             $_SESSION['error_message'] = "Identifiant ou mot de passe incorrect";
             $_SESSION['utilisateur_connecte'] = false;
@@ -389,7 +368,6 @@ class UserModel
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
-            //$this->connectDB()->close();
 
             $this->checkLogin($email, $newMDP);
             session_start();
@@ -397,7 +375,6 @@ class UserModel
             header('Location: ../');
             exit;
         } else {
-            //this->connectDB()->close();
             session_start();
             $_SESSION["error_message"] = "Les mots de passes ne coorespondent pas !";
             header('Location: ChangementMDP.php');
@@ -416,7 +393,6 @@ class UserModel
 
         session_start();
         $_SESSION['is_moderator'] = $user_data['is_moderator'];
-        //$this->connectDB()->close();
 
 
     }
@@ -429,7 +405,6 @@ class UserModel
         $stmt->execute();
 
         $user_data = $stmt->fetch(PDO::FETCH_ASSOC);
-        //$this->connectDB()->close();
 
 
         return $user_data;

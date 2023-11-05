@@ -1,6 +1,5 @@
 <?php
 
-//namespace ctrl;
 
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/UserModel.php';
@@ -22,7 +21,6 @@ class UserController
             isset($_SERVER['REQUEST_METHOD']) &&
             $_SERVER['REQUEST_METHOD'] == "POST"
         ) {
-            // Récupérez les données du formulaire
             $email = $_POST["email"];
             $password = $_POST["mot_de_passe"];
             $username = $_POST["username"];
@@ -42,17 +40,15 @@ class UserController
             $email = $_POST['email'];
             $password = $_POST['mot_de_passe'];
 
-            // Appelez le modèle pour vérifier les informations de connexion
             $userModel = new UserModel();
             $userModel->checkLogin($email, $password);
             $userModel->isModerator($email);
 
         }
-    } // Ajoutez cette fonction à votre UserController
+    }
     public function logout()
     {
         if (isset($_POST['logout'])) {
-            // Détruisez la session et redirigez vers la page de connexion ou toute autre destination souhaitée.
             session_start();
             session_destroy();
             header('Location: ../');
@@ -67,7 +63,6 @@ class UserController
             isset($_SERVER['REQUEST_METHOD']) &&
             $_SERVER["REQUEST_METHOD"] == "POST"
         ) {
-            // Récupérer l'adresse e-mail soumise par l'utilisateur
             $email = $_POST["email"];
             session_start();
 
@@ -163,7 +158,5 @@ class UserController
             $userModel = new UserModel();
             $userModel->ChangeUserInfo($newPP, $newDesc, $user);
         }
-
-        // Autres méthodes pour gérer les utilisateurs
     }
 }

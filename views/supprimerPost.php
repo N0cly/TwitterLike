@@ -5,21 +5,17 @@ $user = isset($_SESSION['username']) ? $_SESSION['username'] : 'err_user';
 if ($_SESSION['username'] == 'err_user' || $_SESSION['utilisateur_connecte'] !== true || !isset($_SESSION['utilisateur_connecte'])) {
     header("Location: ../");
 }
-// Après que l'utilisateur se soit connecté avec succès
 
 require_once('../ctrl/UserController.php');
 $userCtrl = new UserController();
 $user_data = $userCtrl->getUser($user);
 
-//     Partie commentée pour récupérer les messages
 
 
 require_once('../ctrl/PostController.php');
 if (isset($_GET['id'])) {
     $postId = $_GET['id'];
-    // Utilisez maintenant la variable $postId comme ID de publication
 } else {
-    // Gérer le cas où le paramètre 'id' n'est pas présent dans l'URL
     header('dashboard.php');
 }
 $_SESSION['post_id'] = $postId;
@@ -73,7 +69,6 @@ if ($is_moderator == 0) {
 
         <section class="right-panel">
 
-            <!-- Affichage des publications -->
 
             <div class="post">
                 <div class="post-header">

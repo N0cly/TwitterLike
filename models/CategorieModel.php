@@ -30,13 +30,12 @@ class CategorieModel
 
         try {
 
-            // Préparez la requête d'insertion
+
             $query = "INSERT INTO categorie (nom_categorie, libelle) VALUES (:nom_categorie, :libelle)";
             $stmt = $this->connectDB()->prepare($query);
             $stmt->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
             $stmt->bindParam(':libelle', $libelle, PDO::PARAM_STR);
 
-            // Exécutez la requête
             if ($stmt->execute()) {
                 header("Location: ../views/dashboard.php");
                 exit;
@@ -55,13 +54,11 @@ class CategorieModel
         session_start();
 
         try {
-            // Mettre à jour les catégories des posts existants
             $updateQuery = "UPDATE Post SET categorie = 'Divers' WHERE categorie = :nom_categorie";
             $stmtUpdate = $this->connectDB()->prepare($updateQuery);
             $stmtUpdate->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
             $stmtUpdate->execute();
 
-            // Supprimer la catégorie
             $deleteQuery = "DELETE FROM categorie WHERE nom_categorie = :nom_categorie";
             $stmtDelete = $this->connectDB()->prepare($deleteQuery);
             $stmtDelete->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
@@ -85,16 +82,13 @@ class CategorieModel
         try {
             $db = $this->connectDB();
 
-            // Préparez la requête pour récupérer toutes les catégories
             $query = "SELECT * FROM categorie";
             $stmt = $db->query($query);
 
-            // Récupérez toutes les catégories sous forme de tableau associatif
             $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $categories;
         } catch (PDOException $e) {
-            // Gérez les erreurs en cas de problème de connexion ou de requête
             error_log("Erreur lors de la récupération de toutes les catégories : " . $e->getMessage());
             return [];
         }
