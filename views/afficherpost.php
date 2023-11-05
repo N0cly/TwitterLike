@@ -14,6 +14,9 @@ foreach ($posts as $post): ?>
                         <?php echo $post['user']; ?>
                     </h3>
                 </div>
+                <p>
+                    <?php echo $post['Time']; ?>
+                </p>
         </a>
         <hr class="post-divider">
         <p class="post-content">
