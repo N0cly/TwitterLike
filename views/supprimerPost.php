@@ -47,7 +47,7 @@ if ($is_moderator == 0) {
 <head>
     <meta charset="UTF-8">
     <title>Nexa - Réseau Social</title>
-    <link rel="stylesheet" href="../css/post.css">
+    <link rel="stylesheet" href="../css/supprimerPost.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Nexa !">
